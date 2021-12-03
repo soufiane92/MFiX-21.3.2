@@ -1,0 +1,537 @@
+#! File written Mon Mar 15 12:50:08 2021
+#! MFiX version 20.4-dev by dietikej on login03
+#! Template used to format file: "detailed"
+
+
+#_______________________________________________________________________
+# Project Description
+
+description     = '2D single phase cylinder vortex shedding , Re = 200'
+project_version = '13'
+run_name        = 'vortex_shedding_fld_2d'
+units           = 'SI'
+
+#_______________________________________________________________________
+# Run
+
+run_type = 'new'
+tstop    = 300.0
+
+dt     = 0.01
+dt_max = 1.0
+dt_fac = 0.9
+
+
+#_______________________________________________________________________
+# Energy Equation
+
+energy_eq = .False.
+
+#_______________________________________________________________________
+# Turbulence
+
+turbulence_model = 'NONE'
+
+#_______________________________________________________________________
+# Gravity
+
+gravity_x = 0.0
+gravity_y = -0.0
+gravity_z = 0.0
+
+#_______________________________________________________________________
+# Drag
+
+drag_type = 'SYAM_OBRIEN'
+
+#_______________________________________________________________________
+# Advanced
+
+
+#_______________________________________________________________________
+# Geometry - MFiX Box
+
+coordinates = 'cartesian'
+
+
+x_min = 0
+x_max = 6.0
+
+y_min = 0
+y_max = 4.0
+
+
+#_______________________________________________________________________
+# Geometry - Input
+
+cartesian_grid = .True.
+
+
+n_quadric = 1
+
+
+## Geometry - Quadrics
+
+
+quadric_form(1) = 'Z_CYL_EXT'
+bc_id_q(1)      = 12
+
+
+t_x(1) = 2.0
+t_y(1) = 2.0
+
+
+radius(1) = 0.05
+
+
+## Geometry Input - STL File
+
+
+## Geometry Input - .msh file
+
+
+#_______________________________________________________________________
+# Background mesh - Grid spacing
+
+imax = 120
+jmax = 80
+no_k = .True.
+
+
+   cpx(0) = 1.9
+
+   cpx(1)     = 2.1
+   ncx(1)     = 20
+   erx(1)     = 0.02
+   last_dx(1) = 0.0
+
+   cpx(2) = 6.0
+   ncx(2) = 40
+
+   ncx(3)      = 60
+   erx(3)      = 50.0
+   first_dx(3) = -1.0
+
+
+   cpy(0) = 1.9
+
+   cpy(1)     = 2.1
+   ncy(1)     = 20
+   ery(1)     = 0.02
+   last_dy(1) = 0.0
+
+   cpy(2) = 4.0
+   ncy(2) = 40
+
+   ncy(3)      = 20
+   ery(3)      = 50.0
+   first_dy(3) = 0.0
+
+
+#_______________________________________________________________________
+# Cut cell tolerances
+
+
+print_progress_bar = .False.
+
+
+#_______________________________________________________________________
+# Fluid Phase
+
+
+ro_g0 = 1.2
+mu_g0 = 1.8000e-05
+
+species_eq(0) = .False.
+
+
+#_______________________________________________________________________
+# Solids Phase - Material
+
+mmax = 0
+
+# Solid 1
+momentum_x_eq(1) = .False.
+momentum_y_eq(1) = .False.
+
+
+species_eq(1) = .False.
+
+
+# Maximum packing
+
+
+#_______________________________________________________________________
+# Solids Phase - TFM settings
+
+
+friction_model = 'SCHAEFFER'
+
+
+#_______________________________________________________________________
+# Solids Phase - Lagrangian settings (common to DEM/PIC)
+
+
+#_______________________________________________________________________
+# DEM contact
+
+
+#_______________________________________________________________________
+# DEM cohesion
+
+
+#_______________________________________________________________________
+# DEM - Advanced
+
+
+#_______________________________________________________________________
+# Initial conditions
+
+# Initial condition 1: IC_1
+ic_x_w(1) = 0
+ic_x_e(1) = 6.0
+ic_y_s(1) = 0
+ic_y_n(1) = 4.0
+
+## Fluid Phase
+ic_ep_g(1) = 1.0
+ic_t_g(1)  = 293.15
+ic_u_g(1)  = 0.0
+ic_v_g(1)  = 0.0
+ic_w_g(1)  = 0.0
+
+
+## Solid 1
+
+
+ic_des_fit_to_region(1) = .False.
+
+
+#_______________________________________________________________________
+# Cyclic Boundary conditions
+
+
+#_______________________________________________________________________
+# Boundary conditions
+
+# Boundary condition 1: Left Inlet
+bc_type(1) = 'MI'
+bc_x_w(1)  = 0
+bc_x_e(1)  = 0.0
+bc_y_s(1)  = 0
+bc_y_n(1)  = 4.0
+
+
+## Fluid Phase
+bc_ep_g(1) = 1.0
+bc_p_g(1)  = 0.0
+bc_t_g(1)  = 293.15
+bc_u_g(1)  = 0.03
+bc_v_g(1)  = 0.0
+bc_w_g(1)  = 0.0
+
+
+## Solid 1
+
+
+# Boundary condition 2: Right Outlet
+bc_type(2) = 'PO'
+bc_x_w(2)  = 6.0
+bc_x_e(2)  = 6.0
+bc_y_s(2)  = 0.0
+bc_y_n(2)  = 4.0
+
+
+## Fluid Phase
+bc_p_g(2) = 0.0
+
+
+## Solid 1
+
+
+# Boundary condition 3: Top Wall
+bc_type(3) = 'FSW'
+bc_x_w(3)  = 0.0
+bc_x_e(3)  = 6.0
+bc_y_s(3)  = 4.0
+bc_y_n(3)  = 4.0
+
+
+## Fluid Phase
+
+
+## Solid 1
+
+
+bc_jj_ps(3) = 0
+
+
+# Boundary condition 4: Bottom Wall
+bc_type(4) = 'FSW'
+bc_x_w(4)  = 0
+bc_x_e(4)  = 6.0
+bc_y_s(4)  = 0
+bc_y_n(4)  = 0.0
+
+
+## Fluid Phase
+
+
+## Solid 1
+
+
+bc_jj_ps(4) = 0
+
+
+# Boundary condition 12: Cylinder
+bc_type(12) = 'CG_NSW'
+
+
+## Fluid Phase
+
+
+bc_uw_g(12) = 0.0
+bc_vw_g(12) = 0.0
+bc_ww_g(12) = 0.0
+
+
+## Solid 1
+
+
+bc_jj_ps(12) = 0
+
+
+#_______________________________________________________________________
+# Chemistry solver
+
+
+#_______________________________________________________________________
+# Numerics
+
+detect_stall = .False.
+
+norm_g  = 0.0
+ppg_den = 1.0
+
+tol_resid = 1.0000e-04
+
+
+  leq_pc(1)     = 'NONE'
+  discretize(1) = 2
+
+  leq_pc(2)     = 'NONE'
+  discretize(2) = 2
+
+  leq_pc(3)     = 'NONE'
+  discretize(3) = 2
+
+  leq_pc(4)     = 'NONE'
+  discretize(4) = 2
+
+  leq_pc(5)     = 'NONE'
+  discretize(5) = 2
+
+  leq_pc(6)     = 'NONE'
+  discretize(6) = 2
+
+  leq_pc(7)     = 'NONE'
+  discretize(7) = 2
+
+  leq_pc(8)     = 'NONE'
+  discretize(8) = 2
+
+  leq_pc(9)     = 'NONE'
+  discretize(9) = 2
+
+  leq_pc(10)     = 'NONE'
+  discretize(10) = 2
+
+
+def_cor = .True.
+
+
+#_______________________________________________________________________
+# Output
+
+res_dt = 10.0
+
+
+# Residuals
+  resid_string(1) = 'P0'
+  resid_string(2) = 'U0'
+  resid_string(3) = 'V0'
+
+full_log = .True.
+nlog     = 25
+out_dt   = 1000.0
+
+
+#_______________________________________________________________________
+# VTK outputs
+
+write_vtk_files         = .True.
+time_dependent_filename = .True.
+
+# VTK output 1: IC_1
+vtk_x_w(1) = 0
+vtk_x_e(1) = 6.0
+vtk_y_s(1) = 0
+vtk_y_n(1) = 4.0
+
+vtk_filebase(1) = 'VORTEX_SHEDDING'
+vtk_dt(1)       = 0.5
+
+vtk_nxs(1) = 0
+vtk_nys(1) = 0
+vtk_nzs(1) = 0
+
+vtk_data(1) = 'C'
+
+
+## Fluid Phase
+vtk_p_g(1)   = .True.
+vtk_vel_g(1) = .True.
+
+
+vtk_vorticity(1) = .True.
+vtk_lambda_2(1)  = .True.
+
+
+## Solid 1
+
+
+vtk_p_star(1) = .True.
+
+
+#_______________________________________________________________________
+# Parallelization
+
+nodesi = 1
+nodesj = 1
+nodesk = 1
+
+
+#_______________________________________________________________________
+# Batch
+
+chk_batchq_end  = .False.
+batch_wallclock = 172800.0
+term_buffer     = 180.0
+
+#_______________________________________________________________________
+# Dashboard
+
+write_dashboard = .True.
+
+#_______________________________________________________________________
+# Unsupported keys
+
+
+#_______________________________________________________________________
+# End of keywords
+#
+
+# MFIX-GUI section
+#!MFIX-GUI geometry = {"geometry_dict": {"z_cyl_ext_1": {"geo_type": "implicit",
+#!MFIX-GUI   "bounds": [1.9500000476837158, 2.049999952316284,
+#!MFIX-GUI   1.9500000476837158, 2.049999952316284, -0.5, 0.5], "centerx": 2.0,
+#!MFIX-GUI   "centery": 2.0, "rotationx": 90, "radius": 0.05, "type":
+#!MFIX-GUI   "cylinder"}}, "tree": {"z_cyl_ext_1": []}}
+#!MFIX-GUI visual_props = {"mesh": {"color": "#f44328", "visible": true, "rep":
+#!MFIX-GUI   "wire", "edge": "#7a2114", "opacity": 1}, "background_mesh":
+#!MFIX-GUI   {"color": "#64b6f7", "visible": true, "rep": "wire", "edge":
+#!MFIX-GUI   "#325b7b", "opacity": 1.0}, "geometry": {"color": "#e0e0e0",
+#!MFIX-GUI   "visible": true, "rep": "wire", "edge": "#707070", "opacity": 1.0},
+#!MFIX-GUI   "regions": {"color": "#e0e0e0", "visible": true, "rep": "solid",
+#!MFIX-GUI   "edge": "#707070", "opacity": 0.5}, "normals": {"color": "#0000e0",
+#!MFIX-GUI   "visible": false, "scale": 0.1, "count": 1000, "edge": "#000070"},
+#!MFIX-GUI   "axes": {"color": "#0000e0", "visible": true, "edge": "#000070"},
+#!MFIX-GUI   "boundary": {"color": "#0000e0", "opacity": 1, "rep": "edges",
+#!MFIX-GUI   "visible": false, "color_by": "bc_id", "edge": "#000070"}}
+#!MFIX-GUI regions_dict = {"order": ["IC_1", "Left Inlet", "Right Outlet", "Top
+#!MFIX-GUI   Wall", "Bottom Wall", "Cylinder"], "regions": {"IC_1": {"to": [6.0,
+#!MFIX-GUI   4.0, 0.0], "color": "#be89ba", "type": "XY-plane"}, "Left Inlet":
+#!MFIX-GUI   {"to": [0.0, 4.0, 0.0], "color": "#b47cb4", "type": "YZ-plane"},
+#!MFIX-GUI   "Right Outlet": {"to": [6.0, 4.0, 0.0], "from": [6.0, 0.0, 0.0],
+#!MFIX-GUI   "color": "#92ac90", "type": "YZ-plane"}, "Top Wall": {"to": [6.0,
+#!MFIX-GUI   4.0, 0.0], "from": [0.0, 4.0, 0.0], "color": "#df7571", "type":
+#!MFIX-GUI   "XZ-plane"}, "Bottom Wall": {"to": [6.0, 0.0, 0.0], "color":
+#!MFIX-GUI   "#e0c0dc", "type": "XZ-plane"}, "Cylinder": {"color": "#a4dab5",
+#!MFIX-GUI   "type": "STL"}}}
+#!MFIX-GUI bc_regions = [[[1], ["Left Inlet"]], [[2], ["Right Outlet"]], [[3],
+#!MFIX-GUI   ["Top Wall"]], [[4], ["Bottom Wall"]], [[12], ["Cylinder"]]]
+#!MFIX-GUI ic_regions = [[[1], ["IC_1"]]]
+#!MFIX-GUI vtk_regions = [[[1], ["IC_1"]]]
+#!MFIX-GUI parameters = {"order": ["min", "max", "xmin", "xmax", "ymin", "ymax",
+#!MFIX-GUI   "zmin", "zmax", "km", "m", "cm", "mm", "um", "mile", "yard", "ft",
+#!MFIX-GUI   "ins"], "parameters": {"min": 0.0, "max": 0.0, "xmin": 0, "xmax":
+#!MFIX-GUI   6.0, "ymin": 0, "ymax": 4.0, "zmin": 0.0, "zmax": 0.0, "km":
+#!MFIX-GUI   1000.0, "m": 1.0, "cm": 0.01, "mm": 0.001, "um": 1e-06, "mile":
+#!MFIX-GUI   1609.34, "yard": 0.9144, "ft": 0.3048, "ins": 0.0254}}
+#!MFIX-GUI OMP_NUM_THREADS = 1
+#!MFIX-GUI submit_to_queue = 0
+#!MFIX-GUI queue_template = {"JOB_NAME": "${PROJECT_NAME}", "CORES": 16,
+#!MFIX-GUI   "QUEUE": "general", "LONG": "", "MODULES": [], "template": "Joule"}
+#!MFIX-GUI gui_version = 20.4-dev
+#!MFIX-GUI project_notes = ""
+#!MFIX-GUI author = tutorial
+#!MFIX-GUI created_date = 2021-03-15 11:54
+#!MFIX-GUI modified_time = 2021-03-15 12:46
+#!MFIX-GUI project_version = 13
+#!MFIX-GUI modified_by = dietikej
+#!MFIX-GUI graphics = {"order": ["VTK", "DT"], "data": {"VTK": {"plot": false,
+#!MFIX-GUI   "vtk": true, "monitors": false, "histogram": false, "vtk_state":
+#!MFIX-GUI   {"vtu_pattern": "VORTEX_SHEDDING", "vtp_pattern": null,
+#!MFIX-GUI   "cell_arrays": {"VORTEX_SHEDDING": {"P_G": {"i": 0, "components":
+#!MFIX-GUI   1, "range": [[-0.0006081839092075825, 0.0005729777622036636]],
+#!MFIX-GUI   "magnitude": [-0.0006081839092075825, 0.0005729777622036636],
+#!MFIX-GUI   "color": "#e0e0e0", "single_color": false, "color_map": "viridis",
+#!MFIX-GUI   "reversed": false, "from": -0.000792, "to": 0.000582}, "P_S": {"i":
+#!MFIX-GUI   1, "components": 1, "range": [[0.0, 0.0]], "magnitude": [0.0,
+#!MFIX-GUI   0.0]}, "Gas_Velocity": {"i": 2, "components": 3, "range":
+#!MFIX-GUI   [[-0.011981826275587082, 0.04075276479125023],
+#!MFIX-GUI   [-0.01996425911784172, 0.02017969824373722], [0.0, 0.0]],
+#!MFIX-GUI   "magnitude": [0.0, 0.04080581883031233], "color": "#e0e0e0",
+#!MFIX-GUI   "single_color": false, "color_map": "viridis", "reversed": false,
+#!MFIX-GUI   "from": -0.012, "to": 0.0408}, "VORTICITY_MAG": {"i": 3,
+#!MFIX-GUI   "components": 1, "range": [[3.8984758532478736e-08,
+#!MFIX-GUI   5.363353252410889]], "magnitude": [3.8984758532478736e-08,
+#!MFIX-GUI   5.363353252410889]}, "LAMBDA_2": {"i": 4, "components": 1, "range":
+#!MFIX-GUI   [[-2.247410297393799, 9.876542892833178e+31]], "magnitude":
+#!MFIX-GUI   [-2.247410297393799, 9.876542892833178e+31]}}}, "node_arrays":
+#!MFIX-GUI   {"VORTEX_SHEDDING": {"P_G": {"i": 0, "components": 1, "range":
+#!MFIX-GUI   [[-0.0006081839092075825, 0.0005729777622036636]], "magnitude":
+#!MFIX-GUI   [-0.0006081839092075825, 0.0005729777622036636]}, "P_S": {"i": 1,
+#!MFIX-GUI   "components": 1, "range": [[0.0, 0.0]], "magnitude": [0.0, 0.0]},
+#!MFIX-GUI   "Gas_Velocity": {"i": 2, "components": 3, "range":
+#!MFIX-GUI   [[-0.011981826275587082, 0.04075276479125023],
+#!MFIX-GUI   [-0.01996425911784172, 0.02017969824373722], [0.0, 0.0]],
+#!MFIX-GUI   "magnitude": [0.0, 0.04080581883031233]}, "VORTICITY_MAG": {"i": 3,
+#!MFIX-GUI   "components": 1, "range": [[3.8984758532478736e-08,
+#!MFIX-GUI   5.363353252410889]], "magnitude": [3.8984758532478736e-08,
+#!MFIX-GUI   5.363353252410889]}, "LAMBDA_2": {"i": 4, "components": 1, "range":
+#!MFIX-GUI   [[-2.247410297393799, 9.876542892833178e+31]], "magnitude":
+#!MFIX-GUI   [-2.247410297393799, 9.876542892833178e+31]}}}, "point_arrays": {},
+#!MFIX-GUI   "frame": 378, "camera": {"position": [2.99999629760192,
+#!MFIX-GUI   1.9999972138436175, 13.930781912853702], "focal_point":
+#!MFIX-GUI   [3.000000476837158, 2.0, 0.0], "view_angle": 30.0, "view_up": [0.0,
+#!MFIX-GUI   1.0, 0.0], "parallel": 1, "parallel_scale": 1.6820164648165403},
+#!MFIX-GUI   "particle_options": {"mapper": "point gaussian", "splat": "sphere",
+#!MFIX-GUI   "glyph": "sphere", "max_points": 10000}, "geometry_style": "solid",
+#!MFIX-GUI   "geometry_color": "#e0e0e0", "color_bar_mapper": "cells/nodes",
+#!MFIX-GUI   "color_bar_pos": "right", "color_bar_color": "#000000",
+#!MFIX-GUI   "color_bar_n_labels": 10, "color_bar_label_fmt": "%.2f",
+#!MFIX-GUI   "time_label_format": "{:.2f} s", "time_label_pos": "top right",
+#!MFIX-GUI   "time_label_color": "#000000", "time_label_text_size": 24,
+#!MFIX-GUI   "image_stack_dir":
+#!MFIX-GUI   "/.nfs/home/3/dietikej/MFiX/develop/jfd_tuto_pc/vortex_shedding_2d", "image_stack_prefix": "frame_", "image_stack_width": "1920", "image_stack_height": "1080", "image_stack_type": "png", "image_stack_trans": false, "cells_color_by": "Gas_Velocity", "cells_component": "x", "points_component": "mag", "visible": {"cells": true, "points": false, "geometry": true, "color_bar": true, "time_label": true, "axes": true}, "opacity": {"cells": 1.0, "points": 1.0, "geometry": 0.4, "color_bar": 1.0, "time_label": 1.0}}}, "DT": {"plot": true, "vtk": false, "monitors": false, "histogram": false}}}
+#!MFIX-GUI ui_state = {"mode": "modeler", "navigation": "Numerics",
+#!MFIX-GUI   "graphic_tab": 3}
+#!MFIX-GUI BUILD_DMP = 0
+#!MFIX-GUI BUILD_INTERACTIVE = NONE
+#!MFIX-GUI BUILD_PARALLEL = 1
+#!MFIX-GUI BUILD_SMP = 0
+#!MFIX-GUI BUILD_TYPE = CUSTOM
+#!MFIX-GUI mfix_exe = /.nfs/home/3/dietikej/MFiX/develop/jfd_tuto_pc/vortex_shedding_2d/mfixsolver
+#!MFIX-GUI BUILD_FC_FLAGS = -march=native -O3
+#!MFIX-GUI unlocked_keys = ["def_cor"]

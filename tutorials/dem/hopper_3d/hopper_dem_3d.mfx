@@ -1,0 +1,399 @@
+#! File written Mon Mar 30 14:19:28 2020
+#! MFiX version 20.1.0-dev by jweber on login03
+
+### Run Controls
+  description      = '3D DEM granular flow hopper'
+  run_name         = 'hopper_dem_3d'
+  units            = 'SI'
+  run_type         = 'new'
+  tstop            = 5.0
+  dt               = 1.0000e-03
+  dt_max           = 1.0000e-02
+  dt_min           = 1.0000e-06
+  res_dt           = 0.01
+  batch_wallclock  = 9000.0
+  chk_batchq_end   = .True.
+  drag_c1          = 0.8
+  drag_d1          = 2.65
+  drag_type        = 'SYAM_OBRIEN'
+  turbulence_model = 'NONE'
+  energy_eq        = .False.
+  nodesi           = 1
+  nodesj           = 1
+  nodesk           = 1
+  term_buffer      = 180.0
+  write_dashboard  = .False.
+  full_log         = .True.
+
+### Physical parameters
+  gravity_x = 0.0
+  gravity_y = -9.81
+  gravity_z = 0.0
+
+### Cartesian grid
+  cartesian_grid       = .True.
+  dim_facets_per_cell  = 20
+  fac_dim_max_cut_cell = 0.5
+  stl_small_angle      = 0.0
+  tol_small_cell       = 0.01
+  tol_snap(1)          = 0.0
+  tol_stl              = 1.0000e-12
+  tol_stl_dp           = 1.0000e-08
+  use_stl              = .True.
+
+### Numeric
+  detect_stall = .True.
+  max_nit      = 50
+  norm_g       = 0.0
+  norm_s       = 0.0
+
+### Geometry
+  coordinates = 'CARTESIAN'
+  imax        = 25
+  jmax        = 60
+  kmax        = 25
+  x_max       = 0.5
+  x_min       = -0.5
+  y_max       = 0.45
+  y_min       = -2.0
+  z_max       = 0.5
+  z_min       = -0.5
+
+#### Fluid
+  mu_g0            = 1.8000e-05
+  mw_avg           = 29.0
+  momentum_x_eq(0) = .False.
+  momentum_y_eq(0) = .False.
+  momentum_z_eq(0) = .False.
+  species_eq(0)    = .False.
+  ro_g0            = 0
+
+#### Solids
+  mmax = 1
+  # Solid 1
+    solids_model(1) = 'DEM'
+    d_p0(1)         = 0.02
+    ro_s0(1)        = 2500.0
+    species_eq(1)   = .False.
+    nmax_s(1)       = 0
+    k_s0(1)         = 1.0
+    ks_model(1)     = 'MUSSER'
+
+
+### Initial conditions
+  # Initial condition 1: Background IC
+    ic_x_e(1)               = 0.5 #!MFIX-GUI eq{float(xmax)}
+    ic_x_w(1)               = -0.5 #!MFIX-GUI eq{float(xmin)}
+    ic_y_s(1)               = -2.0 #!MFIX-GUI eq{float(ymin)}
+    ic_y_n(1)               = 0.45 #!MFIX-GUI eq{float(ymax)}
+    ic_z_b(1)               = -0.5 #!MFIX-GUI eq{float(zmin)}
+    ic_z_t(1)               = 0.5 #!MFIX-GUI eq{float(zmax)}
+    ic_des_fit_to_region(1) = .False.
+    ic_ep_g(1)              = 1.0
+    ic_t_g(1)               = 293.15
+    ic_u_g(1)               = 0.0
+    ic_v_g(1)               = 0.0
+    ic_w_g(1)               = 0.0
+    ic_p_g(1)               = 101325.0
+    ic_ep_s(1,1)            = 0.0
+    ic_t_s(1,1)             = 293.15
+    ic_theta_m(1,1)         = 0.0
+    ic_u_s(1,1)             = 0.0
+    ic_v_s(1,1)             = 0.0
+    ic_w_s(1,1)             = 0.0
+
+  # Initial condition 2: Initial solids
+    ic_x_e(2)               = 0.5 #!MFIX-GUI eq{float(xmax/1)}
+    ic_x_w(2)               = -0.5 #!MFIX-GUI eq{float(xmin/1)}
+    ic_y_s(2)               = -0.5
+    ic_y_n(2)               = -0.25
+    ic_z_b(2)               = -0.5 #!MFIX-GUI eq{float(zmin/1)}
+    ic_z_t(2)               = 0.5 #!MFIX-GUI eq{float(zmax/1)}
+    ic_des_fit_to_region(2) = .False.
+    ic_ep_g(2)              = 0.8
+    ic_t_g(2)               = 293.15
+    ic_u_g(2)               = 0.0
+    ic_v_g(2)               = 0.0
+    ic_w_g(2)               = 0.0
+    ic_p_star(2)            = 0.0
+    ic_ep_s(2,1)            = 0.2
+    ic_t_s(2,1)             = 293.15
+    ic_theta_m(2,1)         = 0.0
+    ic_u_s(2,1)             = 0.0
+    ic_v_s(2,1)             = 0.0
+    ic_w_s(2,1)             = 0.0
+
+
+# Boundary conditions
+  # Boundary condition 1: top outlet
+    bc_type(1) = 'PO'
+    bc_x_e(1)  = 0.5 #!MFIX-GUI eq{float(xmax)}
+    bc_x_w(1)  = -0.5 #!MFIX-GUI eq{float(xmin)}
+    bc_y_s(1)  = 0.45 #!MFIX-GUI eq{float(ymax)}
+    bc_y_n(1)  = 0.45 #!MFIX-GUI eq{float(ymax)}
+    bc_z_b(1)  = -0.5 #!MFIX-GUI eq{float(zmin)}
+    bc_z_t(1)  = 0.5 #!MFIX-GUI eq{float(zmax)}
+    bc_p_g(1)  = 1.0132e+05
+
+  # Boundary condition 2: Wall
+    bc_type(2)  = 'CG_NSW'
+    bc_x_e(2)   = 0.5 #!MFIX-GUI eq{float(xmax)}
+    bc_x_w(2)   = -0.5 #!MFIX-GUI eq{float(xmin)}
+    bc_y_s(2)   = -2.0 #!MFIX-GUI eq{float(ymin)}
+    bc_y_n(2)   = 0.45 #!MFIX-GUI eq{float(ymax)}
+    bc_z_b(2)   = -0.5 #!MFIX-GUI eq{float(zmin)}
+    bc_z_t(2)   = 0.5 #!MFIX-GUI eq{float(zmax)}
+    bc_jj_ps(2) = 0
+    bc_uw_g(2)  = 0.0
+    bc_vw_g(2)  = 0.0
+    bc_ww_g(2)  = 0.0
+
+
+# VTK outputs
+  write_vtk_files         = .True.
+  time_dependent_filename = .True.
+  # VTK output 1: Background IC
+    vtk_filebase(1)      = 'HOPPER_P'
+    vtk_x_e(1)           = 0.5 #!MFIX-GUI eq{float(xmax)}
+    vtk_x_w(1)           = -0.5 #!MFIX-GUI eq{float(xmin)}
+    vtk_y_s(1)           = -2.0 #!MFIX-GUI eq{float(ymin)}
+    vtk_y_n(1)           = 0.45 #!MFIX-GUI eq{float(ymax)}
+    vtk_z_b(1)           = -0.5 #!MFIX-GUI eq{float(zmin)}
+    vtk_z_t(1)           = 0.5 #!MFIX-GUI eq{float(zmax)}
+    vtk_data(1)          = 'P'
+    vtk_dt(1)            = 0.01
+    vtk_nxs(1)           = 0
+    vtk_nys(1)           = 0
+    vtk_nzs(1)           = 0
+    vtk_part_diameter(1) = .True.
+    vtk_part_vel(1)      = .True.
+
+
+# SPx outputs
+  spx_dt(1) = 0.1
+  spx_dt(2) = 0.1
+  spx_dt(3) = 0.1
+  spx_dt(4) = 0.1
+  spx_dt(5) = 0.1
+  spx_dt(6) = 0.1
+  spx_dt(7) = 0.1
+  spx_dt(8) = 0.1
+  spx_dt(9) = 0.1
+
+# Monitors
+  # Monitor 1: bottom
+    monitor_type(1)  = 101
+    monitor_name(1)  = 'bottom_inventory'
+    monitor_x_e(1)   = 0.5 #!MFIX-GUI eq{float(xmax)}
+    monitor_x_w(1)   = -0.5 #!MFIX-GUI eq{float(xmin)}
+    monitor_y_s(1)   = -2.0 #!MFIX-GUI eq{float(ymin)}
+    monitor_y_n(1)   = -1.0
+    monitor_z_b(1)   = -0.5 #!MFIX-GUI eq{float(zmin)}
+    monitor_z_t(1)   = 0.5 #!MFIX-GUI eq{float(zmax)}
+    monitor_dt(1)    = 0.05
+    monitor_pmass(1) = .True.
+
+  # Monitor 2: top
+    monitor_type(2)  = 101
+    monitor_name(2)  = 'top_inventory'
+    monitor_x_e(2)   = 0.5 #!MFIX-GUI eq{float(xmax)}
+    monitor_x_w(2)   = -0.5 #!MFIX-GUI eq{float(xmin)}
+    monitor_y_s(2)   = -1.0
+    monitor_y_n(2)   = 0.45 #!MFIX-GUI eq{float(ymax)}
+    monitor_z_b(2)   = -0.5 #!MFIX-GUI eq{float(zmin)}
+    monitor_z_t(2)   = 0.5 #!MFIX-GUI eq{float(zmax)}
+    monitor_dt(2)    = 0.05
+    monitor_pmass(2) = .True.
+
+  # Monitor 3: y     =-1_Plane
+    monitor_type(3)  = 108
+    monitor_name(3)  = 'Mass_flow_rate_mid_plane'
+    monitor_x_e(3)   = 0.5 #!MFIX-GUI eq{float(xmax)}
+    monitor_x_w(3)   = -0.5 #!MFIX-GUI eq{float(xmin)}
+    monitor_y_s(3)   = -1.0
+    monitor_y_n(3)   = -1.0
+    monitor_z_b(3)   = -0.5 #!MFIX-GUI eq{float(zmin)}
+    monitor_z_t(3)   = 0.5 #!MFIX-GUI eq{float(zmax)}
+    monitor_dt(3)    = 0.05
+    monitor_pmass(3) = .True.
+
+
+### Residuals
+  resid_string(1) = 'P0'
+  resid_string(2) = 'U0'
+  resid_string(3) = 'V0'
+
+### Discrete element model
+  des_en_input(1)      = 0.5
+  des_en_wall_input(1) = 0.5
+  des_etat_fac         = 0.5
+  des_etat_w_fac       = 0.5
+  des_interp_scheme    = 'NONE'
+  desgridsearch_imax   = 25
+  desgridsearch_jmax   = 60
+  desgridsearch_kmax   = 25
+  gener_part_config    = .True.
+  kn                   = 10000
+  kn_w                 = 10000
+  kt_fac               = 0.28571428571429 #!MFIX-GUI eq{float(2/7)}
+  kt_w_fac             = 0.28571428571429 #!MFIX-GUI eq{float(2/7)}
+  mew                  = 0.1
+  mew_w                = 0.1
+
+### Two-fluid model
+  c_e            = 0.95
+  c_f            = 0.1
+  e_w            = 1.0
+  ep_star        = 0.42
+  friction_model = 'SCHAEFFER'
+  kt_type        = 'ALGEBRAIC'
+  phi            = 30.0
+  phi_w          = 11.3
+  phip           = 0.6
+
+
+# MFIX-GUI section
+#!MFIX-GUI regions_dict = {"order": ["Background IC", "top outlet", "Initial
+#!MFIX-GUI   solids", "Wall", "Vertical slice", "y=-1_Plane", "bottom", "top"],
+#!MFIX-GUI   "regions": {"Background IC": {"to": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmax)"}, {"__type__": "equation", "eq": "float(ymax)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmax)"}], "from":
+#!MFIX-GUI   [{"__type__": "equation", "eq": "float(xmin)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymin)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmin)"}], "color": "#ffffff"}, "top outlet": {"to":
+#!MFIX-GUI   [{"__type__": "equation", "eq": "float(xmax)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymax)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmax)"}], "from": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmin)"}, {"__type__": "equation", "eq": "float(ymax)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmin)"}], "color": "#957dda",
+#!MFIX-GUI   "type": "XZ-plane"}, "Initial solids": {"to": [{"__type__":
+#!MFIX-GUI   "equation", "eq": "float(xmax/1)"}, -0.25, {"__type__": "equation",
+#!MFIX-GUI   "eq": "float(zmax/1)"}], "from": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmin/1)"}, -0.5, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmin/1)"}], "color": "#64cb99"}, "Wall": {"facet_count":
+#!MFIX-GUI   5132, "to": [{"__type__": "equation", "eq": "float(xmax)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(ymax)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(zmax)"}], "from": [{"__type__":
+#!MFIX-GUI   "equation", "eq": "float(xmin)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(ymin)"}, {"__type__": "equation", "eq": "float(zmin)"}],
+#!MFIX-GUI   "color": "#a694e0", "geometry_pool": ["sample_implicit"], "type":
+#!MFIX-GUI   "STL"}, "Vertical slice": {"to": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmax)"}, {"__type__": "equation", "eq": "float(ymax)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float((zmin+zmax)/2)"}], "from":
+#!MFIX-GUI   [{"__type__": "equation", "eq": "float(xmin)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymin)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float((zmin+zmax)/2)"}], "color": "#b4778d", "type": "XY-plane"},
+#!MFIX-GUI   "y=-1_Plane": {"to": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmax)"}, -1.0, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmax)"}], "from": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmin)"}, -1.0, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmin)"}], "color": "#83d2b1", "type": "XZ-plane"}, "bottom":
+#!MFIX-GUI   {"to": [{"__type__": "equation", "eq": "float(xmax)"}, -1.0,
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmax)"}], "from":
+#!MFIX-GUI   [{"__type__": "equation", "eq": "float(xmin)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymin)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmin)"}], "color": "#00ff00"}, "top": {"to": [{"__type__":
+#!MFIX-GUI   "equation", "eq": "float(xmax)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(ymax)"}, {"__type__": "equation", "eq": "float(zmax)"}],
+#!MFIX-GUI   "from": [{"__type__": "equation", "eq": "float(xmin)"}, -1.0,
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmin)"}], "color":
+#!MFIX-GUI   "#ff0000"}}}
+#!MFIX-GUI gui_version = 20.1.0-dev
+#!MFIX-GUI project_notes = ""
+#!MFIX-GUI author = tutorial
+#!MFIX-GUI geometry = {"geometry_dict": {"hopper": {"geo_type": "implicit",
+#!MFIX-GUI   "bounds": [-0.5, 0.5, -0.5, 0.5, -0.5, 0.5], "radius": 0.5, "type":
+#!MFIX-GUI   "cylinder", "visible": false}, "bin": {"geo_type": "implicit",
+#!MFIX-GUI   "bounds": [-0.25, 0.25, -1.9950000047683716, -1.3949999809265137,
+#!MFIX-GUI   -0.25, 0.25], "centery": -1.695, "radius": 0.25, "height": 0.6,
+#!MFIX-GUI   "type": "cylinder", "visible": false}, "cone": {"geo_type":
+#!MFIX-GUI   "implicit", "bounds": [-0.5, 0.5, -1.100000023841858,
+#!MFIX-GUI   -0.4999999701976776, -0.5, 0.5], "centery": -0.8, "rotationz":
+#!MFIX-GUI   -90.0, "radius": 0.5, "height": 0.6, "type": "cone", "visible":
+#!MFIX-GUI   false}, "outlet": {"geo_type": "implicit", "bounds":
+#!MFIX-GUI   [-0.10000000149011612, 0.10000000149011612, -1.4500000476837158,
+#!MFIX-GUI   -0.949999988079071, -0.10000000149011612, 0.10000000149011612],
+#!MFIX-GUI   "centery": -1.2, "radius": 0.1, "height": 0.5, "type": "cylinder",
+#!MFIX-GUI   "visible": false}, "union": {"geo_type": "boolean_implicit",
+#!MFIX-GUI   "children": ["hopper", "cone", "outlet", "bin"], "visible": false,
+#!MFIX-GUI   "type": "union", "bounds": [-0.5, 0.5, -1.9950000047683716, 0.5,
+#!MFIX-GUI   -0.5, 0.5]}, "sample_implicit": {"geo_type": "filter", "samplesx":
+#!MFIX-GUI   20.0, "samplesz": 20.0, "type": "sample_implicit", "minx": -0.5,
+#!MFIX-GUI   "maxx": 0.5, "miny": -1.9950000047683716, "maxy": 0.5, "minz":
+#!MFIX-GUI   -0.5, "maxz": 0.5}}, "tree": {"hopper": [], "cone": [], "outlet":
+#!MFIX-GUI   [], "bin": [], "union": ["hopper", "cone", "outlet", "bin"],
+#!MFIX-GUI   "sample_implicit": ["union"]}}
+#!MFIX-GUI visual_props = {"mesh": {"color": "#f44328", "visible": true, "rep":
+#!MFIX-GUI   "wire", "edge": "#7a2114", "opacity": 1}, "background_mesh":
+#!MFIX-GUI   {"color": "#64b6f7", "visible": true, "rep": "wire", "edge":
+#!MFIX-GUI   "#325b7b", "opacity": 1.0}, "geometry": {"color": "#e0e0e0",
+#!MFIX-GUI   "visible": true, "rep": "wire", "edge": "#707070", "opacity": 1.0},
+#!MFIX-GUI   "regions": {"color": "#e0e0e0", "visible": true, "rep": "solid",
+#!MFIX-GUI   "edge": "#707070", "opacity": 0.5}, "normals": {"color": "#0000e0",
+#!MFIX-GUI   "visible": false, "scale": 0.1, "edge": "#000070"}, "axes":
+#!MFIX-GUI   {"color": "#0000e0", "visible": true, "edge": "#000070"},
+#!MFIX-GUI   "boundary": {"color": "#0000e0", "opacity": 1, "rep": "edges",
+#!MFIX-GUI   "visible": false, "color_by": "bc_id", "edge": "#000070"}}
+#!MFIX-GUI bc_regions = [[[1], ["top outlet"]], [[2], ["Wall"]]]
+#!MFIX-GUI ic_regions = [[[1], ["Background IC"]], [[2], ["Initial solids"]]]
+#!MFIX-GUI is_regions = []
+#!MFIX-GUI ps_regions = []
+#!MFIX-GUI vtk_regions = [[[1], ["Background IC"]]]
+#!MFIX-GUI parameters = {"order": ["min", "max", "xmin", "xmax", "ymin", "ymax",
+#!MFIX-GUI   "zmin", "zmax", "km", "m", "cm", "mm", "um", "mile", "yard", "ft",
+#!MFIX-GUI   "ins"], "parameters": {"min": 0.0, "max": 0.0, "xmin": -0.5,
+#!MFIX-GUI   "xmax": 0.5, "ymin": -2.0, "ymax": 0.45, "zmin": -0.5, "zmax": 0.5,
+#!MFIX-GUI   "km": 1000.0, "m": 1.0, "cm": 0.01, "mm": 0.001, "um": 1e-06,
+#!MFIX-GUI   "mile": 1609.34, "yard": 0.9144, "ft": 0.3048, "ins": 0.0254}}
+#!MFIX-GUI OMP_NUM_THREADS = 1
+#!MFIX-GUI submit_to_queue = 0
+#!MFIX-GUI created_date = 2019-11-24 13:19
+#!MFIX-GUI modified_time = 2020-02-05 10:12
+#!MFIX-GUI modified_by = jweber|dietikej
+#!MFIX-GUI usr_regions = []
+#!MFIX-GUI monitor_regions = [[1, "bottom"], [2, "top"], [3, "y=-1_Plane"]]
+#!MFIX-GUI log_files = {}
+#!MFIX-GUI graphics = {"order": ["VTK", "Monitors"], "data": {"VTK": {"plot":
+#!MFIX-GUI   false, "vtk": true, "monitors": false, "vtk_state": {"vtu_pattern":
+#!MFIX-GUI   null, "vtp_pattern": null, "cell_arrays": {}, "node_arrays": {},
+#!MFIX-GUI   "point_arrays": {"HOPPER_P": {"Diameter": {"i": 0,
+#!MFIX-GUI   "number_of_tuples": 8887, "components": 1, "range":
+#!MFIX-GUI   [[0.019999999552965164, 0.019999999552965164]]}, "Velocity": {"i":
+#!MFIX-GUI   1, "number_of_tuples": 8887, "components": 3, "range":
+#!MFIX-GUI   [[-1.627002239227295, 1.785457968711853], [-4.442410945892334,
+#!MFIX-GUI   0.6841984987258911], [-1.386558175086975, 1.3999218940734863]]}}},
+#!MFIX-GUI   "frame": -1, "camera": {"position": [-0.15802005352619175,
+#!MFIX-GUI   1.1993610056568818, 5.182582786490902], "focal_point": [0.0,
+#!MFIX-GUI   -0.7475000023841858, 0.0], "view_angle": 30.0, "view_up":
+#!MFIX-GUI   [-0.00782204458727168, 0.9360203862537305, -0.35185885257570565],
+#!MFIX-GUI   "parallel": 0, "parallel_scale": 1.4334557342025738},
+#!MFIX-GUI   "particle_options": {"mapper": "point gaussian", "splat": "sphere",
+#!MFIX-GUI   "glyph": "sphere", "max_points": 10000}, "geometry_style": "solid",
+#!MFIX-GUI   "geometry_color": "#e0e0e0", "color_bar_mapper": "points",
+#!MFIX-GUI   "color_bar_pos": "right", "color_bar_color": "#000000",
+#!MFIX-GUI   "color_bar_n_labels": 10, "color_bar_label_fmt": "%.2f",
+#!MFIX-GUI   "time_label_format": "{:.2f} s", "time_label_pos": "top right",
+#!MFIX-GUI   "time_label_color": "#000000", "time_label_text_size": 24,
+#!MFIX-GUI   "image_stack_dir":
+#!MFIX-GUI   "/.nfs/home/3/jweber/mfix/tutorials/dem/hopper_3d",
+#!MFIX-GUI   "image_stack_prefix": "frame_", "image_stack_width": "1920",
+#!MFIX-GUI   "image_stack_height": "1080", "image_stack_type": "png",
+#!MFIX-GUI   "cells_component": "mag", "points_component": "mag", "visible":
+#!MFIX-GUI   {"cells": false, "points": true, "geometry": true, "color_bar":
+#!MFIX-GUI   true, "time_label": true, "axes": true}, "opacity": {"cells": 1.0,
+#!MFIX-GUI   "points": 1.0, "geometry": 0.4, "color_bar": 1.0, "time_label":
+#!MFIX-GUI   1.0}}}, "Monitors": {"plot": false, "vtk": false, "monitors": true,
+#!MFIX-GUI   "monitors_state": {"BOTTOM_INVENTORY.csvpmass": {},
+#!MFIX-GUI   "TOP_INVENTORY.csvpmass": {}, "MASS_FLOW_RATE_MID_PLANE.csvpmass":
+#!MFIX-GUI   {}}}}}
+#!MFIX-GUI retained_keys = {}
+#!MFIX-GUI ui_state = {"mode": "modeler", "navigation": "Model setup",
+#!MFIX-GUI   "graphic_tab": 0}
+#!MFIX-GUI queue_template = {"JOB_NAME": "${PROJECT_NAME}", "CORES": 40,
+#!MFIX-GUI   "QUEUE": "general", "LONG": "", "MODULES": [], "template": "Joule"}
+#!MFIX-GUI BUILD_DMP = 0
+#!MFIX-GUI BUILD_FC_FLAGS =
+#!MFIX-GUI BUILD_INTERACTIVE = PYMFIX
+#!MFIX-GUI BUILD_PARALLEL = 1
+#!MFIX-GUI BUILD_SMP = 0
+#!MFIX-GUI BUILD_TYPE = RELWITHDEBINFO

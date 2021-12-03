@@ -1,0 +1,395 @@
+#! File written {date}
+#! MFiX version {version} by {user} on {host}
+
+{if comment_block}
+#! Following comments are retained from the original mfix file
+{_}
+
+{end if}
+{align on}
+### Run Controls
+  {description}
+  {run_name}
+  {units}
+  {run_type}
+  {time}
+  {tstop}
+  {dt}
+  {dt_min}
+  {dt_max}
+  {dt_fac}
+  {res_dt}
+  {batch_wallclock}
+  {chk_batchq_end}
+  {drag*}
+  {turbulence_model}
+  {enable_dmp_log}
+  {energy_eq!}
+  {nodes*}
+  {term_buffer}
+  {write_dashboard}
+  {full_log}
+  {category run control}
+
+{if category physical}
+### Physical parameters
+  {_}
+
+{end if}
+{if category cartesian}
+### Cartesian grid
+  {_}
+
+{end if}
+### Numeric
+  {detect_stall}
+  {max_inlet_vel_fac}
+  {max_nit}
+  {norm_g}
+  {tol_resid}
+  {chi_scheme}
+  {if equations}### Discretization
+  {loop eq}
+  {discretize(eq)} {leq_pc(eq)} {leq_it(eq)}
+  {end loop}
+  {end if}
+  {category numerical}
+
+### Geometry
+  {cartesian_grid}
+  {coordinates}
+  {dim_facets_per_cell}
+  {fac_dim_max_cut_cell}
+  {itermax_int}
+  {imax}
+  {jmax}
+  {kmax}
+  {stl_small_angle}
+  {tol_delh}
+  {tol_small_area}
+  {tol_small_cell}
+  {tol_snap*}
+  {tol_stl}
+  {tol_stl_dp}
+  {use_stl}
+  {x_max}
+  {x_min}
+  {y_max}
+  {y_min}
+  {z_max}
+  {z_min}
+  {xlength}
+  {ylength}
+  {zlength}
+  {category geometry}
+
+#### Fluid{if phase_name(0)}: {_}{end if}
+  {mu_g0}
+  {mw_avg}
+  {momentum_*_eq(0)}
+  {species_eq(0)}
+  {nmax_g}
+  {loop species}
+  # Fluid species {s}{if species_name(s)}: {_}{end if}
+    {species_g(s)}
+    {species_alias_g(s)}
+    {end loop}
+  {category fluid}
+
+{if category solid}
+#### Solids
+  {mmax}
+{loop Phase}
+  # Solid {P}{if phase_name(P)}: {_}{end if}
+    {solids_model(P)}
+    {d_p0(P)}
+    {ro_s0(P)}
+    {momentum_x_eq(P)}
+    {momentum_y_eq(P)}
+    {momentum_z_eq(P)}
+    {species_eq(P)}
+    {nmax_s(P)}
+    {*(P)}
+ {loop species(P)}
+    # Solid {P} species {s}{if species_name(P,s)}: {_}{end if}
+      {species_s(P,S)}
+      {species_alias_s(P,S)}
+      {*(P,S)}
+ {end loop Species}
+
+{end loop Phase}
+{category solid}
+
+{end if category}
+{if scalars}
+### Scalars
+    {nscalar}
+{loop scl}
+    {if phase4scalar(scl)}{_}{if scalar_name(scl)} !{_}{end if}{end if}
+{end loop}
+
+{end if}
+{if ics}
+### Initial conditions
+{loop IC}
+  # Initial condition {IC}{if region_name(IC)}: {_}{end if}
+    {ic_x_e(IC)}
+    {ic_x_w(IC)}
+    {ic_y_s(IC)}
+    {ic_y_n(IC)}
+    {ic_z_b(IC)}
+    {ic_z_t(IC)}
+    {ic_des_fit_to_region(IC)}
+    {ic_ep_g(IC)}
+    {ic_t_g(IC)}
+    {ic_u_g(IC)}
+    {ic_v_g(IC)}
+    {ic_w_g(IC)}
+    {ic_*(IC)}
+  {loop scl}
+    {if ic_*(IC, scl)}{_}{if scalar_name(scl)} !{_}{end if}{end if}
+  {end loop scalar}
+  {loop species(0)}
+    {if ic_*(IC,S)}{_}{if species_name(S)} !{_}{end if}{end if}
+  {end loop}
+  {loop Phase}
+    {ic_ep_s(IC,Phase)}
+    {ic_pic_const_statwt(IC,Phase)}
+    {ic_t_s(IC,Phase)}
+    {ic_theta_m(IC,Phase)}
+    {ic_u_s(IC,Phase)}
+    {ic_v_s(IC,Phase)}
+    {ic_w_s(IC,Phase)}
+    {ic_*(IC, Phase)}
+   {loop species(P)}
+    {if ic_*(IC, P, S)}{_}{if species_name(P,S)} !{_}{end if}{end if}
+   {end loop species}
+   {end loop Phase}
+
+{end loop IC}
+
+{end if ICs}
+{if BCs}
+# Boundary conditions
+{loop BC}
+  # Boundary condition {BC}{if region_name(BC)}: {_}{end if}
+    {bc_type(BC)}
+    {bc_x_e(BC)}
+    {bc_x_w(BC)}
+    {bc_y_s(BC)}
+    {bc_y_n(BC)}
+    {bc_z_b(BC)}
+    {bc_z_t(BC)}
+    {bc_ep_g(BC)}
+    {bc_p_g(BC)}
+    {bc_t_g(BC)}
+    {bc_u_g(BC)}
+    {bc_v_g(BC)}
+    {bc_w_g(BC)}
+    {bc_*(BC)}
+  {loop scalar}
+    {if bc_*(BC, Scalar)}{_}{if scalar_name(scalar)} !{_}{end if}{end if}
+  {end loop}
+  {loop species(0)}
+    {if bc_*(BC,S)}{_}{if species_name(S)} !{_}{end if}{end if}
+  {end loop species}
+  {if *(BC, P)}
+  {loop Phase}
+    # Solid {P}{if phase_name(P)}: {_}{end if}
+      {bc_ep_s(BC,P)}
+      {bc_pic_mi_const_statwt(BC,P)}
+      {bc_t_s(BC,P)}
+      {bc_u_s(BC,P)}
+      {bc_v_s(BC,P)}
+      {bc_w_s(BC,P)}
+      {bc_*(BC,P)}
+      {loop species(P)}
+      {if bc_*(BC,P,S)}{_}{if species_name(P,S)} !{_}{end if}{end if}
+      {end loop species}
+  {end loop Phase}
+  {end if}
+
+{end loop BC}
+
+{end if BCs}
+{if ISs}
+# Internal surfaces {_}
+{loop IS}
+  # Internal surface {IS}{if region_name(IS)}: {_}{end if}
+    {is_type(IS)}
+    {is_x_e(IS)}
+    {is_x_w(IS)}
+    {is_y_s(IS)}
+    {is_y_n(IS)}
+    {is_z_b(IS)}
+    {is_z_t(IS)}
+    {*(IS)}
+{end loop}
+
+{end if ISs}
+{if PSs}
+# Point sources
+{loop PS}
+  # Point source {PS}{if region_name(PS)}: {_}{end if}
+    {ps_x_e(PS)}
+    {ps_x_w(PS)}
+    {ps_y_s(PS)}
+    {ps_y_n(PS)}
+    {ps_z_b(PS)}
+    {ps_z_t(PS)}
+    {*(PS)}
+ {loop species(0)}
+    {if *(PS,S)}{_}{if species_name(S)} !{_}{end if}{end if}
+ {end loop}
+ {loop phase}
+    {*(PS, P)}
+    {loop species(P)}
+    {if *(PS, P, S)}{_}{if species_name(P,S)} !{_}{end if}{end if}
+    {end loop}
+ {end loop phase}
+
+{end loop}
+
+{end if PSs}
+{if vtks}
+# VTK outputs
+  {write_vtk_files}
+  {time_dependent_filename}
+  {vtu_dir}
+  {loop v}
+  # VTK output {v}{if region_name(v)}: {_}{end if}
+    {vtk_filebase(v)}
+    {vtk_x_e(v)}
+    {vtk_x_w(v)}
+    {vtk_y_s(v)}
+    {vtk_y_n(v)}
+    {vtk_z_b(v)}
+    {vtk_z_t(v)}
+    {vtk_data(v)}
+    {vtk_dt(v)}
+    {vtk_nxs(v)}
+    {vtk_nys(v)}
+    {vtk_nzs(v)}
+    {vtk_select_mode(v)}
+    {vtk_*(v)}
+    {loop species}
+    {if vtk_*(V,S)}{_}{if species_name(S)} !{_}{end if}{end if}
+    {end loop}
+    {loop Phase}
+    {vtk_*(V,P)}
+    {loop Species(P)}
+    {if vtk_*(V,P,S)}{_}{if species_name(P,S)} !{_}{end if}{end if}
+    {end loop S}
+    {end loop Phase}
+    {loop scalar}
+    {if vtk_*(V,Scalar)}{_}{if scalar_name(Scalar)} !{_}{end if}{end if}
+    {end loop}
+    {vtk_fluid_rrate(V,*)}
+    {vtk_des_rrate(V,*)}
+    {vtk_rrate(V,*)}
+    {vtk_rrate_label(V,*)}
+
+  {end loop v}
+
+{end if vtks}
+{if sps}
+# SPx outputs
+  {vtp_dir}
+  {loop sp}
+  {spx_dt(sp)}
+  {end loop}
+
+{end if}
+{if monitors}
+# Monitors
+{loop monitor}
+  # Monitor {m}{if region_name(m)}: {_}{end if}
+    {monitor_type(m)}
+    {monitor_name(m)}
+    {monitor_x_e(m)}
+    {monitor_x_w(m)}
+    {monitor_y_s(m)}
+    {monitor_y_n(m)}
+    {monitor_z_b(m)}
+    {monitor_z_t(m)}
+    {monitor_dt(m)}
+    {monitor_*(m)}
+    {loop species}
+    {if monitor_*(m,S)}{_}{if species_name(S)} !{_}{end if}{end if}
+    {end loop}
+    {loop Phase}
+    {if monitor_*(m,P)}{_}{if phase_name(P)} !{_}{end if}{end if}
+    {loop Species(P)}
+    {if monitor_*(m,P,S)}{_}{if species_name(P,S)} !{_}{end if}{end if}
+    {end loop S}
+    {end loop Phase}
+    {loop scalar}
+    {if monitor_*(m,Scalar)}{_}{if scalar_name(Scalar)} !{_}{end if}{end if}
+    {end loop scalar}
+    {monitor_fluid_rrate(m,*)}
+    {monitor_des_rrate(m,*)}
+    {monitor_part_rrate(m,*)}
+    {monitor_rrate(m,*)}
+
+{end loop monitor}
+{monitor*}
+{end if monitors}
+### Residuals
+  {group_resid}
+{loop res}
+  {*(res)}
+{end loop res}
+
+{if category discrete}
+### Discrete element model
+  {_}
+
+{end if}
+{if category TFM}
+### Two-fluid model
+  {_}
+
+{end if}
+{if category PIC}
+### Particle-in-cell model
+  {_}
+
+{end if}
+{if category UDF}
+### UDF control
+    {loop USR}
+    {usr_x_e(USR)}
+    {usr_x_w(USR)}
+    {usr_y_s(USR)}
+    {usr_y_n(USR)}
+    {usr_z_b(USR)}
+    {usr_z_t(USR)}
+    {*(USR)}
+
+{end loop}
+{category UDF}
+
+{end if}
+{if category output control}
+### Output control
+{_}
+
+{end if}
+{if category chemical reactions}
+### Chemical reactions
+{_}
+
+{end if}
+{if category unknown}
+#*****************************************************
+# Undocumented keys                                  *
+#*****************************************************
+  {_}    #!!!!
+
+{end if}
+{if *}
+#*****************************************************
+# Miscellaneous keys                                 *
+#*****************************************************
+  {_}
+{end if}

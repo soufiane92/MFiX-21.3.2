@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>335</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Particle size distribution</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1,0">
+   <property name="leftMargin">
+    <number>5</number>
+   </property>
+   <property name="topMargin">
+    <number>10</number>
+   </property>
+   <property name="rightMargin">
+    <number>5</number>
+   </property>
+   <property name="bottomMargin">
+    <number>10</number>
+   </property>
+   <property name="spacing">
+    <number>6</number>
+   </property>
+   <item row="1" column="1" colspan="2">
+    <widget class="QComboBox" name="combobox_type">
+     <item>
+      <property name="text">
+       <string>Normal</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Log-normal</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Custom</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="1" colspan="2">
+    <widget class="QLineEdit" name="lineedit_alias"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_type">
+     <property name="text">
+      <string>Distribution type</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="plot_layout">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pushbutton_plot">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string>Plot distribution</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_plot_range">
+       <property name="text">
+        <string>from</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="LineEdit" name="lineedit_plot_range_min"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_plot_range_to">
+       <property name="text">
+        <string>to</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="LineEdit" name="lineedit_plot_range_max"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_plot_range_units">
+       <property name="text">
+        <string>m</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="button_layout">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>368</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_status">
+       <property name="text">
+        <string>Definition valid</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushbutton_ok">
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+       <property name="text">
+        <string>OK</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushbutton_cancel">
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QStackedWidget" name="stacked_widget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_standard">
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="horizontalSpacing">
+        <number>6</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>2</number>
+       </property>
+       <item row="2" column="2">
+        <widget class="QLabel" name="label_min_units">
+         <property name="text">
+          <string>m</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_min">
+         <property name="text">
+          <string>Minimum</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="LineEdit" name="lineedit_min"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_mean_units">
+         <property name="text">
+          <string>m</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_max">
+         <property name="text">
+          <string>Maximum</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="label_max_units">
+         <property name="text">
+          <string>m</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_sigma">
+         <property name="text">
+          <string>Standard deviation</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="LineEdit" name="lineedit_sigma"/>
+       </item>
+       <item row="0" column="1">
+        <widget class="LineEdit" name="lineedit_mean"/>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_mean">
+         <property name="text">
+          <string>Mean</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="LineEdit" name="lineedit_max"/>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_sigma_units">
+         <property name="text">
+          <string>m</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_custom">
+      <layout class="QGridLayout" name="gridLayout_3" columnstretch="0,1">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="horizontalSpacing">
+        <number>6</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>2</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushbutton_select_file">
+         <property name="text">
+          <string>Select file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_filename">
+         <property name="text">
+          <string>filename</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkbox_copy_file">
+         <property name="text">
+          <string>Copy file to project folder</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushbutton_show_help">
+         <property name="text">
+          <string>Show file format info</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_name">
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>mfixgui.widgets.base</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>lineedit_alias</tabstop>
+  <tabstop>combobox_type</tabstop>
+  <tabstop>lineedit_mean</tabstop>
+  <tabstop>lineedit_sigma</tabstop>
+  <tabstop>lineedit_min</tabstop>
+  <tabstop>lineedit_max</tabstop>
+  <tabstop>lineedit_plot_range_min</tabstop>
+  <tabstop>lineedit_plot_range_max</tabstop>
+  <tabstop>pushbutton_ok</tabstop>
+  <tabstop>pushbutton_cancel</tabstop>
+  <tabstop>checkbox_copy_file</tabstop>
+  <tabstop>pushbutton_select_file</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

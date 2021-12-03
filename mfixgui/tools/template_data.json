@@ -1,0 +1,896 @@
+{
+  "benchmarks/dem/3d-box": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "3D Rectangular bubbling fluidized bed",
+    "solver": "dem"
+  },
+  "benchmarks/dem/mini-cfb": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "DEM CFB",
+    "solver": "dem"
+  },
+  "benchmarks/pic/umf2p5": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "MFiX Simulation",
+    "solver": "pic"
+  },
+  "benchmarks/tfm/parallelbenchmarkcases/a_cfb_06": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "CFB benchmark problem",
+    "solver": "single"
+  },
+  "benchmarks/tfm/parallelbenchmarkcases/b_o3_06": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "O3 benchmark problem",
+    "solver": "single"
+  },
+  "benchmarks/tfm/parallelbenchmarkcases/c_com_06": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "Char combustion benchmark",
+    "solver": "single"
+  },
+  "legacy_tests/2dfluidbed_vdw_high_coh": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "fluid bed with high cohesion",
+    "solver": "dem"
+  },
+  "legacy_tests/added_mass": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "bubble column with water-air",
+    "solver": "tfm"
+  },
+  "legacy_tests/added_mass_cartesiangridscase": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "bubble column with water-air",
+    "solver": "tfm"
+  },
+  "legacy_tests/added_mass_liftforce": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "bubble column with water-air",
+    "solver": "tfm"
+  },
+  "legacy_tests/adiabaticflame": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "Adiabatic flame temperature",
+    "solver": "single"
+  },
+  "legacy_tests/chi-scheme": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "Bubbling Fluidized Bed Simulation",
+    "solver": "single"
+  },
+  "legacy_tests/cohesionvdwasperities": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "3 particle case with vdW cohesion",
+    "solver": "dem"
+  },
+  "legacy_tests/cond_conv": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Steady conduction and convection",
+    "solver": "single"
+  },
+  "legacy_tests/conduction": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Steady conduction",
+    "solver": "single"
+  },
+  "legacy_tests/conduction2": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Two conducting regions with a jump",
+    "solver": "single"
+  },
+  "legacy_tests/cyclic-shear": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Gas-particle flow in a 2D periodic cell",
+    "solver": "tfm"
+  },
+  "legacy_tests/dem-tests/circle-advection": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM Test: Circle Advection",
+    "solver": "tfm"
+  },
+  "legacy_tests/dem-tests/condensation": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "DEM TEST: Water vapor condensing on a droplet",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/contact-conduction": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM TEST: particle-particle contact conduction",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/convection": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM TEST: particle-gas convection in a uniform flow",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/dmp_tests/dmp_restart": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM TEST: particle-gas restart",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/dmp_tests/freely-falling-particle": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM TEST: Freely falling particles w/wall collision",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/evaporation": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "DEM TEST: Wet-bulb Test - 50% relative humidity",
+    "solver": "tfm"
+  },
+  "legacy_tests/dem-tests/homogeneous-cooling-system": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM TEST: homogeneous cooling system",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/particle-fluid-particle-conduction": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM TEST: particle-fluid-particle conduction",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/particle-vortex": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM Test: Particles in vortex",
+    "solver": "tfm"
+  },
+  "legacy_tests/dem-tests/poly_dem_inlet_outlet": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM Test: Polydisperse inlet with pressure outflow",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/radiation": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM TEST: particle radiation",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/reactive-chemistry": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "DEM TEST: reactive particle in uniform gas flow",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/restart": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM TEST: particle-gas restart",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/restart2": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "pseudo 2D DEM loop seal",
+    "solver": "dem"
+  },
+  "legacy_tests/dem-tests/sphere-advection": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM Test: Sphere Advection",
+    "solver": "tfm"
+  },
+  "legacy_tests/developed_pipe_flow": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "developed laminar flow",
+    "solver": "single"
+  },
+  "legacy_tests/developed_pipe_flow1": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "developed laminar flow",
+    "solver": "single"
+  },
+  "legacy_tests/developed_slit_flow": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "developed laminar flow in a slit",
+    "solver": "single"
+  },
+  "legacy_tests/dmp_test": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Bubbling Fluidized Bed Simulation",
+    "solver": "single"
+  },
+  "legacy_tests/dmp_test_cyclic": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Species transport with cyclic BCs",
+    "solver": "single"
+  },
+  "legacy_tests/dqmom": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Binary size distribution",
+    "solver": "tfm"
+  },
+  "legacy_tests/driven_cavity_cohesion_vdw": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Top wall driven cavity with solid particles in the container",
+    "solver": "dem"
+  },
+  "legacy_tests/drying": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "Drying from packed bed",
+    "solver": "tfm"
+  },
+  "legacy_tests/fluidbed1_cn": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "fluid bed with jet",
+    "solver": "single"
+  },
+  "legacy_tests/fluidbed1si": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "fluid bed with jet",
+    "solver": "single"
+  },
+  "legacy_tests/fluidbed1siconstvisc": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "fluid bed with jet",
+    "solver": "single"
+  },
+  "legacy_tests/fluidbed_des_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "3D Cylinder with discrete solids (STL geometry).",
+    "solver": "dem"
+  },
+  "legacy_tests/granular_shear": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Granular shear flow",
+    "solver": "single"
+  },
+  "legacy_tests/hopper": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "hopper discharge",
+    "solver": "tfm"
+  },
+  "legacy_tests/hybrid/bubblingbed2d": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "TFM-DEM Hybrid: Bubbling fuild bed.",
+    "solver": "hybrid"
+  },
+  "legacy_tests/hybrid/centraljet2d": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "TFM-DEM Hybrid: Fuild bed with jet",
+    "solver": "hybrid"
+  },
+  "legacy_tests/hys_drag_tutorial": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Binary mixture using HYS drag",
+    "solver": "tfm"
+  },
+  "legacy_tests/ozone": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "Ozone decomposition - 8 cm/s, fine, 3d",
+    "solver": "single"
+  },
+  "legacy_tests/packed_bed": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Steady packed bed",
+    "solver": "tfm"
+  },
+  "legacy_tests/periodic-flow-fixed-mass-flux": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "developed laminar flow",
+    "solver": "single"
+  },
+  "legacy_tests/phase_change": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "Self Fluidized Bed Simulation",
+    "solver": "single"
+  },
+  "legacy_tests/rotary-drum": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Rotary drum",
+    "solver": "single"
+  },
+  "legacy_tests/segregation": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "particle segregation",
+    "solver": "tfm"
+  },
+  "legacy_tests/settling-tank": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Granular Flow in a Settling Tank",
+    "solver": "tfm"
+  },
+  "legacy_tests/simple-2phase": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Simple two-phase flow",
+    "solver": "single"
+  },
+  "legacy_tests/solid-body-rotation": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Rotary drum, only fluid, no gravity",
+    "solver": "single"
+  },
+  "legacy_tests/ssfghd": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Granular simple shear flow (SSF)",
+    "solver": "tfm"
+  },
+  "legacy_tests/thermo": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "Reaction Thermodynamics Test",
+    "solver": "tfm"
+  },
+  "legacy_tests/tsuji": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "TSUJI",
+    "solver": "single"
+  },
+  "legacy_tests/turbulent_pipe_flow": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Single-phase 2-D Cylindrical turbulent flow",
+    "solver": "single"
+  },
+  "legacy_tutorials/3dcfb": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "CFB modeling test - 301 -- 3D",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/3dfluidbed": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Bubbling Fluidized Bed Simulation",
+    "solver": "single"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/3dfb": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "uniform fluidization",
+    "solver": "single"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/cg_channel": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Gas flow in a skewed channel (20 Deg) - NSW",
+    "solver": "single"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/cg_hourglass": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "2D hourglass - No Slip Wall",
+    "solver": "single"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/cyclone": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Cyclone",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/cylinder": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Flow over a Cylinder , Re = 200",
+    "solver": "single"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/msh": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Example of geometry input from .msh file",
+    "solver": "single"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/naca4412": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Flow over a NACA4412 airfoil",
+    "solver": "single"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/polygons": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Solid fall on polygon shapes",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/spoutedbed1": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "2D Spouted Bed",
+    "solver": "single"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/spoutedbed2": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "2D Spouted Bed with stabilizer",
+    "solver": "single"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/stl": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Example of geometry input from .stl file",
+    "solver": "single"
+  },
+  "legacy_tutorials/cartesian_grid_tutorials/wavy": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Solid jet impinging on wavy surface",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/channel": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Gas flow in a skewed channel (20 Deg) - NSW",
+    "solver": "single"
+  },
+  "legacy_tutorials/dem_cg_tutorials/truncated_cyclone": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Example of geometry input from .stl file",
+    "solver": "dem"
+  },
+  "legacy_tutorials/dem_wall_ht": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Example of rotating drum with particle-wall conduction",
+    "solver": "dem"
+  },
+  "legacy_tutorials/fluidbed1": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "fluid bed with jet",
+    "solver": "single"
+  },
+  "legacy_tutorials/fluidbed1_dmp_test": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "fluid bed with jet",
+    "solver": "single"
+  },
+  "legacy_tutorials/fluidbed2": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "uniform fluidization",
+    "solver": "single"
+  },
+  "legacy_tutorials/fluidbed2d": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "2D FLUIDIZED BED",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/fully_developed_with_ahmadimodel": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "developed laminar flow",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/fully_developed_with_simoninmodel": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "developed laminar flow",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/gidaspow_fbed_with_simoninmodel": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Gidaspow bed with Jet",
+    "solver": "single"
+  },
+  "legacy_tutorials/hourglass": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "2D hourglass - No Slip Wall",
+    "solver": "single"
+  },
+  "legacy_tutorials/iatheory": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Binary mixture using IA theory",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/liquidfluidbed": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "uniform fluidization",
+    "solver": "single"
+  },
+  "legacy_tutorials/point_source_spiral": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "3D Point Source Inflow",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/qmom_tutorials/bidispersechannel": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Channel flow with bi-disperse particles",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/qmom_tutorials/monodispersechannel": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Channel flow with particles",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/reactor1a": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "Plug-flow reactor",
+    "solver": "single"
+  },
+  "legacy_tutorials/reactor1b": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Plug-flow reactor",
+    "solver": "single"
+  },
+  "legacy_tutorials/silane_pyrolysis": {
+    "chemistry": true,
+    "cutcell": true,
+    "description": "Silane Pyrolysis",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/solvent_absorption": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "absorption column",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/spoutedbedcombustor": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "Spouted Bed Combustor",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/usr_drag": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Free falling non-spherical particle",
+    "solver": "dem"
+  },
+  "legacy_tutorials/variable_density": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "Biomass gasification tutorial",
+    "solver": "tfm"
+  },
+  "legacy_tutorials/vtk_regions": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "3D SQUARE BUBBLING BED",
+    "solver": "tfm"
+  },
+  "mfixgui/conveyor": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "MFiX Simulation",
+    "solver": "dem"
+  },
+  "tests/dem/dem01": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM01: Freely falling particle w/wall collision",
+    "solver": "dem"
+  },
+  "tests/dem/dem02": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM02: Bouncing particle height",
+    "solver": "dem"
+  },
+  "tests/dem/dem03": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM03: Two stacked, compressed particles",
+    "solver": "dem"
+  },
+  "tests/dem/dem04": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM03: Ball slipping on a rough surface",
+    "solver": "tfm"
+  },
+  "tests/dem/dem05": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM05: Oblique particle collision",
+    "solver": "dem"
+  },
+  "tests/dem/dem06": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "DEM06: Single particle, terminal velocity",
+    "solver": "dem"
+  },
+  "tests/fluid/fld01": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Steady, 2D Poiseuille Flow",
+    "solver": "single"
+  },
+  "tests/fluid/fld02": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Steady, 1D heat conduction",
+    "solver": "single"
+  },
+  "tests/fluid/fld03": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Lid-driven cavity",
+    "solver": "single"
+  },
+  "tests/fluid/fld04": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Gresho vortex problem",
+    "solver": "single"
+  },
+  "tests/fluid/fld05": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Couette flow test cases",
+    "solver": "single"
+  },
+  "tests/fluid/fld06": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Species transport test cases",
+    "solver": "single"
+  },
+  "tests/fluid/fld07": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Turbulent channel flow",
+    "solver": "single"
+  },
+  "tests/fluid/fld08": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Pipe flow case",
+    "solver": "single"
+  },
+  "tests/mms/mms01": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "2D Sinusoidal MMS Case",
+    "solver": "single"
+  },
+  "tests/mms/mms02": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "3D Two-phase MMS Case",
+    "solver": "tfm"
+  },
+  "tests/mms/mms03": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "3D Two-phase MMS Case (Variable vol. fraction)",
+    "solver": "tfm"
+  },
+  "tests/mms/mms04": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "3D, Single-phase, NSW BC verification",
+    "solver": "single"
+  },
+  "tests/mms/mms05": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "3D, Single-phase, FSW BC verification",
+    "solver": "single"
+  },
+  "tutorials/blank": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "MFiX Simulation",
+    "solver": "single"
+  },
+  "tutorials/cgp/fluidbed_cgp_3d": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "MFiX Simulation",
+    "solver": "cgp"
+  },
+  "tutorials/dem/conveyor_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "MFiX Simulation",
+    "solver": "dem"
+  },
+  "tutorials/dem/cyclone_flush_bc_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "Cyclone DEM, all BCs are flush with the STL",
+    "solver": "dem"
+  },
+  "tutorials/dem/cyclone_sms_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "DEM cyclone",
+    "solver": "dem"
+  },
+  "tutorials/dem/fluid_bed_2d": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "2D DEM fluid bed with a central jet.",
+    "solver": "dem"
+  },
+  "tutorials/dem/hopper_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "3D DEM granular flow hopper",
+    "solver": "dem"
+  },
+  "tutorials/dem/hopper_custom_psd": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "3D Hopper DEM, custom psd",
+    "solver": "dem"
+  },
+  "tutorials/dem/hopper_massinflow_psd": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "3D Hopper DEM case, granular flow - PSD with mass inlet",
+    "solver": "dem"
+  },
+  "tutorials/dem/hopper_pseudo_2d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "pseudo 2D DEM granular flow hopper (one cell in z-direction)",
+    "solver": "dem"
+  },
+  "tutorials/dem/loop_seal_pseudo_2d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "pseudo 2D DEM loop seal",
+    "solver": "dem"
+  },
+  "tutorials/dem/mixer_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "MFiX Simulation",
+    "solver": "dem"
+  },
+  "tutorials/dem/rotating_drum_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "MFiX Simulation",
+    "solver": "dem"
+  },
+  "tutorials/dem/screwfeeder_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "MFiX Simulation",
+    "solver": "dem"
+  },
+  "tutorials/dem/spouted_bed_pseudo_2d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "pseudo 2D DEM spouted bed with draft tube",
+    "solver": "dem"
+  },
+  "tutorials/fld/vortex_shedding_2d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "2D single phase cylinder vortex shedding , Re = 200",
+    "solver": "single"
+  },
+  "tutorials/pic/cyclone_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "3D PIC cyclone",
+    "solver": "pic"
+  },
+  "tutorials/pic/hopper_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "PIC hopper simulation, 3D",
+    "solver": "pic"
+  },
+  "tutorials/pic/loop_seal_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "3D PIC loop seal",
+    "solver": "pic"
+  },
+  "tutorials/pic/silane_pyrolysis_3d": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "3D PIC silane pyrolysis reactor",
+    "solver": "pic"
+  },
+  "tutorials/pic/spouted_bed_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "small 3D spouted bed PIC simulation",
+    "solver": "pic"
+  },
+  "tutorials/tfm/absorption_column_2d": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "absorption column",
+    "solver": "tfm"
+  },
+  "tutorials/tfm/fluid_bed_2d": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "2D TFM fluid bed",
+    "solver": "tfm"
+  },
+  "tutorials/tfm/fluid_bed_3d": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "3D TFM square fluid bed",
+    "solver": "tfm"
+  },
+  "tutorials/tfm/hopper_3d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "3D TFM hopper",
+    "solver": "tfm"
+  },
+  "tutorials/tfm/hopper_pseudo_2d": {
+    "chemistry": false,
+    "cutcell": true,
+    "description": "pseudo 2D TFM hopper (one cell in z-direction)",
+    "solver": "tfm"
+  },
+  "tutorials/tfm/pulsating_fluid_bed_2d": {
+    "chemistry": false,
+    "cutcell": false,
+    "description": "Pulsating 2D TFM fluid bed",
+    "solver": "tfm"
+  },
+  "tutorials/tfm/silane_pyrolysis_2d": {
+    "chemistry": true,
+    "cutcell": false,
+    "description": "2D TFM silane pyrolysis reactor",
+    "solver": "tfm"
+  }
+}

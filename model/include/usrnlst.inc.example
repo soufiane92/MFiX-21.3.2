@@ -1,0 +1,24 @@
+! Copy this file to your UDF directory to define keywords for your UDFs.
+!
+!  First, define the user-defined namelist variables as DOUBLE PRECISION,
+!  INTEGER, LOGICAL, or CHARACTER.  Second, include the variable in the
+!  appropriate common.  Third, add the variable name in the NAMELIST section.
+!  A dummy variable is defined, so that the code can be compiled with the
+!  template include file.
+!
+!
+!     Double Precision variables
+!     COMMON / USR_DATA_DP /  MY_DOUBLE_VARIABLE
+!
+!     Integer variables
+!      COMMON / USR_DATA_I / MY_INTEGER_VARIABLE
+!
+!     Logical variables
+!      COMMON / USR_DATA_L / MY_LOGICAL_VARIABLE
+!
+!     Character variables
+!      COMMON / USR_DATA_C / MY_CHAR_VARIABLE
+!
+!
+!     NAMELIST / USR_INPUT_DATA / MY_DOUBLE_VARIABLE, MY_INTEGER_VARIABLE, &
+!                               & MY_LOGICAL_VARIABLE, MY_CHAR_VARIABLE

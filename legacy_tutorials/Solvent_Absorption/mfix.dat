@@ -1,0 +1,755 @@
+!  Solvent absorption column simulation
+
+
+#--------------------------------------------------------------------
+# RUN CONTROL SECTION
+
+  RUN_NAME              = 'R'
+  DESCRIPTION           = 'absorption column'
+  RUN_TYPE              = 'new'
+  UNITS                 = 'si'
+
+  TSTOP       = 0.5      ! stop time
+  DT          = 1.0E-5   ! initial time step
+  DT_MAX      = 1.E-4    ! maximum time step  [1.0]
+  DT_MIN      = 1.E-8    ! minimum time step  [1E-6]
+
+  ENERGY_EQ         = .TRUE. ! solve energy eqs  [.TRUE.]
+  SPECIES_EQ(0)     = .TRUE. ! solve species eq for gas phase  [.TRUE.]
+  SPECIES_EQ(1)     = .TRUE. ! solve species eq for solids phase 1  [.TRUE.]
+  SPECIES_EQ(2)     = .FALSE. ! solve species eq for solids phase 2  [.TRUE.]
+
+  zero_x_gs = 1.0D-15
+  dil_ep_s = 1.0D-4
+
+! solve momentum equation for gas phase  [.TRUE.]
+  MOMENTUM_X_EQ(0)  = .TRUE.
+  MOMENTUM_Y_EQ(0)  = .TRUE.
+  MOMENTUM_Z_EQ(0)  = .TRUE.
+
+! solve momentum equations for solids phase 1 (liquid phase)  [.TRUE.]
+  MOMENTUM_X_EQ(1)  = .TRUE.
+  MOMENTUM_Y_EQ(1)  = .TRUE.
+  MOMENTUM_Z_EQ(1)  = .TRUE.
+
+! DO NOT solve momentum equations for solids phase 2 (static bed)  [.TRUE.]
+  MOMENTUM_X_EQ(2)  = .FALSE.
+  MOMENTUM_Y_EQ(2)  = .FALSE.
+  MOMENTUM_Z_EQ(2)  = .FALSE.
+
+! explicitly turn off friction to avoid error checks on unnecessary parameters
+  FRICTION_MODEL = 'NONE'
+
+! Employ solvent absorption type interactions
+!--------------------------------------------------------------------
+  ISHII = .TRUE.
+
+  CALL_USR = .TRUE.  ! call usr defined subroutines  [.FALSE.]
+
+  DRAG_TYPE = 'USER_DRAG' ! drag model; see usr_drag.f
+  USR_FSS(1) = .TRUE.
+  CALL_USR_SOURCE(3) = .TRUE.
+  CALL_USR_SOURCE(4) = .TRUE.
+  CALL_USR_SOURCE(5) = .TRUE.
+
+  USR_DIFS(1) = .TRUE.
+  USR_ROS(1) = .TRUE.
+  USR_MUS(1) = .TRUE.
+  USR_KS(1) = .TRUE.
+  USR_GAMA(1) = .TRUE.
+  USR_GAMA(2) = .TRUE.
+
+  SOLVENT_ABSORPTION = .TRUE.    ! [.FALSE.]
+  USR_DRAG_TYPE = 'ATTOU_99_MOD'
+!  CAP_PRESS_TYPE = 'GROSSER_1988'
+
+! calibration factors for drag
+! see Finn, Galvin, CES, 2017
+  C(5)  = @(630/180.)   ! gas/liquid viscous
+  C(6)  = @(1.52/1.8)   ! gas/liquid inertial
+  C(7)  = @(0.01/180.)  ! gas/solids viscous
+  C(8)  = @(2.62/1.8)   ! gas/solids inertial
+  C(9)  = @(36.3/180.)  ! liquid/solids viscous
+  C(10) = @(1.27/1.8)   ! liquid/solid inertial
+
+  MECH_DISPERSION = .FALSE.
+
+  WETAREA_TYPE = 'BILLET_95'
+  APPLY_WAF = .TRUE.  ! enabled relevant area for interphase calcs.
+  ch_pack = 0.692  ! wetted area constant of packing (only for WETAREA_TYPE=BILLET_95)
+
+  MASS_TRANSFER_TYPE = 'ONDA_1968_MTC'
+! calibration factors for indicated quantities
+  C(1) = 0.1  ! henry's volatility constant
+  C(2) = 1.0  ! gas side mass transfer coefficient
+  C(3) = 1.0  ! liquid side mass transfer coefficient
+
+! Bialecki ring, metal
+  sa_pack = 238.0  ! specific area of packing (m^2/m^3)
+  d_pack = 0.0255   ! nominal size of packing (m)
+
+! critical surface tension of packing (surface energy)
+! Pacheco, Dissertation, 1998:
+  omega_pack = 0.0610   ! N/m
+
+
+!  LAM_MU_g0 = 2.0E-5   ! laminar viscosity (Pa.s). used in user drag
+!  LAM_MU_s0 = 0.001     ! laminar viscosity (Pa.s). used in user drag
+
+#--------------------------------------------------------------------
+# NUMERICAL SECTION
+
+  MAX_NIT = 100       ! max. number of iterations [500]
+  TOL_RESID = 1.E-5   ! max. continuity+momentum residual [1E-3]
+  TOL_RESID_X = 1.E-5 ! max. species residual
+  TOL_RESID_T = 1.E-5 ! max. energy residual
+
+  DISCRETIZE = 9*0 ! discretization scheme
+  DEF_COR = .FALSE.
+
+  LEQ_IT = 9*300     ! Number of iterations in the linear equation
+  LEQ_METHOD = 9*2   ! Method used in the linear equation solver
+  LEQ_TOL = 9*1D-08  ! The tolerance in the linear equation solver  [1.0D-4]
+  LEQ_PC = 9*'NONE'  ! the preconditioner used for the sweeps in the linear equation solver
+  LEQ_SWEEP(1) = 9*'RSRS'  ! The sweep direction for linear equation solver. Relevancy
+                           ! depends on other leq settings.  Currently irrelevant.
+
+  NORM_G = 0.0  ! normalization factor for residual of gas pressure equation
+
+  MAX_INLET_VEL_FAC = 100000.d0
+
+#--------------------------------------------------------------------
+# GEOMETRY SECTION
+
+  COORDINATES = 'CARTESIAN' ! Coordinates used in the simulation
+       ! 'CARTESIAN'
+       ! 'CYLINDRICAL' : not compatible with DEM
+
+  XLENGTH     = 0.10   ! length of domain in x direction
+  IMAX        = 30   ! number of cells in x direction (i)
+  YLENGTH     = 1.05  ! length of domain in y direction
+  JMAX        = 315  ! number of cells in y direction (j)
+  ZLENGTH     = 0.01    ! length of domain in z direction
+!  KMAX        = 1    ! number of cells in z direction (k)
+  NO_K        = .TRUE. ! 2D for now
+
+  GRAVITY     = 9.80  ! [980.7 cm/s^2]
+
+
+#--------------------------------------------------------------------
+# GENERAL PARAMETERS
+
+!  P_REF = 101325  ! reference pressure (Pa) [0.0]
+       ! used to adjust input values of pressure to gauge pressure
+
+!  L_scale0 = 1.0 ! turbulence length scale [0.0]
+  Mu_gmax = 10 ! maximum value of turbulent viscosity (Pa.s)
+
+#--------------------------------------------------------------------
+# MATERIAL SECTION
+
+! Gas Phase
+!--------------------------------------------------------------------
+! properties of air used to define values here
+
+!  MU_g0 = 2.0E-5  ! constant viscosity (pa.s) [undefined]
+                  ! viscosity in stress calculations. specified here or
+                  ! undefined and calculated from calc_mu_g (Sutherland)
+
+!  MW_g - Obtained from Burcat and Ruscic database or specified
+!  MW_AVG = 29.0   ! average molecular weight [undefined] specified here
+                   ! or calculated from individual species
+!  RO_g0 = 1.2E0   ! constant density
+
+  NMAX_G = 3
+  SPECIES_G(1)  = 'AIR'      SPECIES_ALIAS_g(1) = 'AIR'
+  SPECIES_G(2)  = 'CO2'      SPECIES_ALIAS_g(2) = 'gCO2'
+  SPECIES_G(3)  = 'H2O'      SPECIES_ALIAS_g(3) = 'gH2O'
+
+! AIR, CO2, H2O are available in burcat. Their values could be obtained
+! from the database but slight MW differences cause mb errors
+  MW_g(1) = 29.0
+  MW_g(2) = 44.0095
+  MW_g(3) = 18.0152
+
+! 'Solids' Phases
+!--------------------------------------------------------------------
+  MMAX = 2    ! number of solids 'phases' [1]
+
+! ss-drag is computed so e & c_f need to be set to satisfy error checks
+  e  = 0.9    ! particle-particle restitution coefficient
+  C_f = 0.0   ! coefficient of friction between solids phases [undefined]
+
+! note the value of ep_star is set constant with a value close to what
+! may be expected for a structured bed void fraction.
+  EP_star = 0.05 ! packed bed void fraction
+
+! rad. dist. fun. at contact
+  RDF_TYPE = 'LEBOWITZ'
+
+! indicated phase forms a packed bed with a void fraction ep_star.
+  CLOSE_PACKED = .T.  .T.
+
+
+! Solids phase 1
+! first phase is water drops
+!--------------------------------------------------------------------
+!  RO_s0(1) = 1000.0       ! particle density  [undefined]
+  D_p0(1) = 0.002        ! particle diameter  [undefined]
+!  Mu_s0(1) = 0.001      ! fixed viscosity used in stress calculations (Pa.s).
+
+  NMAX_s(1) = 9        ! R = C2H4OH for MEA
+  SPECIES_S(1,1)  = 'CO2(L)'      SPECIES_ALIAS_s(1,1) = 'lCO2'
+  SPECIES_s(1,2)  = 'RNH2'        SPECIES_ALIAS_s(1,2) = 'lRNH2'
+  SPECIES_s(1,3)  = 'RNH3+'       SPECIES_ALIAS_s(1,3) = 'RNH3p'
+  SPECIES_s(1,4)  = 'HCO3-'       SPECIES_ALIAS_s(1,4) = 'HCO3m'
+  SPECIES_s(1,5)  = 'OH-'         SPECIES_ALIAS_s(1,5) = 'OHm'
+  SPECIES_s(1,6)  = 'CO3-2'       SPECIES_ALIAS_s(1,6) = 'CO3m2'
+  SPECIES_S(1,7)  = 'H3O+'        SPECIES_ALIAS_S(1,7) = 'H3Op'
+  SPECIES_s(1,8)  = 'RNHCO2-'     SPECIES_ALIAS_s(1,8) = 'RNHCO2m'
+  SPECIES_S(1,9)  = 'H2O(L)'      SPECIES_ALIAS_s(1,9) = 'lH2O'
+
+  MW_s(1,1) =  44.0095   ! CO2
+  MW_s(1,2) =  61.0828   ! RNH2
+  MW_s(1,3) =  62.0907   ! RNH3+
+  MW_s(1,4) =  61.0168   ! HCO3-; gas form available in burcat
+  MW_s(1,5) =  17.0073   ! OH-; gas form available in burcat...
+  MW_s(1,6) =  60.0089   ! CO3-2; gas form available in burcat
+  MW_s(1,7) =  19.0231   ! H3O+; gas form available in burcat..
+  MW_s(1,8) = 104.0844   ! RNHCO2-
+  MW_s(1,9) =  18.0152   ! could be obtained from burcat and ruscic
+                         ! but slight MW differences cause issues
+
+! Solids phase 2
+! second phase is static particles in fixed bed. no momentum.
+!--------------------------------------------------------------------
+! the density of the packing material; this can influence heat
+! transfer so a reasonable value should be selected.
+! ceramic packing: k~1.25W/m.K (0.0029875 cal/s.cm.K); rho=2.3g/cm^3
+! aluminum: k~1.25W/m.K; rho=3.6g/cm^3
+
+  RO_s0(2) = 2300.0       ! particle density  [undefined]
+! define sauter-diameter: 6*(1-porosity)/(specific surface area)
+  D_p0(2) =  0.001512    ! particle diameter  [undefined]
+  Mu_s0(2) = 0.001      ! fixed viscosity is used (Pa.s). irrelevant.
+
+! this should reflect the conductivity of the packing material
+  KS_MODEL(2) = 'const_eff'
+  K_s0(2) = 1.25   !W/m.K
+
+  NMAX_s(2) = 1
+! the following gives values of MW and CP for aluminum
+! the mw and cp are similar to those of a ceramic material
+  SPECIES_s(2,1)  = 'AL(cr) REF ELEME  '
+
+
+#--------------------------------------------------------------------
+# Initial Conditions
+! the bed is divided into three sections:
+!   IC 1) structured bed region
+!   IC 2) open gas region (bottom) (liquid outlet/gas inlet)
+!   IC 4) gas headspace region (top) (liquid inlet and gas outlet)
+
+! structured bed
+!--------------------------------------------------------------------
+  IC_X_w(1)        =       0.0
+  IC_X_e(1)        =      0.100
+  IC_Y_s(1)        =      0.150
+  IC_Y_n(1)        =      0.900
+  IC_Z_b(1)        =       0.0
+  IC_Z_t(1)        =       0.01
+
+  IC_EP_g(1)       =       0.94
+  IC_EP_s(1,1)    =        0.0
+  IC_EP_s(1,2)    =        0.06
+
+  IC_U_g(1)        =       0.0
+  IC_V_g(1)        =       0.1    ! (m/s)
+  IC_W_g(1)        =       0.0
+  IC_P_g(1)        =  101325.0    ! (Pa)
+  IC_T_g(1)        =     300.0    ! (K)
+  IC_X_g(1,1)      =       1.0    ! air
+  IC_X_g(1,2)      =       0.0    ! CO2
+  IC_X_g(1,3)      =       0.0    ! H2O
+
+  IC_U_s(1,1)      =       0.0
+  IC_V_s(1,1)      =       0.0
+  IC_W_s(1,1)      =       0.0
+  IC_T_s(1,1)      =     300.0    ! (K)
+  IC_X_s(1,1,9)    =       1.0    ! H2O  ! for better vis.
+
+  IC_U_s(1,2)      =       0.0
+  IC_V_s(1,2)      =       0.0
+  IC_W_s(1,2)      =       0.0
+  IC_T_s(1,2)      =     300.0    ! (K)
+
+
+! plenum at base
+!--------------------------------------------------------------------
+  IC_X_w(2)        =       0.0
+  IC_X_e(2)        =       0.100
+  IC_Y_s(2)        =       0.0
+  IC_Y_n(2)        =       0.150
+  IC_Z_b(2)        =       0.0
+  IC_Z_t(2)        =       0.01
+
+! replace base
+  IC_EP_g(2)       =       1.0
+  IC_EP_s(2,1)    =        0.0
+
+  IC_U_g(2)        =       0.0
+  IC_V_g(2)        =       0.0
+  IC_W_g(2)        =       0.0
+  IC_P_g(2)        =  101325.0    ! (Pa)
+  IC_T_g(2)        =     300.0    ! (K)
+  IC_X_g(2,1)      =       1.0    ! air
+  IC_X_g(2,2)      =       0.0    ! CO2
+  IC_X_g(2,3)      =       0.0    ! H2O
+
+  IC_U_s(2,1)      =       0.0
+  IC_V_s(2,1)      =       0.0
+  IC_W_s(2,1)      =       0.0
+  IC_T_s(2,1)      =     300.0    ! (K)
+  IC_X_s(2,1,1)    =       0.0    ! CO2
+  IC_X_s(2,1,2)    =       0.0    ! RNH2
+  IC_X_s(2,1,9)    =       1.0    ! H2O
+
+  IC_U_s(2,2)      =       0.0
+  IC_V_s(2,2)      =       0.0
+  IC_W_s(2,2)      =       0.0
+  IC_T_s(2,2)      =     300.0    ! (K)
+
+
+! plenum at top
+!--------------------------------------------------------------------
+  IC_X_w(4)        =       0.0
+  IC_X_e(4)        =       0.1
+  IC_Y_s(4)        =       0.9
+  IC_Y_n(4)        =       1.05
+  IC_Z_b(4)        =       0.0
+  IC_Z_t(4)        =       0.01
+
+  IC_EP_g(4)       =       1.0
+  IC_EP_s(4,1)    =       0.0
+  IC_EP_s(4,2)    =       0.0
+
+  IC_U_g(4)        =       0.0
+  IC_V_g(4)        =       0.0    ! (m/s)
+  IC_W_g(4)        =       0.0
+  IC_P_g(4)        =  101325.0    ! (Pa)
+  IC_T_g(4)        =     300.0    ! (K)
+  IC_X_g(4,1)      =       1.0    ! air
+  IC_X_g(4,2)      =       0.0    ! CO2
+  IC_X_g(4,3)      =       0.0    ! H2O
+
+  IC_U_s(4,1)      =       0.0
+  IC_V_s(4,1)      =       0.0
+  IC_W_s(4,1)      =       0.0
+  IC_T_s(4,1)      =     300.0    ! (K)
+  IC_X_s(4,1,9)    =       1.0    ! H2O  ! for better vis.
+
+  IC_U_s(4,2)      =       0.0
+  IC_V_s(4,2)      =       0.0
+  IC_W_s(4,2)      =       0.0
+  IC_T_s(4,2)      =     300.0    ! (K)
+
+#--------------------------------------------------------------------
+# Boundary Conditions
+!   BC 1) west wall
+!   BC 2) east wall
+!   BC 3) pressure outlet at top (gas outlet)
+!   BC 4) pressure inlet at bottom (mixed gas inlet/liquid outlet)
+!   PS 1) water (mass) inlet at the top
+
+! Momentum at walls: use partial slip walls
+!  - for no slip leave hw undefined and set vw to zero
+!  - for free slip define hw as 0; (vw must also be set but doesn't matter)
+! Energy and species at walls:
+!  - for adiabatic wall set hw and c to 0
+!  - for isothermal wall leave hw undefined and set tw
+!  - for zero species flux set hw and c to 0
+!  - for set concentration leave hw undefined and set xw
+
+! Wall Boundaries (no slip, adiabatic)
+!--------------------------------------------------------------------
+! (yz-plane)          west    east
+  BC_X_w(1)        =   0.0     0.1
+  BC_X_e(1)        =   0.0     0.1
+  BC_Y_s(1)        =   0.0     0.0
+  BC_Y_n(1)        =   1.05    1.05
+  BC_Z_b(1)        =   0.0     0.0
+  BC_Z_t(1)        =   0.01    0.01
+  BC_TYPE(1)       = 'PSW'    'PSW'
+  BC_JJ_PS(1) =        0        0
+
+! walls --------------------
+!  BC_hw_g(1)  = 2*0.0 ! uncomment for free slip
+  BC_Uw_g(1)  = 2*0.0
+  BC_Vw_g(1)  = 2*0.0
+  BC_Ww_g(1)  = 2*0.0
+!  BC_Hw_s(1,1)  = 2*0.0  ! uncomment for free slip
+  BC_Uw_s(1,1)  = 2*0.0
+  BC_Vw_s(1,1)  = 2*0.0
+  BC_Ww_s(1,1)  = 2*0.0
+!  BC_Hw_s(1,2)  = 2*0.0  ! uncomment for free slip
+  BC_Uw_s(1,2)  = 2*0.0
+  BC_Vw_s(1,2)  = 2*0.0
+  BC_Ww_s(1,2)  = 2*0.0
+
+! Adiabatic wall --------------------
+  BC_hw_T_g(1) = 2*0.0      BC_C_T_g(1) = 2*0.0
+  BC_hw_T_s(1,1) = 2*0.0    BC_C_T_s(1,1) = 2*0.0
+  BC_hw_T_s(1,2) = 2*0.0    BC_C_T_s(1,2) = 2*0.0
+
+! Zero species flux --------------------
+  BC_Hw_X_g(1,1) = 2*0.0    BC_C_X_g(1,1) = 2*0.0
+  BC_Hw_X_g(1,2) = 2*0.0    BC_C_X_g(1,2) = 2*0.0
+  BC_Hw_X_g(1,3) = 2*0.0    BC_C_X_g(1,3) = 2*0.0
+
+  BC_Hw_X_s(1,1,1) = 2*0.0  BC_C_X_s(1,1,1) = 2*0.0
+  BC_Hw_X_s(1,1,2) = 2*0.0  BC_C_X_s(1,1,2) = 2*0.0
+  BC_Hw_X_s(1,1,3) = 2*0.0  BC_C_X_s(1,1,3) = 2*0.0
+  BC_Hw_X_s(1,1,4) = 2*0.0  BC_C_X_s(1,1,4) = 2*0.0
+  BC_Hw_X_s(1,1,5) = 2*0.0  BC_C_X_s(1,1,5) = 2*0.0
+  BC_Hw_X_s(1,1,6) = 2*0.0  BC_C_X_s(1,1,6) = 2*0.0
+  BC_Hw_X_s(1,1,7) = 2*0.0  BC_C_X_s(1,1,7) = 2*0.0
+  BC_Hw_X_s(1,1,8) = 2*0.0  BC_C_X_s(1,1,8) = 2*0.0
+  BC_Hw_X_s(1,1,9) = 2*0.0  BC_C_X_s(1,1,9) = 2*0.0
+
+  BC_Hw_X_s(1,2,1) = 2*0.0  BC_C_X_s(1,2,1) = 2*0.0
+
+! Flow Boundaries
+!--------------------------------------------------------------------
+! liquid inlet at top (xy-plane) --------------------
+  PS_X_w(1)        =   0.
+  PS_X_e(1)        =   0.1
+  PS_Y_s(1)        =   1.05
+  PS_Y_n(1)        =   1.05
+  PS_Z_b(1)        =   0.
+  PS_Z_t(1)        =   0.01
+
+  PS_MASSFLOW_s(1,1) =  0.00825   ! (kg/s)
+  PS_V_s(1,1) = -0.0055
+  PS_T_s(1,1) = 317
+
+  PS_X_s(1,1,1) = 0.0  ! CO2 (no loading at this time)
+  PS_X_s(1,1,2) = 0.2  ! RNH2
+  PS_X_s(1,1,9) = 0.8  ! H2O
+
+
+! outlet @ top (xz-plane) --------------------
+  BC_X_w(3)        =   0.0
+  BC_X_e(3)        =   0.1
+  BC_Y_s(3)        =   1.05
+  BC_Y_n(3)        =   1.05
+  BC_Z_b(3)        =   0.0
+  BC_Z_t(3)        =   0.01
+  BC_TYPE(3)       = 'PO'
+  BC_P_g(3)        = 1.01325E5
+
+! inlet/outlet at bottom  (xz-plane) --------------------
+  BC_X_w(4)        =   0.0
+  BC_X_e(4)        =   0.1
+  BC_Y_s(4)        =   0.0
+  BC_Y_n(4)        =   0.0
+  BC_Z_b(4)        =   0.0
+  BC_Z_t(4)        =   0.01
+
+  BC_TYPE(4)       = 'PI'
+! modify this pressure drop to yield desired gas flow rate
+  BC_P_g(4)        = 1.02016E5   ! DP=691.0Pa
+
+! Need for a pressure inlet (IC):
+  BC_T_g(4)        =  313.0
+  BC_T_s(4,1)      =  313.0
+
+  BC_U_g(4)        = 0.0
+  BC_V_g(4)        = 0.0
+  BC_W_g(4)        = 0.0
+  BC_U_s(4,1)      = 0.0
+  BC_V_s(4,1)      = 0.0
+  BC_W_s(4,1)      = 0.0
+  BC_U_s(4,2)      = 0.0
+  BC_V_s(4,2)      = 0.0
+  BC_W_s(4,2)      = 0.0
+
+  BC_X_g(4,1)      = 0.871  ! AIR
+  BC_X_g(4,2)      = 0.114  ! CO2
+  BC_X_g(4,3)      = 0.015  ! H2O
+
+! this will need to be adjusted depending on reactions present...
+! the settings below assumes:
+!  -all CO2 from gas is absorbed into liquid
+!  -all CO2 reacts with MEA. Should be setup closer to equilibrium
+!   conditions under this premise
+  BC_X_s(4,1,1) = 0.0    ! CO2
+  BC_X_s(4,1,2) = 0.065   ! RNH2
+  BC_X_s(4,1,3) = 0.065   ! RNH3+
+  BC_X_s(4,1,4) = 0.01   ! HCO3-
+  BC_X_s(4,1,5) = 0.0    ! OH-
+  BC_X_s(4,1,6) = 0.0    ! CO3-2
+  BC_X_s(4,1,7) = 0.0    ! H3O+
+  BC_X_s(4,1,8) = 0.06   ! RNHCO2-
+  BC_X_s(4,1,9) = 0.8    ! H2O
+
+#--------------------------------------------------------------------
+# Chemistry
+
+! The value of ABSORPTION_CHEM_TYPE sets the scheme for coupled mass
+! transfer and chemical reaction. Select one of the following:
+! SINGLE_STEP: Physical mass transfer (reaction 1 below) with
+!    enhancement factor = 1. This is accompanied by a single-step,
+!    kinetically controlled liquid phase reaction (reaction 2 below).
+!    Liquid phase chemical equilibrium is NOT enforced (and for
+!    consistency such rxns should not be defined)
+! EQUILIBRIUM_SEGREGATED: Physical mass transfer (reaction 1 below)
+!    with enhancement factor >=1 to account for liquid phase chemical
+!    reactions. This is accompanied by 5 liquid phase equilibrium
+!    reactions (reactions 3-12, fwd and rev below). These are
+!    implemented using the "traditional" usr_rates.f approach. The
+!    rate of the liquid phase kinetic reaction (reaction 2) is set
+!    to zero. In this case one should specify the corresponding
+!    forward reaction rate constants via C(11)-C(15).
+! EQUILIBRIUM_COUPLED : Physical mass transfer (reaction 1 below)
+!    with enhancement factor >=1 to account for liquid phase chemical
+!    reactions. This is accompanied by 5 liquid phase equilibrium
+!    reactions (reactions 3-12, fwd and rev below). These are
+!    implemented using a coupled solver in the co2_mea_equilibrium.f90,
+!    which enforces chemical equilibrium at the beginning of every time
+!    step (called from usr_1.f). The rates of reactions 2-12 below are
+!    set to zero in usr_rates.f and therefore none of these reactions
+!    actually need to be specified in the dat file.
+  ABSORPTION_CHEM_TYPE = 'EQUILIBRIUM_COUPLED'
+
+  C(11) = 1.0      ! kf carbamate reversion
+  C(12) = 1.0      ! kf dissociation of dissolved co2
+  C(13) = 1.0      ! kf dissociation of bicarbonate
+  C(14) = 1.0      ! kf dissociation of protonated mea
+  C(15) = 1.0      ! kf ionization of water
+
+! Chemistry of Interest:
+! Consists of mass transfer of CO2 from gas to liquid followed by a set
+! of homogenous reactions in liquid phase. Depending on the value of
+! ABSORPTION_CHEM_TYPE (see above), certain rates for these reactions
+! will be set to zero.
+
+  @(RXNS)
+! 1. CO2 mass transfer: CO2(gas) --> CO2(liq)
+! Assumed irreversible.
+! Gabrielsen et al., IECR 2005 for the HOR; Value encompasses heat due to
+! physical absorption of CO2 and subsequent reaction(s). Value should
+! be consistent with selection of absorption_chem_type and associated
+! rxn network.
+! DH = -21030.89 cal/mol refers to Hrxn for CO2 absorption
+! DH = 3991.207 cal/mol refers to Hvap for CO2(l)-CO2(g)
+    CO2_absorption {
+        chem_eq = "gCO2 --> lCO2"
+!        DH = -87993244.76
+        DH = -16700000.0
+        fracDH(0) = 0.0
+        fracDH(1) = 1.0
+    }
+
+! 2. Rate controlled conversion of CO2 and MEA:
+!    CO2   + 2*RNH2  -->    RNHCO2-   +       RNH3+
+! (carbon) + (amine) --> (carbamate)  + (protonated amine)
+!
+! See Hiwale et al., IECR, 2012 and Khan et al., CERD, 2011
+! Primary and secondary amines react with CO2 to form a carbamate species.
+! The reaction may or may not proceed through an intermediate zwitterion:
+! Zwitterion formation followed by deprotonation of zwitterion (the later
+! results in carbamate formation). Here it is assumed a simple overall
+! reaction expression is sufficient.  This overall expression is
+! effectively the sum of two steps (so that the 2 arises from the
+! summation). No reverse rate is identified. Depending on , the reaction, is
+! effectively irreversible.
+    carbamate_form_single_step {
+       chem_eq = "lCO2 + 2lRNH2 --> RNHCO2m + RNH3p"
+       DH      = 0.0
+       fracDH(1) = 1.0
+    }
+
+! 3-12. Equilibrium liquid phase reactions in loaded MEA solutions.
+! See Freguia, M.S. Thesis, 2002 (pg 10) or Hiwale, et al., IECR 2012.
+! The reaction of CO2 with aqueous MEA solutions can be described using
+! 5 reversible equilibrium reactions. These are considered
+! instantaneous, so a forward and reverse reaction is given for each.
+! Equilibrium constants for these reactions are given by several
+! sources, and the values used by Aboudher et al [CES, 2003] are used
+! here.
+! 3-4.   RNHCOO- + H20  <--> RNH2 + HCO3- (Reversion of Carbamate )
+! 5-6.   CO2 + 2H2O <--> HCO3- + H3O+     (Dissociation of CO2)
+! 7-8.   HCO3- + H2O --> CO3m2 + H3O+     (Dissociation of Bicarbonate)
+! 9-10.  RHN3+ + H2O <--> RNH2 + H3O+     (Dissociation of MEAH+)
+! 11-12. 2H2O <--> H3O+ + OH-             (Ionization of Water)
+
+! 3-4. Carbamate reversion
+   fwd_reversion_carbamate {
+       chem_eq = "RNHCO2m + lH2O --> lRNH2 + HCO3m"
+       DH      = 0.0
+       fracDH(1) = 1.0
+    }
+    rev_reversion_carbamate {
+       chem_eq = "lRNH2 + HCO3m --> RNHCO2m + lH2O"
+       DH      =  0.0
+       fracDH(1) = 1.0
+    }
+
+! 5-6. Dissociation of dissolved CO2:
+   fwd_dissociation_co2 {
+       chem_eq = "lCO2 + 2lH2O --> HCO3m + H3Op"
+       DH      = 0.0
+       fracDH(1) = 1.0
+    }
+   rev_dissociation_co2 {
+       chem_eq = "HCO3m + H3Op --> lCO2 + 2lH2O"
+       DH      = 0.0
+       fracDH(1) = 1.0
+    }
+
+! 7-8. Dissociation of bicarbonate:
+      fwd_dissociation_bicarbonate {
+       chem_eq = "HCO3m + lH2O --> CO3m2 + H3Op"
+       DH      = 0
+       fracDH(1) = 1.0
+      }
+      rev_dissociation_bicarbonate {
+       chem_eq = "CO3m2 + H3Op --> HCO3m + lH2O"
+       DH      = 0
+       fracDH(1) = 1.0
+      }
+! 9-10. Dissociation of MEAH:
+      fwd_dissociation_meah {
+       chem_eq = "RNH3p + lH2O --> lRNH2 + H3Op"
+       DH      = 0
+       fracDH(1) = 1.0
+      }
+      rev_dissociation_meah {
+       chem_eq = "lRNH2 + H3Op --> RNH3p + lH2O"
+       DH      = 0
+       fracDH(1) = 1.0
+      }
+
+! 11-12. Ionization of water
+      fwd_ionization_h2o {
+       chem_eq = "2lH2O --> H3Op + OHm"
+       DH      = 0
+       fracDH(1) = 1.0
+      }
+      rev_ionization_h2o {
+       chem_eq = "H3Op + OHm --> 2lH2O"
+       DH      = 0
+       fracDH(1) = 1.0
+      }
+
+  @(END)
+
+
+
+#--------------------------------------------------------------------
+# Output
+
+  OUT_DT  = 1.0E+1  ! interval to update (.OUT) file (standard output)
+
+! Interval at which .SPX files are updated.
+  SPX_DT(1)  =  5.0E-1   ! Void fraction (EP_g)
+  SPX_DT(2)  =  5.0E-1   ! Gas and solids pressure (P_g, P_star)
+  SPX_DT(3)  =  5.0E-1   ! Gas velocity (U_g, V_g, W_g)
+  SPX_DT(4)  =  5.0E-1   ! Solids velocity (U_s, V_s, W_s)
+  SPX_DT(5)  =  5.0E-1   ! Solids density (ROP_s)
+  SPX_DT(6)  =  5.0E-1   ! Gas and solids temp. (T_g, T_s1, T_s2)
+  SPX_DT(7)  =  5.0E-1   ! Gas and solids mass fractions (X_g, X_e)
+  SPX_DT(8)  =  1.0E+2   ! Granular Temperature (G)
+  SPX_DT(9)  =  1.0E+2   ! User defined scalars
+  SPX_DT(10) =  5.0E-1   ! Reaction rates (ReactionRates)
+
+
+  RES_DT     =  0.2      ! interval to update (.RES) file (restart)
+  RES_BACKUP_DT = 0.5
+  RES_BACKUPS = 3
+
+  NLOG  = 25     ! time steps between updates to .LOG file
+  FULL_LOG  = .TRUE.   ! display residuals on screen [.F.]
+
+! Specify residuals to be printed as 4-character strings.
+! The first character specifies the field variable.
+!     P: pressure    R: density     U: u-velocity,     V: v-velocity
+!     W: w-velocity  T: temperature  G: granular temp.
+!     X: species mass fraction
+! The second number specifies the phase.
+!     0: Gas, etc
+! The last two numbers specify the species index.
+  RESID_STRING  = 'P0' 'R1' 'V0' 'V1' 'X101' 'X108'
+
+  WRITE_DASHBOARD = .TRUE.
+
+#--------------------------------------------------------------------
+# User output
+! The number of user defined data to output (in reactionrates)
+  NRR = 8
+
+#--------------------------------------------------------------------
+# Parallelization Controls
+! Number of grid blocks in X/Y/Z directions (i,j,k) for a distributed
+! memory parallel machine
+  NODESI = 1   NODESJ = 1   NODESK = 1
+
+
+#--------------------------------------------------------------------
+# Thermo Properties
+! Gas phase CO2 cp used for liquid phase CO2 cp; this way the specific heat
+! of the CO2 material that is being absorbed will be taken from the gas
+! and attributed to the liquid. This may make the 'mixture' CP value that
+! is automatically calculated slightly off
+
+! the cp of the remaining 'solids' species are assigned that of mea.
+! the hof are specific to the indicated species
+! species 2(RNH2)=MEA <= Cp : Dugas et al., ACS, 2008; Hform : NIST webbook
+! species 3-8=MEA     <= CP : Dugas et al., ACS, 2008; Hform : Dugas et al., ACS, 2008
+
+!2345678901234567890123456789012345678901234567890123456789012345678901234567890
+THERMO DATA
+
+
+! 'Solids' phase 1: solvent
+!--------------------------------------------------------------------
+!
+CO2(L)            J 6/11C  1.O  2.   0.   0.G   200.000   1000.000 A  44.00950 1
+ 0.46365111E+01 0.27414569E-02-0.99589759E-06 0.16038666E-09-0.91619857E-14    2
+-0.49024904E+05-0.19348955E+01 0.23568130E+01 0.89841299E-02-0.71220632E-05    3
+ 0.24573008E-08-0.14288548E-12-0.48371971E+05 0.99009035E+01-0.47328105E+05    4
+
+RNH2              J 6/67R  1.N  1.H  2.   0.L   200.000   999.000  B  61.08310 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-6.10420000E+04    4
+
+RNH3+             J 6/67R  1.N  1.H  3.E -1.L   200.000   999.000  B  62.08430 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-3.93510000E+04    4
+
+HCO3-             J 6/67C  1.O  3.H  1.E  1.L   200.000   999.000  B  61.01739 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-8.31003000E+04    4
+
+OH-               J 6/67O  1.H  1.E  1.   0.L   200.000   999.000  B  17.00790 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-2.76450000E+04    4
+
+CO3-2             J 6/67C  1.O  3.E  2.   0.L   200.000   999.000  B  60.00945 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-8.13140000E+04    4
+
+H3O+              J 6/67O  1.H  3.E -1.   0.L   200.000   999.000  B  19.02267 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-3.43560000E+04    4
+
+RNHCO2-           J 6/67R  1.N  1.H  1.C  1.L   200.000   847.000  B 104.00000 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-8.36327000E+04    4

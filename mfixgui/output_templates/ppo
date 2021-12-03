@@ -1,0 +1,383 @@
+#! File written {date}
+#! MFiX version {version} by {user} on {host}
+#! Template used to format file: "detailed"
+
+{if comment_block}
+#! Following comments are retained from the original mfix file
+{_}
+{end if}
+
+{align on}
+#_______________________________________________________________________
+# Project Description
+
+{description}
+{project_version}
+{run_name}
+{units}
+
+#_______________________________________________________________________
+# Run
+
+{ppo}
+
+#_______________________________________________________________________
+# Geometry - MFiX Box
+
+{coordinates}
+
+{xmin}
+
+{x_min}
+{x_max}
+{xlength}
+
+{y_min}
+{y_max}
+{ylength}
+
+{z_min}
+{z_max}
+{zlength}
+
+{cylindrical_2d}
+{i_cyl_num}
+{i_cyl_transition}
+
+
+#_______________________________________________________________________
+# Geometry - Input
+
+{cartesian_grid!}
+
+{if cartesian_grid}
+
+{n_quadric}
+{use_stl}
+{use_msh}
+{use_polygon}
+{n_usr_def}
+
+
+{if Quadrics}
+## Geometry - Quadrics
+
+{quadric_scale}
+
+{loop Quadric}
+{quadric_form(q)}
+{bc_id_q(q)}
+
+{lambda_x(q)}
+{lambda_y(q)}
+{lambda_z(q)}
+{dquadric(q)}
+
+{t_x(q)}
+{t_y(q)}
+{t_z(q)}
+
+{theta_x(q)}
+{theta_y(q)}
+{theta_z(q)}
+
+{bend_r1(q)}
+{bend_r2(q)}
+{bend_theta1(q)}
+{bend_theta2(q)}
+
+{c2c_r1(q)}
+{c2c_r2(q)}
+{c2c_y1(q)}
+{c2c_y2(q)}
+
+{radius(q)}
+
+{half_angle(q)}
+
+{n_x(q)}
+{n_y(q)}
+{n_z(q)}
+
+{reactor1_r1(q)}
+{reactor1_r2(q)}
+{reactor1_rr1(q)}
+{reactor1_rr2(q)}
+{reactor1_theta1(q)}
+{reactor1_theta2(q)}
+{reactor1_y1(q)}
+{reactor1_y2(q)}
+{reactor1_yr1(q)}
+{reactor1_yr2(q)}
+
+{torus_r1(q)}
+{torus_r2(q)}
+
+{ucoil_r1(q)}
+{ucoil_r2(q)}
+{ucoil_y1(q)}
+{ucoil_y2(q)}
+
+{clip_xmax(q)}
+{clip_xmin(q)}
+{clip_ymax(q)}
+{clip_ymin(q)}
+{clip_zmax(q)}
+{clip_zmin(q)}
+{fluid_in_clipped_region(q)}
+
+{piece_xmax(q)}
+{piece_xmin(q)}
+{piece_ymax(q)}
+{piece_ymin(q)}
+{piece_zmax(q)}
+{piece_zmin(q)}
+
+{end loop Quadric}
+
+{n_group}
+
+{group_q*}
+
+{loop Group}
+{group_size(Group)}
+{group_relation(Group)}
+{relation_with_previous(Group)}
+
+{end loop Group}
+
+
+{end if Quadrics}
+
+## Geometry Input - STL File
+
+{stl_bc_id}
+
+{out_stl_value}
+
+{tx_stl}
+{ty_stl}
+{tz_stl}
+
+{scale_stl}
+
+## Geometry Input - .msh file
+
+{scale_msh}
+
+{out_msh_value}
+
+{tx_msh}
+{ty_msh}
+{tz_msh}
+
+{end if cartesian_grid}
+#_______________________________________________________________________
+# Background mesh - Grid spacing
+
+{imax}
+{jmax}
+{kmax}
+{no_k}
+
+{loop cell}
+   {dx(cell)}
+   {dy(cell)}
+   {dz(cell)}
+{end loop cell}
+
+{loop ctrl}
+   {cpx(ctrl)}
+   {ncx(ctrl)}
+   {erx(ctrl)}
+   {first_dx(ctrl)}
+   {last_dx(ctrl)}
+
+{end loop ctrl}
+
+{loop ctrl}
+   {cpy(ctrl)}
+   {ncy(ctrl)}
+   {ery(ctrl)}
+   {first_dy(ctrl)}
+   {last_dy(ctrl)}
+
+{end loop ctrl}
+
+{loop ctrl}
+   {cpz(ctrl)}
+   {ncz(ctrl)}
+   {erz(ctrl)}
+   {first_dz(ctrl)}
+   {last_dz(ctrl)}
+
+{end loop ctrl}
+
+{if cartesian_grid}
+#_______________________________________________________________________
+# Cut cell tolerances
+
+{re_indexing}
+{minimize_send_recv}
+
+{tol_small_cell}
+{tol_small_area}
+{tol_merge}
+{tol_snap*}
+{fac_dim_max_cut_cell}
+{itermax_int}
+{tol_f}
+{dim_facets_per_cell}
+{tol_delh}
+
+{stl_small_angle}
+{tol_stl}
+{tol_stl_dp}
+
+{alpha_max}
+
+{tol_msh}
+
+{tol_poly}
+
+{cad_propagate_order}
+{ray_dir}
+
+{set_corner_cells}
+{pg_option}
+{cg_safe_mode}
+{cg_ur_fac}
+
+{adjust_proc_domain_size}
+{report_best_domain_size}
+{nodesi_report}
+{nodesj_report}
+{nodesk_report}
+
+{dwall_brute_force}
+
+{print_warnings}
+{print_progress_bar}
+{bar_char}
+{bar_resolution}
+{bar_width}
+
+
+{end if cartesian_grid}
+
+#_______________________________________________________________________
+# Cyclic Boundary conditions
+
+{cyclic_x}
+{cyclic_x_pd}
+{delp_x}
+
+{cyclic_y}
+{cyclic_y_pd}
+{delp_y}
+
+{cyclic_z}
+{cyclic_z_pd}
+{delp_z}
+
+{flux_g}
+
+
+{if BCs}
+#_______________________________________________________________________
+# Boundary conditions
+{bc_jj_m}
+
+{loop BC}
+# Boundary condition {BC}{if region_name(BC)}: {_} {end if}
+{bc_type(BC)}
+{bc_x_w(BC)}
+{bc_x_e(BC)}
+{bc_y_s(BC)}
+{bc_y_n(BC)}
+{bc_z_b(BC)}
+{bc_z_t(BC)}
+
+## Fluid Phase {if phase_name(0)}: {_} {end if}
+{bc_ep_g(BC)}
+{bc_volflow_g(BC)}
+{bc_massflow_g(BC)}
+{bc_p_g(BC)}
+{bc_t_g(BC)}
+{bc_u_g(BC)}
+{bc_v_g(BC)}
+{bc_w_g(BC)}
+
+{bc_dt_0(BC)}
+{bc_jet_g0(BC)}
+{bc_dt_h(BC)}
+{bc_jet_gh(BC)}
+{bc_dt_l(BC)}
+{bc_jet_gl(BC)}
+
+{bc_k_turb_g(BC)}
+{bc_e_turb_g(BC)}
+
+{bc_hw_g(BC)}
+{bc_uw_g(BC)}
+{bc_vw_g(BC)}
+{bc_ww_g(BC)}
+
+{bc_hw_t_g(BC)}
+{bc_tw_g(BC)}
+{bc_c_t_g(BC)}
+
+{loop species(0)}
+  {if bc_*(BC,S)} {_} {if species_name(s)}!  {_}{end if}{end if}
+{end loop species}
+
+{loop scalar}
+  {bc_scalar(BC, Scalar)}
+  {bc_hw_scalar(BC, Scalar)}
+  {bc_scalarw(BC, Scalar)}
+  {bc_c_scalar(BC, Scalar)}
+  {*(BC, Scalar)}
+{end loop scalar}
+
+{loop Phase}
+## Solid {P}{if phase_name(P)}: {_} {end if}
+{bc_ep_s(BC,P)}
+{bc_rop_s(BC,P)}
+{bc_volflow_s(BC,P)}
+{bc_massflow_s(BC,P)}
+{bc_t_s(BC,P)}
+{bc_u_s(BC,P)}
+{bc_v_s(BC,P)}
+{bc_w_s(BC,P)}
+
+{bc_theta_m(BC,P)}
+{bc_thetaw_m(BC,P)}
+{bc_hw_theta_m(BC,P)}
+{bc_c_theta_m(BC,P)}
+
+{bc_hw_s(BC,P)}
+{bc_uw_s(BC,P)}
+{bc_vw_s(BC,P)}
+{bc_ww_s(BC,P)}
+
+{bc_jj_ps(BC)}
+
+{bc_hw_t_s(BC,P)}
+{bc_tw_s(BC,P)}
+{bc_c_t_s(BC,P)}
+
+{loop species(P)}
+  {if bc_*(BC,P,S)} {_} {if species_name(P,s)}!  {_}{end if}{end if}
+{end loop species}
+
+{bc_pic_mi_const_statwt(BC,P)}
+{*(BC,P)}
+{end loop Phase}
+{bc_po_apply_to_des(BC)}
+{bc_mi_apply_to_des(BC)}
+{end loop BC}
+{end if BCs}
+
+
+# End of keywords
+#

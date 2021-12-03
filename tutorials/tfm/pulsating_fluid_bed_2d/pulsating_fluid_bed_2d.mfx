@@ -1,0 +1,488 @@
+#! File written Mon Nov 18 16:13:17 2019
+#! MFiX version 19.2.2.post0 by sanjeevs on login06
+#! Template used to format file: "detailed"
+
+
+#_______________________________________________________________________
+# Project Description
+
+description = 'Pulsating 2D TFM fluid bed'
+run_name    = 'pulsating_fluid_bed_2d'
+units       = 'SI'
+
+#_______________________________________________________________________
+# Run
+
+run_type = 'new'
+time     = 0
+tstop    = 2.0
+
+dt     = 1.0000e-03
+dt_min = 1.0000e-06
+dt_max = 1.0000e-02
+
+
+#_______________________________________________________________________
+# Energy Equation
+
+energy_eq = .False.
+
+#_______________________________________________________________________
+# Turbulence
+
+turbulence_model = 'NONE'
+
+#_______________________________________________________________________
+# Gravity
+
+gravity_x = 0.0
+gravity_y = -9.81
+gravity_z = 0.0
+
+#_______________________________________________________________________
+# Drag
+
+drag_type = 'SYAM_OBRIEN'
+drag_c1   = 0.8
+drag_d1   = 2.65
+
+#_______________________________________________________________________
+# Advanced
+
+
+#_______________________________________________________________________
+# Geometry - MFiX Box
+
+coordinates = 'CARTESIAN'
+
+
+x_min = -0.1
+x_max = 0.1
+
+y_min = 0
+y_max = 1.0
+
+
+#_______________________________________________________________________
+# Geometry - Input
+
+cartesian_grid = .False.
+
+#_______________________________________________________________________
+# Background mesh - Grid spacing
+
+imax = 20
+jmax = 100
+no_k = .True.
+
+
+#_______________________________________________________________________
+# Fluid Phase 
+
+
+mw_avg = 29.0
+
+species_eq(0) = .False.
+
+
+#_______________________________________________________________________
+# Solids Phase - Material
+
+mmax = 1
+
+# Solid 1
+
+solids_model(1) = 'TFM'
+rdf_type        = 'CARNAHAN_STARLING'
+
+d_p0(1)  = 2.5000e-04
+ro_s0(1) = 2000.0
+
+species_eq(1) = .False.
+nmax_s(1)     = 0
+
+
+# Maximum packing
+ep_star = 0.42
+
+
+#_______________________________________________________________________
+# Solids Phase - TFM settings
+
+
+friction_model = 'SCHAEFFER'
+
+c_e = 0.9
+e_w = 0.9
+
+phi   = 30.0
+phi_w = 11.31
+
+
+#_______________________________________________________________________
+# Solids Phase - Lagrangian settings (common to DEM/PIC)
+
+
+#_______________________________________________________________________
+# DEM contact
+
+
+#_______________________________________________________________________
+# DEM cohesion
+
+
+#_______________________________________________________________________
+# DEM - Advanced (Neighbor search)
+
+
+#_______________________________________________________________________
+# Initial conditions
+
+# Initial condition 1: Entire domain 
+ic_x_w(1) = -0.1
+ic_x_e(1) = 0.1
+ic_y_s(1) = 0.0
+ic_y_n(1) = 1.0
+
+## Fluid Phase 
+ic_ep_g(1) = 1.0
+ic_p_g(1)  = 1.0132e+05
+ic_t_g(1)  = 298.15
+ic_u_g(1)  = 0.0
+ic_v_g(1)  = 0.0
+ic_w_g(1)  = 0.0
+
+
+## Solid 1
+ic_ep_s(1,1) = 0.0
+ic_t_s(1,1)  = 298.15
+ic_u_s(1,1)  = 0.0
+ic_v_s(1,1)  = 0.0
+ic_w_s(1,1)  = 0.0
+
+
+ic_des_fit_to_region(1) = .False.
+
+
+# Initial condition 2: Bed 
+ic_x_w(2) = -0.1
+ic_x_e(2) = 0.1
+ic_y_s(2) = 0.0
+ic_y_n(2) = 0.5
+
+## Fluid Phase 
+ic_ep_g(2) = 0.45
+ic_p_g(2)  = 1.0132e+05
+ic_t_g(2)  = 298.15
+ic_u_g(2)  = 0.0
+ic_v_g(2)  = 0.2
+ic_w_g(2)  = 0.0
+
+
+## Solid 1
+ic_ep_s(2,1) = 0.55
+ic_t_s(2,1)  = 298.15
+ic_u_s(2,1)  = 0.0
+ic_v_s(2,1)  = 0.2
+ic_w_s(2,1)  = 0.0
+
+
+ic_des_fit_to_region(2) = .False.
+
+
+#_______________________________________________________________________
+# Cyclic Boundary conditions
+
+
+#_______________________________________________________________________
+# Boundary conditions
+
+# Boundary condition 1: Bottom Inlet 
+bc_type(1) = 'MI'
+bc_x_w(1)  = -0.02
+bc_x_e(1)  = 0.02
+bc_y_s(1)  = 0.0
+bc_y_n(1)  = 0.0
+
+## Fluid Phase 
+bc_ep_g(1) = 1.0
+bc_p_g(1)  = 1.0132e+05
+bc_t_g(1)  = 298.15
+bc_u_g(1)  = 0.0
+bc_v_g(1)  = 0.0
+bc_w_g(1)  = 0.0
+
+
+## Solid 1
+bc_ep_s(1,1) = 0.0
+bc_t_s(1,1)  = 293.15
+bc_u_s(1,1)  = 0.0
+bc_v_s(1,1)  = 0.0
+bc_w_s(1,1)  = 0.0
+
+
+# Boundary condition 2: Top outlet 
+bc_type(2) = 'PO'
+bc_x_w(2)  = -0.1
+bc_x_e(2)  = 0.1
+bc_y_s(2)  = 1.0
+bc_y_n(2)  = 1.0
+
+## Fluid Phase 
+bc_p_g(2) = 1.0132e+05
+bc_t_g(2) = 298.15
+
+
+## Solid 1
+
+
+# Boundary condition 3: Left wall 
+bc_type(3) = 'NSW'
+bc_x_w(3)  = -0.1
+bc_x_e(3)  = -0.1
+bc_y_s(3)  = 0.0
+bc_y_n(3)  = 1.0
+
+## Fluid Phase 
+
+
+bc_uw_g(3) = 0.0
+bc_vw_g(3) = 0.0
+bc_ww_g(3) = 0.0
+
+
+## Solid 1
+
+
+bc_jj_ps(3) = 0
+
+
+# Boundary condition 4: Right wall 
+bc_type(4) = 'NSW'
+bc_x_w(4)  = 0.1
+bc_x_e(4)  = 0.1
+bc_y_s(4)  = 0.0
+bc_y_n(4)  = 1.0
+
+## Fluid Phase 
+
+
+bc_uw_g(4) = 0.0
+bc_vw_g(4) = 0.0
+bc_ww_g(4) = 0.0
+
+
+## Solid 1
+
+
+bc_jj_ps(4) = 0
+
+
+#_______________________________________________________________________
+# Chemistry solver
+
+
+#_______________________________________________________________________
+# Numerics
+
+
+norm_g = 0.0
+norm_s = 0.0
+
+
+  leq_pc(1)     = 'NONE'
+  discretize(1) = 2
+
+  leq_pc(2)     = 'NONE'
+  discretize(2) = 2
+
+  leq_pc(3)     = 'NONE'
+  discretize(3) = 2
+
+  leq_pc(4)     = 'NONE'
+  discretize(4) = 2
+
+  leq_pc(5)     = 'NONE'
+  discretize(5) = 2
+
+  leq_pc(6)     = 'NONE'
+  discretize(6) = 2
+
+  leq_pc(7)     = 'NONE'
+  discretize(7) = 2
+
+  leq_pc(8)     = 'NONE'
+  discretize(8) = 2
+
+  leq_pc(9)     = 'NONE'
+  discretize(9) = 2
+
+
+max_inlet_vel_fac = 1000.0
+
+
+#_______________________________________________________________________
+# Output
+
+res_dt = 0.1
+
+
+  spx_dt(1)  = 100.0
+  spx_dt(2)  = 100.0
+  spx_dt(3)  = 100.0
+  spx_dt(4)  = 100.0
+  spx_dt(5)  = 100.0
+  spx_dt(6)  = 100.0
+  spx_dt(7)  = 100.0
+  spx_dt(8)  = 100.0
+  spx_dt(9)  = 100.0
+  spx_dt(10) = 100.0
+
+
+group_resid = .True.
+
+# Residuals
+  resid_string(1) = 'P0'
+  resid_string(2) = 'U0'
+  resid_string(3) = 'V0'
+  resid_string(4) = 'W0'
+  resid_string(5) = 'U1'
+  resid_string(6) = 'V1'
+  resid_string(7) = 'W1'
+
+full_log = .True.
+nlog     = 50
+
+
+#_______________________________________________________________________
+# VTK outputs
+
+write_vtk_files         = .True.
+time_dependent_filename = .True.
+vtu_dir                 = 'VTU'
+
+# VTK output 1: Entire domain 
+vtk_x_w(1) = -0.1
+vtk_x_e(1) = 0.1
+vtk_y_s(1) = 0.0
+vtk_y_n(1) = 1.0
+
+vtk_filebase(1) = 'FB2D'
+vtk_dt(1)       = 0.05
+
+vtk_nxs(1) = 0
+vtk_nys(1) = 0
+vtk_nzs(1) = 0
+
+vtk_data(1) = 'C'
+
+## Fluid Phase 
+vtk_ep_g(1)  = .True.
+vtk_p_g(1)   = .True.
+vtk_vel_g(1) = .True.
+
+
+## Solid 1
+vtk_vel_s(1,1) = .True.
+
+
+#_______________________________________________________________________
+# UDF control
+
+call_usr = .True.
+
+
+#_______________________________________________________________________
+# Parallelization
+
+nodesi = 1
+nodesj = 1
+nodesk = 1
+
+enable_dmp_log = .False.
+
+
+#_______________________________________________________________________
+# Batch
+
+chk_batchq_end  = .True.
+batch_wallclock = 9000.0
+term_buffer     = 180.0
+
+#_______________________________________________________________________
+# Dashboard
+
+write_dashboard = .True.
+f_dashboard     = 1
+
+#_______________________________________________________________________
+# Unsupported keys
+
+
+#_______________________________________________________________________
+# Miscellaneous keys
+#
+  read_kf(1) = .True.
+  use_stl = .False.
+#_______________________________________________________________________
+# End of keywords
+#
+
+# MFIX-GUI section
+#!MFIX-GUI parameters = {"order": ["min", "max", "xmin", "xmax", "ymin", "ymax",
+#!MFIX-GUI   "zmin", "zmax", "km", "m", "cm", "mm", "um", "mile", "yard", "ft",
+#!MFIX-GUI   "ins"], "parameters": {"min": 0.0, "max": 0.0, "xmin": -0.1,
+#!MFIX-GUI   "xmax": 0.1, "ymin": 0, "ymax": 1.0, "zmin": 0.0, "zmax": 0.0,
+#!MFIX-GUI   "km": 1000.0, "m": 1.0, "cm": 0.01, "mm": 0.001, "um": 1e-06,
+#!MFIX-GUI   "mile": 1609.34, "yard": 0.9144, "ft": 0.3048, "ins": 0.0254}}
+#!MFIX-GUI gui_version = 19.2.2.post0
+#!MFIX-GUI project_notes = ""
+#!MFIX-GUI author = tutorial
+#!MFIX-GUI geometry = {"geometry_dict": {}, "tree": {}}
+#!MFIX-GUI visual_props = {"mesh": {"color": "#f44328", "visible": true, "rep":
+#!MFIX-GUI   "wire", "edge": "#7a2114", "opacity": 1}, "background_mesh":
+#!MFIX-GUI   {"color": "#64b6f7", "visible": true, "rep": "wire", "edge":
+#!MFIX-GUI   "#325b7b", "opacity": 1.0}, "geometry": {"color": "#e0e0e0",
+#!MFIX-GUI   "visible": true, "rep": "wire", "edge": "#707070", "opacity": 1.0},
+#!MFIX-GUI   "regions": {"color": "#e0e0e0", "visible": true, "rep": "solid",
+#!MFIX-GUI   "edge": "#707070", "opacity": 0.5}, "normals": {"color": "#0000e0",
+#!MFIX-GUI   "visible": false, "scale": 0.1, "edge": "#000070"}, "axes":
+#!MFIX-GUI   {"color": "#0000e0", "visible": true, "edge": "#000070"}}
+#!MFIX-GUI regions_dict = {"order": ["Entire domain", "Bed", "Bottom Inlet",
+#!MFIX-GUI   "Top outlet", "Left wall", "Right wall"], "regions": {"Entire
+#!MFIX-GUI   domain": {"to": [0.1, 1.0, 0.0], "from": [-0.1, 0.0, 0.0], "color":
+#!MFIX-GUI   "#c3b86b", "type": "XY-plane"}, "Bed": {"to": [0.1, 0.5, 0.0],
+#!MFIX-GUI   "from": [-0.1, 0.0, 0.0], "color": "#d46d87", "type": "XY-plane"},
+#!MFIX-GUI   "Bottom Inlet": {"to": [0.02, 0.0, 0.0], "from": [-0.02, 0.0, 0.0],
+#!MFIX-GUI   "color": "#000000", "type": "XZ-plane"}, "Top outlet": {"to": [0.1,
+#!MFIX-GUI   1.0, 0.0], "from": [-0.1, 1.0, 0.0], "color": "#74b18c", "type":
+#!MFIX-GUI   "XZ-plane"}, "Left wall": {"to": [-0.1, 1.0, 0.0], "from": [-0.1,
+#!MFIX-GUI   0.0, 0.0], "color": "#899368", "type": "YZ-plane"}, "Right wall":
+#!MFIX-GUI   {"to": [0.1, 1.0, 0.0], "from": [0.1, 0.0, 0.0], "color":
+#!MFIX-GUI   "#d4bddd", "type": "YZ-plane"}}}
+#!MFIX-GUI bc_regions = [[[1], ["Bottom Inlet"]], [[2], ["Top outlet"]], [[3],
+#!MFIX-GUI   ["Left wall"]], [[4], ["Right wall"]]]
+#!MFIX-GUI ic_regions = [[[1], ["Entire domain"]], [[2], ["Bed"]]]
+#!MFIX-GUI is_regions = []
+#!MFIX-GUI ps_regions = []
+#!MFIX-GUI vtk_regions = [[[1], ["Entire domain"]]]
+#!MFIX-GUI OMP_NUM_THREADS = 1
+#!MFIX-GUI submit_to_queue = 0
+#!MFIX-GUI created_date = 2019-10-22 15:34
+#!MFIX-GUI modified_time = 2019-11-18 16:13
+#!MFIX-GUI modified_by = sanjeevs
+#!MFIX-GUI usr_regions = []
+#!MFIX-GUI monitor_regions = []
+#!MFIX-GUI log_files = {}
+#!MFIX-GUI graphics = {"order": [], "data": {}}
+#!MFIX-GUI retained_keys = {}
+#!MFIX-GUI ui_state = {"mode": "modeler", "navigation": "Model setup",
+#!MFIX-GUI   "graphic_tab": 0}
+#!MFIX-GUI queue_template = {"JOB_NAME": "${PROJECT_NAME}", "CORES": 9, "QUEUE":
+#!MFIX-GUI   "general", "LONG": "", "MODULES": [], "template": "Joule"}
+#!MFIX-GUI BUILD_DMP = 0
+#!MFIX-GUI BUILD_FC_FLAGS = 
+#!MFIX-GUI BUILD_INTERACTIVE = PYMFIX
+#!MFIX-GUI BUILD_PARALLEL = 1
+#!MFIX-GUI BUILD_SMP = 0
+#!MFIX-GUI BUILD_TYPE = RELWITHDEBINFO

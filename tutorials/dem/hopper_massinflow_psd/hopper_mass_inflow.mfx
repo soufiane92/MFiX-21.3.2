@@ -1,0 +1,606 @@
+#! File written Fri Sep 18 19:09:02 2020
+#! MFiX version 20.2.0 by dietikej on login03
+#! Template used to format file: "detailed"
+
+
+#_______________________________________________________________________
+# Project Description
+
+description     = '3D Hopper DEM case, granular flow - PSD with mass inlet'
+run_name        = 'hopper_mass_inflow'
+units           = 'SI'
+
+#_______________________________________________________________________
+# Run
+
+run_type = 'new'
+time     = 0.0
+tstop    = 0.5
+
+dt     = 1.0000e-03
+dt_max = 1.0
+
+
+#_______________________________________________________________________
+# Energy Equation
+
+energy_eq = .False.
+
+#_______________________________________________________________________
+# Turbulence
+
+turbulence_model = 'NONE'
+
+#_______________________________________________________________________
+# Gravity
+
+gravity_x = 0.0
+gravity_y = -9.80665
+gravity_z = 0.0
+
+#_______________________________________________________________________
+# Drag
+
+drag_type = 'SYAM_OBRIEN'
+drag_c1   = 0.8
+drag_d1   = 2.65
+
+#_______________________________________________________________________
+# Advanced
+
+
+#_______________________________________________________________________
+# Geometry - MFiX Box
+
+coordinates = 'CARTESIAN'
+
+
+x_min = 0
+x_max = 0.125
+
+y_min = -0.013
+y_max = 0.16
+
+z_min = 0
+z_max = 0.125
+
+
+#_______________________________________________________________________
+# Geometry - Input
+
+cartesian_grid = .True.
+
+
+use_stl = .True.
+
+
+## Geometry Input - STL File
+
+
+## Geometry Input - .msh file
+
+
+#_______________________________________________________________________
+# Background mesh - Grid spacing
+
+imax = 25
+jmax = 25
+kmax = 25
+
+
+#_______________________________________________________________________
+# Cut cell tolerances
+
+
+tol_small_cell       = 0.0
+tol_snap(1)          = 0.0
+fac_dim_max_cut_cell = 1.0
+dim_facets_per_cell  = 50
+
+stl_small_angle = 0.0
+
+
+#_______________________________________________________________________
+# Fluid Phase
+
+
+ro_g0 = 0.0
+mu_g0 = 1.8000e-06
+
+species_eq(0) = .False.
+
+
+#_______________________________________________________________________
+# Solids Phase - Material
+
+mmax = 2
+
+# Solid 1: Solid 1
+
+solids_model(1) = 'DEM'
+
+d_p0(1)  = 2.0000e-03
+ro_s0(1) = 2500.0
+k_s0(1)  = 1.0
+
+species_eq(1) = .False.
+nmax_s(1)     = 0
+
+
+# Solid 2
+
+solids_model(2) = 'DEM'
+
+d_p0(2)  = 4.0000e-03
+ro_s0(2) = 1000.0
+k_s0(2)  = 1.0
+c_ps0(2) = 830.0
+
+species_eq(2) = .False.
+nmax_s(2)     = 0
+
+
+# Maximum packing
+
+ks_model(1) = 'MUSSER'
+ks_model(2) = 'MUSSER'
+
+#_______________________________________________________________________
+# Solids Phase - TFM settings
+
+
+friction_model = 'SCHAEFFER'
+
+
+phi_w = 11.31
+
+
+#_______________________________________________________________________
+# Solids Phase - Lagrangian settings (common to DEM/PIC)
+
+gener_part_config = .True.
+
+
+des_interp_scheme = 'NONE'
+
+
+#_______________________________________________________________________
+# DEM contact
+
+
+mew   = 0.5
+mew_w = 0.5
+
+kn       = 1000.0
+kn_w     = 1000.0
+kt_fac   = 0.28571428571429 #!MFIX-GUI eq{float(2/7)}
+kt_w_fac = 0.28571428571429 #!MFIX-GUI eq{float(2/7)}
+
+des_en_input(1)      = 0.5
+des_en_input(2)      = 0.5
+des_en_input(3)      = 0.5
+des_en_wall_input(1) = 0.5
+des_en_wall_input(2) = 0.5
+des_etat_fac         = 0.5
+des_etat_w_fac       = 0.5
+
+
+#_______________________________________________________________________
+# DEM cohesion
+
+
+#_______________________________________________________________________
+# DEM - Advanced
+
+
+desgridsearch_imax = 25
+desgridsearch_jmax = 25
+desgridsearch_kmax = 25
+
+
+neighbor_search_n = 10
+
+
+#_______________________________________________________________________
+# Initial conditions
+
+# Initial condition 1: Background IC
+ic_x_w(1) = 0.0 #!MFIX-GUI eq{float(xmin)}
+ic_x_e(1) = 0.125 #!MFIX-GUI eq{float(xmax)}
+ic_y_s(1) = -0.013 #!MFIX-GUI eq{float(ymin)}
+ic_y_n(1) = 0.16 #!MFIX-GUI eq{float(ymax)}
+ic_z_b(1) = 0.0 #!MFIX-GUI eq{float(zmin)}
+ic_z_t(1) = 0.125 #!MFIX-GUI eq{float(zmax)}
+
+## Fluid Phase
+ic_ep_g(1) = 1.0
+ic_t_g(1)  = 293.15
+ic_u_g(1)  = 0.0
+ic_v_g(1)  = 0.0
+ic_w_g(1)  = 0.0
+
+
+## Solid 1: Solid 1
+ic_ep_s(1,1) = 0.0
+
+
+ic_t_s(1,1)     = 293.15
+ic_u_s(1,1)     = 0.0
+ic_v_s(1,1)     = 0.0
+ic_w_s(1,1)     = 0.0
+ic_theta_m(1,1) = 0.0
+
+
+## Solid 2
+ic_ep_s(1,2) = 0.0
+
+
+ic_t_s(1,2)     = 293.15
+ic_u_s(1,2)     = 0.0
+ic_v_s(1,2)     = 0.0
+ic_w_s(1,2)     = 0.0
+ic_theta_m(1,2) = 0.0
+
+
+ic_des_fit_to_region(1) = .False.
+
+
+# Initial condition 2: Initial bed
+ic_x_w(2) = 0.0 #!MFIX-GUI eq{float(xmin)}
+ic_x_e(2) = 0.125 #!MFIX-GUI eq{float(xmax)}
+ic_y_s(2) = -0.013 #!MFIX-GUI eq{float(ymin)}
+ic_y_n(2) = 0.16 #!MFIX-GUI eq{float(ymax)}
+ic_z_b(2) = 0.0 #!MFIX-GUI eq{float(zmin)}
+ic_z_t(2) = 0.125 #!MFIX-GUI eq{float(zmax)}
+
+## Fluid Phase
+ic_ep_g(2) = 0.99
+ic_t_g(2)  = 293.15
+ic_u_g(2)  = 0.0
+ic_v_g(2)  = 0.0
+ic_w_g(2)  = 0.0
+
+
+## Solid 1: Solid 1
+ic_ep_s(2,1) = 0.01
+
+ic_psd_type(2,1)    = 'NORMAL'
+ic_psd_mean_dp(2,1) = 0.002
+ic_psd_stdev(2,1)   = 0.0002
+ic_psd_min_dp(2,1)  = 0.001
+ic_psd_max_dp(2,1)  = 0.003
+
+
+ic_t_s(2,1)     = 293.15
+ic_u_s(2,1)     = 0.0
+ic_v_s(2,1)     = 0.0
+ic_w_s(2,1)     = 0.0
+ic_theta_m(2,1) = 0.0
+
+
+## Solid 2
+ic_ep_s(2,2) = 0.0
+
+
+ic_t_s(2,2)     = 293.15
+ic_u_s(2,2)     = 0.0
+ic_v_s(2,2)     = 0.0
+ic_w_s(2,2)     = 0.0
+ic_theta_m(2,2) = 0.0
+
+
+ic_des_fit_to_region(2) = .False.
+
+
+#_______________________________________________________________________
+# Cyclic Boundary conditions
+
+
+#_______________________________________________________________________
+# Boundary conditions
+
+# Boundary condition 1: Bottom
+bc_type(1) = 'NSW'
+bc_x_w(1)  = 0.0 #!MFIX-GUI eq{float(xmin)}
+bc_x_e(1)  = 0.125 #!MFIX-GUI eq{float(xmax)}
+bc_y_s(1)  = -0.013 #!MFIX-GUI eq{float(ymin)}
+bc_y_n(1)  = -0.013 #!MFIX-GUI eq{float(ymin)}
+bc_z_b(1)  = 0.0 #!MFIX-GUI eq{float(zmin)}
+bc_z_t(1)  = 0.125 #!MFIX-GUI eq{float(zmax)}
+
+
+## Fluid Phase
+
+
+bc_uw_g(1) = 0.0
+bc_vw_g(1) = 0.0
+bc_ww_g(1) = 0.0
+
+
+## Solid 1: Solid 1
+
+
+bc_jj_ps(1) = 0
+
+
+## Solid 2
+
+
+# Boundary condition 2: Top inlet
+bc_type(2) = 'MI'
+bc_x_w(2)  = 0.0 #!MFIX-GUI eq{float(xmin)}
+bc_x_e(2)  = 0.125 #!MFIX-GUI eq{float(xmax)}
+bc_y_s(2)  = 0.16 #!MFIX-GUI eq{float(ymax)}
+bc_y_n(2)  = 0.16 #!MFIX-GUI eq{float(ymax)}
+bc_z_b(2)  = 0.0 #!MFIX-GUI eq{float(zmin)}
+bc_z_t(2)  = 0.125 #!MFIX-GUI eq{float(zmax)}
+
+
+## Fluid Phase
+bc_ep_g(2) = 0.9
+bc_p_g(2)  = 0.0
+bc_t_g(2)  = 293.15
+bc_u_g(2)  = 0.0
+bc_v_g(2)  = 0.0
+bc_w_g(2)  = 0.0
+
+
+## Solid 1: Solid 1
+bc_ep_s(2,1) = 0.0
+
+
+bc_t_s(2,1) = 293.15
+bc_u_s(2,1) = 0.0
+bc_v_s(2,1) = 0.0
+bc_w_s(2,1) = 0.0
+
+
+## Solid 2
+bc_ep_s(2,2) = 0.1
+
+bc_psd_type(2,2)    = 'LOG_NORMAL'
+bc_psd_mean_dp(2,2) = 0.0041
+bc_psd_stdev(2,2)   = 0.001
+bc_psd_min_dp(2,2)  = 0.002
+bc_psd_max_dp(2,2)  = 0.008
+
+bc_t_s(2,2) = 293.15
+bc_u_s(2,2) = 0.0
+bc_v_s(2,2) = -0.1
+bc_w_s(2,2) = 0.0
+
+
+# Boundary condition 5: Hopper walls
+bc_type(5) = 'CG_NSW'
+bc_x_w(5)  = 0.0 #!MFIX-GUI eq{float(xmin)}
+bc_x_e(5)  = 0.125 #!MFIX-GUI eq{float(xmax)}
+bc_y_s(5)  = -0.013 #!MFIX-GUI eq{float(ymin)}
+bc_y_n(5)  = 0.16 #!MFIX-GUI eq{float(ymax)}
+bc_z_b(5)  = 0.0 #!MFIX-GUI eq{float(zmin)}
+bc_z_t(5)  = 0.125 #!MFIX-GUI eq{float(zmax)}
+
+
+## Fluid Phase
+
+
+bc_uw_g(5) = 0.0
+bc_vw_g(5) = 0.0
+bc_ww_g(5) = 0.0
+
+
+## Solid 1: Solid 1
+
+
+bc_jj_ps(5) = 0
+
+
+## Solid 2
+
+
+#_______________________________________________________________________
+# Chemistry solver
+
+
+#_______________________________________________________________________
+# Numerics
+
+
+#_______________________________________________________________________
+# Output
+
+res_dt = 0.1
+
+
+group_resid = .True.
+
+
+full_log = .True.
+nlog     = 25
+
+
+#_______________________________________________________________________
+# VTK outputs
+
+write_vtk_files         = .True.
+time_dependent_filename = .True.
+
+# VTK output 1: Background IC
+vtk_x_w(1) = 0.0 #!MFIX-GUI eq{float(xmin)}
+vtk_x_e(1) = 0.125 #!MFIX-GUI eq{float(xmax)}
+vtk_y_s(1) = -0.013 #!MFIX-GUI eq{float(ymin)}
+vtk_y_n(1) = 0.16 #!MFIX-GUI eq{float(ymax)}
+vtk_z_b(1) = 0.0 #!MFIX-GUI eq{float(zmin)}
+vtk_z_t(1) = 0.125 #!MFIX-GUI eq{float(zmax)}
+
+vtk_filebase(1) = 'Particles'
+vtk_dt(1)       = 0.01
+
+vtk_nxs(1) = 0
+vtk_nys(1) = 0
+vtk_nzs(1) = 0
+
+vtk_data(1) = 'P'
+
+
+## Fluid Phase
+
+
+## Solid 1: Solid 1
+
+
+## Solid 2
+
+
+vtk_part_diameter(1) = .True.
+vtk_part_vel(1)      = .True.
+
+
+vtk_part_phase_id(1) = .True.
+
+
+#_______________________________________________________________________
+# Parallelization
+
+nodesi = 1
+nodesj = 1
+nodesk = 1
+
+enable_dmp_log = .True.
+
+
+#_______________________________________________________________________
+# Batch
+
+chk_batchq_end  = .True.
+batch_wallclock = 72000
+term_buffer     = 600
+
+#_______________________________________________________________________
+# Dashboard
+
+write_dashboard = .False.
+
+#_______________________________________________________________________
+# Unsupported keys
+
+
+#_______________________________________________________________________
+# End of keywords
+#
+
+# MFIX-GUI section
+#!MFIX-GUI author = sathish
+#!MFIX-GUI created_date = 2020-08-17 22:51
+#!MFIX-GUI modified_time = 2020-09-18 18:59
+#!MFIX-GUI gui_version = 20.2.0
+#!MFIX-GUI project_notes = ""
+#!MFIX-GUI modified_by = sathish|dietikej
+#!MFIX-GUI geometry = {"geometry_dict": {"hopper.stl": {"geo_type": "stl",
+#!MFIX-GUI   "filename": "${proj_dir}/hopper.stl", "centerx":
+#!MFIX-GUI   0.06249999087640107, "centery": 0.07489130228919827, "centerz":
+#!MFIX-GUI   0.062499990841693394, "extentxmax": 0.125, "extentymin": -0.013,
+#!MFIX-GUI   "extentymax": 0.16, "extentzmax": 0.125}}, "tree": {"hopper.stl": []}}
+#!MFIX-GUI visual_props = {"mesh": {"color": "#f44328", "visible": true, "rep":
+#!MFIX-GUI   "wire", "edge": "#7a2114", "opacity": 1}, "background_mesh":
+#!MFIX-GUI   {"color": "#64b6f7", "visible": true, "rep": "wire", "edge":
+#!MFIX-GUI   "#325b7b", "opacity": 1.0}, "geometry": {"color": "#e0e0e0",
+#!MFIX-GUI   "visible": true, "rep": "wire", "edge": "#707070", "opacity": 1.0},
+#!MFIX-GUI   "regions": {"color": "#e0e0e0", "visible": true, "rep": "solid",
+#!MFIX-GUI   "edge": "#707070", "opacity": 0.5}, "normals": {"color": "#0000e0",
+#!MFIX-GUI   "visible": true, "scale": 0.01, "edge": "#000070"}, "axes":
+#!MFIX-GUI   {"color": "#0000e0", "visible": true, "edge": "#000070"},
+#!MFIX-GUI   "boundary": {"color": "#0000e0", "opacity": 1, "rep": "edges",
+#!MFIX-GUI   "visible": false, "color_by": "bc_id", "edge": "#000070"}}
+#!MFIX-GUI regions_dict = {"order": ["Background IC", "Hopper walls", "Bottom",
+#!MFIX-GUI   "Top inlet", "Initial bed"], "regions": {"Background IC": {"to":
+#!MFIX-GUI   [{"__type__": "equation", "eq": "float(xmax)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymax)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmax)"}], "from": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmin)"}, {"__type__": "equation", "eq": "float(ymin)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmin)"}], "color": "#c766a7",
+#!MFIX-GUI   "geometry_pool": ["hopper.stl"]}, "Hopper walls": {"facet_count":
+#!MFIX-GUI   1226, "to": [{"__type__": "equation", "eq": "float(xmax)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(ymax)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(zmax)"}], "from": [{"__type__":
+#!MFIX-GUI   "equation", "eq": "float(xmin)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(ymin)"}, {"__type__": "equation", "eq": "float(zmin)"}],
+#!MFIX-GUI   "color": "#7dc372", "geometry_pool": ["hopper.stl"], "type":
+#!MFIX-GUI   "STL"}, "Bottom": {"to": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmax)"}, {"__type__": "equation", "eq": "float(ymin)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmax)"}], "from":
+#!MFIX-GUI   [{"__type__": "equation", "eq": "float(xmin)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymin)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmin)"}], "color": "#7b8e8d", "geometry_pool":
+#!MFIX-GUI   ["hopper.stl"], "type": "XZ-plane"}, "Top inlet": {"to":
+#!MFIX-GUI   [{"__type__": "equation", "eq": "float(xmax)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymax)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmax)"}], "from": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmin)"}, {"__type__": "equation", "eq": "float(ymax)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmin)"}], "color": "#dd6dde",
+#!MFIX-GUI   "geometry_pool": ["hopper.stl"], "type": "XZ-plane"}, "Initial
+#!MFIX-GUI   bed": {"to": [{"__type__": "equation", "eq": "float(xmax)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(ymax)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(zmax)"}], "from": [{"__type__":
+#!MFIX-GUI   "equation", "eq": "float(xmin)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(ymin)"}, {"__type__": "equation", "eq": "float(zmin)"}],
+#!MFIX-GUI   "color": "#ffff00", "geometry_pool": ["hopper.stl"]}}}
+#!MFIX-GUI bc_regions = [[[5], ["Hopper walls"]], [[1], ["Bottom"]], [[2], ["Top
+#!MFIX-GUI   inlet"]]]
+#!MFIX-GUI ic_regions = [[[1], ["Background IC"]], [[2], ["Initial bed"]]]
+#!MFIX-GUI vtk_regions = [[[1], ["Background IC"]]]
+#!MFIX-GUI graphics = {"order": ["VTK", "New"], "data": {"VTK": {"plot": false,
+#!MFIX-GUI   "vtk": true, "monitors": false, "vtk_state": {"vtu_pattern": null,
+#!MFIX-GUI   "vtp_pattern": "PARTICLES", "cell_arrays": {}, "node_arrays": {},
+#!MFIX-GUI   "point_arrays": {"PARTICLES": {"Diameter": {"i": 0,
+#!MFIX-GUI   "number_of_tuples": 5387, "components": 1, "range":
+#!MFIX-GUI   [[0.0013406617799773812, 0.007753366604447365]], "magnitude":
+#!MFIX-GUI   [0.0013406617799773812, 0.007753366604447365], "color": "#e0e0e0",
+#!MFIX-GUI   "single_color": false, "color_map": "viridis", "reversed": false,
+#!MFIX-GUI   "from": 0.00147, "to": 0.0077}, "Velocity": {"i": 1,
+#!MFIX-GUI   "number_of_tuples": 5387, "components": 3, "range":
+#!MFIX-GUI   [[-1.704848289489746, 2.3890292644500732], [-2.2124576568603516,
+#!MFIX-GUI   0.5309514999389648], [-2.2324557304382324, 2.226508855819702]],
+#!MFIX-GUI   "magnitude": [0.00018047392596445169, 3.138847135096889]},
+#!MFIX-GUI   "Particle_Phase_ID": {"i": 2, "number_of_tuples": 5387,
+#!MFIX-GUI   "components": 1, "range": [[1.0, 2.0]], "magnitude": [1.0, 2.0]}}},
+#!MFIX-GUI   "frame": 50, "camera": {"position": [-0.10713305436321191,
+#!MFIX-GUI   0.06733396487811295, -0.27873583249558087], "focal_point":
+#!MFIX-GUI   [0.06770281940147113, 0.08034424360487691, 0.05954778783822609],
+#!MFIX-GUI   "view_angle": 30.0, "view_up": [-0.004024958409954293,
+#!MFIX-GUI   0.9993308797137401, -0.03635371453318378], "parallel": 0,
+#!MFIX-GUI   "parallel_scale": 0.12367194392364424}, "particle_options":
+#!MFIX-GUI   {"mapper": "point gaussian", "splat": "sphere", "glyph": "sphere",
+#!MFIX-GUI   "max_points": 10000}, "geometry_style": "solid", "geometry_color":
+#!MFIX-GUI   "#e0e0e0", "color_bar_mapper": "points", "color_bar_pos": "right",
+#!MFIX-GUI   "color_bar_color": "#000000", "color_bar_n_labels": 10,
+#!MFIX-GUI   "color_bar_label_fmt": "%.2f", "time_label_format": "{:.2f} s",
+#!MFIX-GUI   "time_label_pos": "top right", "time_label_color": "#000000",
+#!MFIX-GUI   "time_label_text_size": 24, "image_stack_dir":
+#!MFIX-GUI   "/.nfs/home/3/dietikej/MFiX/develop/mfix/tutorials/dem/hopper_massinflow_psd", "image_stack_prefix": "frame_", "image_stack_width": "1920", "image_stack_height": "1080", "image_stack_type": "png", "cells_component": "mag", "points_color_by": "Diameter", "points_component": "mag", "visible": {"cells": false, "points": true, "geometry": true, "color_bar": false, "time_label": false, "axes": false}, "opacity": {"cells": 1.0, "points": 1.0, "geometry": 0.4, "color_bar": 1.0, "time_label": 1.0}}}, "New": {"plot": false, "vtk": false, "monitors": false}}}
+#!MFIX-GUI ui_state = {"mode": "modeler", "navigation": "Model setup",
+#!MFIX-GUI   "graphic_tab": 2}
+#!MFIX-GUI parameters = {"order": ["min", "max", "xmin", "xmax", "ymin", "ymax",
+#!MFIX-GUI   "zmin", "zmax", "km", "m", "cm", "mm", "um", "mile", "yard", "ft",
+#!MFIX-GUI   "ins"], "parameters": {"min": 0.0, "max": 0.0, "xmin": 0, "xmax":
+#!MFIX-GUI   0.125, "ymin": -0.013, "ymax": 0.16, "zmin": 0, "zmax": 0.125,
+#!MFIX-GUI   "km": 1000.0, "m": 1.0, "cm": 0.01, "mm": 0.001, "um": 1e-06,
+#!MFIX-GUI   "mile": 1609.34, "yard": 0.9144, "ft": 0.3048, "ins": 0.0254}}
+#!MFIX-GUI mfix_exe = /.nfs/home/3/dietikej/MFiX/develop/mfix/tutorials/dem/hopper_massinflow_psd/mfixsolver
+#!MFIX-GUI queue_template = {"JOB_NAME": "${PROJECT_NAME}", "CORES": 40,
+#!MFIX-GUI   "QUEUE": "general", "LONG": "", "MODULES": [], "template": "Joule"}
+#!MFIX-GUI OMP_NUM_THREADS = 1
+#!MFIX-GUI submit_to_queue = 0
+#!MFIX-GUI solids_phase_name(1) = Solid 1
+#!MFIX-GUI pic_const_statwt(1) = 1.0
+#!MFIX-GUI psd = {"Log-normal": {"type": "Log-normal", "mean": 0.004, "sigma":
+#!MFIX-GUI   0.001, "min": 0.002, "max": 0.008, "plot_range": [0, 0.01]},
+#!MFIX-GUI   "Normal": {"type": "Normal", "mean": 0.002, "sigma": 0.0002, "min":
+#!MFIX-GUI   0.001, "max": 0.003, "plot_range": [0, 0.004]}}
+#!MFIX-GUI ic_distributions = [[2, [[1, "Normal"]]]]
+#!MFIX-GUI bc_distributions = [[2, [[2, "Log-normal"]]]]
+#!MFIX-GUI BUILD_DMP = 0
+#!MFIX-GUI BUILD_INTERACTIVE = PYMFIX
+#!MFIX-GUI BUILD_PARALLEL = 1
+#!MFIX-GUI BUILD_SMP = 0
+#!MFIX-GUI BUILD_TYPE = RELWITHDEBINFO
+#!MFIX-GUI retained_keys = {"ic_ep_s(2,2)": 0.0}

@@ -1,0 +1,5 @@
+${loop cat}
+### Category: "${cat}"
+${category cat}
+
+${end loop cat}

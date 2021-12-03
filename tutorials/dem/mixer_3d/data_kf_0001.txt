@@ -1,0 +1,8 @@
+2, 2
+linear
+!time   rps1   rps2  (rotations per second of is_0001.stl and is_0002.stl)
+  0.0   1.0    -1.0 
+ 10.0   1.0    -1.0
+
+
+(Positive sign is clockwise rotation, negative is counterclockwise)

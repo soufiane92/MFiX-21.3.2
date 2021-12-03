@@ -1,0 +1,937 @@
+#! File written Tue Dec 10 14:58:05 2019
+#! MFiX version 19.3.0rc2.post0 by jcarney on login02
+
+### Run Controls
+  description      = 'absorption column'
+  run_name         = 'Absorption_column_2d'
+  units            = 'si'
+  run_type         = 'new'
+  tstop            = 0.5
+  dt               = 1.0000e-05
+  dt_max           = 1.0000e-04
+  dt_min           = 1.0000e-08
+  res_dt           = 0.2
+  batch_wallclock  = 9000.0
+  chk_batchq_end   = .False.
+  drag_type        = 'USER_DRAG'
+  turbulence_model = 'NONE'
+  energy_eq        = .True.
+  nodesi           = 1
+  nodesj           = 1
+  nodesk           = 1
+  term_buffer      = 180.0
+  write_dashboard  = .True.
+  full_log         = .True.
+
+### Physical parameters
+  gravity_x = 0.0
+  gravity_y = -9.8
+  gravity_z = 0.0
+
+### Cartesian grid
+  cartesian_grid = .False.
+
+### Numeric
+  max_inlet_vel_fac = 1.0000e+05
+  max_nit           = 100
+  norm_g            = 0.0
+  tol_resid         = 1.0000e-05
+
+  zero_x_gs = 1.0d-15   
+
+  ### Discretization
+  discretize(1) = 0 leq_pc(1) = 'NONE' leq_it(1) = 300
+  discretize(2) = 0 leq_pc(2) = 'NONE' leq_it(2) = 300
+  discretize(3) = 0 leq_pc(3) = 'NONE' leq_it(3) = 300
+  discretize(4) = 0 leq_pc(4) = 'NONE' leq_it(4) = 300
+  discretize(5) = 0 leq_pc(5) = 'NONE' leq_it(5) = 300
+  discretize(6) = 0 leq_pc(6) = 'NONE' leq_it(6) = 300
+  discretize(7) = 0 leq_pc(7) = 'NONE' leq_it(7) = 300
+  discretize(8) = 0 leq_pc(8) = 'NONE' leq_it(8) = 300
+  discretize(9) = 0 leq_pc(9) = 'NONE' leq_it(9) = 300
+  def_cor       = .False.
+  leq_method(1) = 2
+  leq_method(2) = 2
+  leq_method(3) = 2
+  leq_method(4) = 2
+  leq_method(5) = 2
+  leq_method(6) = 2
+  leq_method(7) = 2
+  leq_method(8) = 2
+  leq_method(9) = 2
+  leq_sweep(1)  = 'RSRS'
+  leq_sweep(2)  = 'RSRS'
+  leq_sweep(3)  = 'RSRS'
+  leq_sweep(4)  = 'RSRS'
+  leq_sweep(5)  = 'RSRS'
+  leq_sweep(6)  = 'RSRS'
+  leq_sweep(7)  = 'RSRS'
+  leq_sweep(8)  = 'RSRS'
+  leq_sweep(9)  = 'RSRS'
+  leq_tol(1)    = 1.0000e-08
+  leq_tol(2)    = 1.0000e-08
+  leq_tol(3)    = 1.0000e-08
+  leq_tol(4)    = 1.0000e-08
+  leq_tol(5)    = 1.0000e-08
+  leq_tol(6)    = 1.0000e-08
+  leq_tol(7)    = 1.0000e-08
+  leq_tol(8)    = 1.0000e-08
+  leq_tol(9)    = 1.0000e-08
+  tol_resid_t   = 1.0000e-05
+  tol_resid_x   = 1.0000e-05
+
+### Geometry
+  coordinates = 'CARTESIAN'
+  imax        = 30
+  jmax        = 315
+  x_max       = 0.1
+  x_min       = 0
+  y_max       = 1.05
+  y_min       = 0
+  z_max       = 0.01
+  z_min       = 0
+  no_k        = .True.
+
+#### Fluid
+  momentum_x_eq(0) = .True.
+  momentum_y_eq(0) = .True.
+  momentum_z_eq(0) = .True.
+  species_eq(0)    = .True.
+  nmax_g           = 3
+  # Fluid species 1: AIR
+    species_g(1)       = 'AIR'
+    species_alias_g(1) = 'AIR'
+  # Fluid species 2: gCO2
+    species_g(2)       = 'gCO2'
+    species_alias_g(2) = 'gCO2'
+  # Fluid species 3: gH2O
+    species_g(3)       = 'gH2O'
+    species_alias_g(3) = 'gH2O'
+
+#### Solids
+  mmax = 2
+  rdf_type = 'LEBOWITZ'
+  # Solid 1
+    solids_model(1)  = 'TFM'
+    d_p0(1)          = 0.002
+    momentum_x_eq(1) = .True.
+    momentum_y_eq(1) = .True.
+    momentum_z_eq(1) = .True.
+    species_eq(1)    = .True.
+    nmax_s(1)        = 9
+    close_packed(1)  = .True.
+    usr_difs(1)      = .True.
+    usr_fss(1)       = .True.
+    usr_gama(1)      = .True.
+    usr_ks(1)        = .True.
+    usr_mus(1)       = .True.
+    usr_ros(1)       = .True.
+    # Solid 1 species 1: lCO2
+      species_s(1,1)       = 'lCO2'
+      species_alias_s(1,1) = 'lCO2'
+    # Solid 1 species 2: lRNH2
+      species_s(1,2)       = 'lRNH2'
+      species_alias_s(1,2) = 'lRNH2'
+    # Solid 1 species 3: RNH3p
+      species_s(1,3)       = 'RNH3p'
+      species_alias_s(1,3) = 'RNH3p'
+    # Solid 1 species 4: HCO3m
+      species_s(1,4)       = 'HCO3m'
+      species_alias_s(1,4) = 'HCO3m'
+    # Solid 1 species 5: OHm
+      species_s(1,5)       = 'OHm'
+      species_alias_s(1,5) = 'OHm'
+    # Solid 1 species 6: CO3m2
+      species_s(1,6)       = 'CO3m2'
+      species_alias_s(1,6) = 'CO3m2'
+    # Solid 1 species 7: H3Op
+      species_s(1,7)       = 'H3Op'
+      species_alias_s(1,7) = 'H3Op'
+    # Solid 1 species 8: RNHCO2m
+      species_s(1,8)       = 'RNHCO2m'
+      species_alias_s(1,8) = 'RNHCO2m'
+    # Solid 1 species 9: lH2O
+      species_s(1,9)       = 'lH2O'
+      species_alias_s(1,9) = 'lH2O'
+
+  # Solid 2
+    solids_model(2)  = 'TFM'
+    d_p0(2)          = 0.001512
+    ro_s0(2)         = 2300.0
+    momentum_x_eq(2) = .False.
+    momentum_y_eq(2) = .False.
+    momentum_z_eq(2) = .False.
+    species_eq(2)    = .False.
+    nmax_s(2)        = 1
+    close_packed(2)  = .True.
+    ks_model(2)      = 'const_eff'
+    k_s0(2)          = 1.25
+    mu_s0(2)         = 0.001
+    usr_gama(2)      = .True.
+    # Solid 2 species 1: AL(cr) REF ELEME
+      species_s(2,1)       = 'AL(cr) REF ELEME'
+      species_alias_s(2,1) = 'AL(cr) REF ELEME'
+
+
+### Initial conditions
+  # Initial condition 1: IC_1
+    ic_x_e(1)               = 0.1
+    ic_x_w(1)               = 0.0
+    ic_y_s(1)               = 0.15
+    ic_y_n(1)               = 0.9
+    ic_z_b(1)               = 0.0
+    ic_z_t(1)               = 0.01
+    ic_des_fit_to_region(1) = .False.
+    ic_ep_g(1)              = 0.94
+    ic_t_g(1)               = 300.0
+    ic_u_g(1)               = 0.0
+    ic_v_g(1)               = 0.1
+    ic_w_g(1)               = 0.0
+    ic_gama_rg(1)           = 0.0
+    ic_p_g(1)               = 101325.0
+    ic_t_rg(1)              = 293.15
+    ic_x_g(1,1)             = 1.0 !AIR
+    ic_x_g(1,2)             = 0.0 !gCO2
+    ic_x_g(1,3)             = 0.0 !gH2O
+    ic_ep_s(1,1)            = 0.0
+    ic_t_s(1,1)             = 300.0
+    ic_u_s(1,1)             = 0.0
+    ic_v_s(1,1)             = 0.0
+    ic_w_s(1,1)             = 0.0
+    ic_gama_rs(1,1)         = 0.0
+    ic_t_rs(1,1)            = 293.15
+    ic_x_s(1,1,1)           = 0.0 !lCO2
+    ic_x_s(1,1,2)           = 0.0 !lRNH2
+    ic_x_s(1,1,3)           = 0.0 !RNH3p
+    ic_x_s(1,1,4)           = 0.0 !HCO3m
+    ic_x_s(1,1,5)           = 0.0 !OHm
+    ic_x_s(1,1,6)           = 0.0 !CO3m2
+    ic_x_s(1,1,7)           = 0.0 !H3Op
+    ic_x_s(1,1,8)           = 0.0 !RNHCO2m
+    ic_x_s(1,1,9)           = 1.0 !lH2O
+    ic_ep_s(1,2)            = 0.06
+    ic_t_s(1,2)             = 300.0
+    ic_u_s(1,2)             = 0.0
+    ic_v_s(1,2)             = 0.0
+    ic_w_s(1,2)             = 0.0
+    ic_gama_rs(1,2)         = 0.0
+    ic_t_rs(1,2)            = 293.15
+    ic_x_s(1,2,1)           = 1.0 !AL(cr) REF ELEME
+
+  # Initial condition 2: IC_2
+    ic_x_e(2)               = 0.1
+    ic_x_w(2)               = 0.0
+    ic_y_s(2)               = 0.0
+    ic_y_n(2)               = 0.15
+    ic_z_b(2)               = 0.0
+    ic_z_t(2)               = 0.01
+    ic_des_fit_to_region(2) = .False.
+    ic_ep_g(2)              = 1.0
+    ic_t_g(2)               = 300.0
+    ic_u_g(2)               = 0.0
+    ic_v_g(2)               = 0.0
+    ic_w_g(2)               = 0.0
+    ic_gama_rg(2)           = 0.0
+    ic_p_g(2)               = 101325.0
+    ic_t_rg(2)              = 293.15
+    ic_x_g(2,1)             = 1.0 !AIR
+    ic_x_g(2,2)             = 0.0 !gCO2
+    ic_x_g(2,3)             = 0.0 !gH2O
+    ic_ep_s(2,1)            = 0.0
+    ic_t_s(2,1)             = 300.0
+    ic_u_s(2,1)             = 0.0
+    ic_v_s(2,1)             = 0.0
+    ic_w_s(2,1)             = 0.0
+    ic_gama_rs(2,1)         = 0.0
+    ic_t_rs(2,1)            = 293.15
+    ic_x_s(2,1,1)           = 0.0 !lCO2
+    ic_x_s(2,1,2)           = 0.0 !lRNH2
+    ic_x_s(2,1,3)           = 0.0 !RNH3p
+    ic_x_s(2,1,4)           = 0.0 !HCO3m
+    ic_x_s(2,1,5)           = 0.0 !OHm
+    ic_x_s(2,1,6)           = 0.0 !CO3m2
+    ic_x_s(2,1,7)           = 0.0 !H3Op
+    ic_x_s(2,1,8)           = 0.0 !RNHCO2m
+    ic_x_s(2,1,9)           = 1.0 !lH2O
+    ic_ep_s(2,2)            = 0.0
+    ic_t_s(2,2)             = 300.0
+    ic_u_s(2,2)             = 0.0
+    ic_v_s(2,2)             = 0.0
+    ic_w_s(2,2)             = 0.0
+    ic_gama_rs(2,2)         = 0.0
+    ic_t_rs(2,2)            = 293.15
+    ic_x_s(2,2,1)           = 1.0 !AL(cr) REF ELEME
+
+  # Initial condition 4: IC_4
+    ic_x_e(4)               = 0.1
+    ic_x_w(4)               = 0.0
+    ic_y_s(4)               = 0.9
+    ic_y_n(4)               = 1.05
+    ic_z_b(4)               = 0.0
+    ic_z_t(4)               = 0.01
+    ic_des_fit_to_region(4) = .False.
+    ic_ep_g(4)              = 1.0
+    ic_t_g(4)               = 300.0
+    ic_u_g(4)               = 0.0
+    ic_v_g(4)               = 0.0
+    ic_w_g(4)               = 0.0
+    ic_gama_rg(4)           = 0.0
+    ic_p_g(4)               = 101325.0
+    ic_t_rg(4)              = 293.15
+    ic_x_g(4,1)             = 1.0 !AIR
+    ic_x_g(4,2)             = 0.0 !gCO2
+    ic_x_g(4,3)             = 0.0 !gH2O
+    ic_ep_s(4,1)            = 0.0
+    ic_t_s(4,1)             = 300.0
+    ic_u_s(4,1)             = 0.0
+    ic_v_s(4,1)             = 0.0
+    ic_w_s(4,1)             = 0.0
+    ic_gama_rs(4,1)         = 0.0
+    ic_t_rs(4,1)            = 293.15
+    ic_x_s(4,1,1)           = 0.0 !lCO2
+    ic_x_s(4,1,2)           = 0.0 !lRNH2
+    ic_x_s(4,1,3)           = 0.0 !RNH3p
+    ic_x_s(4,1,4)           = 0.0 !HCO3m
+    ic_x_s(4,1,5)           = 0.0 !OHm
+    ic_x_s(4,1,6)           = 0.0 !CO3m2
+    ic_x_s(4,1,7)           = 0.0 !H3Op
+    ic_x_s(4,1,8)           = 0.0 !RNHCO2m
+    ic_x_s(4,1,9)           = 1.0 !lH2O
+    ic_ep_s(4,2)            = 0.0
+    ic_t_s(4,2)             = 300.0
+    ic_u_s(4,2)             = 0.0
+    ic_v_s(4,2)             = 0.0
+    ic_w_s(4,2)             = 0.0
+    ic_gama_rs(4,2)         = 0.0
+    ic_t_rs(4,2)            = 293.15
+    ic_x_s(4,2,1)           = 1.0 !AL(cr) REF ELEME
+
+
+# Boundary conditions
+  # Boundary condition 1: BC_1
+    bc_type(1)     = 'PSW'
+    bc_x_e(1)      = 0.0
+    bc_x_w(1)      = 0.0
+    bc_y_s(1)      = 0.0
+    bc_y_n(1)      = 1.05
+    bc_z_b(1)      = 0.0
+    bc_z_t(1)      = 0.01
+    bc_c_t_g(1)    = 0.0
+    bc_hw_t_g(1)   = 0.0
+    bc_jj_ps(1)    = 0
+    bc_uw_g(1)     = 0.0
+    bc_vw_g(1)     = 0.0
+    bc_ww_g(1)     = 0.0
+    bc_c_x_g(1,1)  = 0.0 !AIR
+    bc_hw_x_g(1,1) = 0.0 !AIR
+    bc_c_x_g(1,2)  = 0.0 !gCO2
+    bc_hw_x_g(1,2) = 0.0 !gCO2
+    bc_c_x_g(1,3)  = 0.0 !gH2O
+    bc_hw_x_g(1,3) = 0.0 !gH2O
+    # Solid 1
+      bc_c_t_s(1,1)    = 0.0
+      bc_hw_t_s(1,1)   = 0.0
+      bc_uw_s(1,1)     = 0.0
+      bc_vw_s(1,1)     = 0.0
+      bc_ww_s(1,1)     = 0.0
+      bc_c_x_s(1,1,1)  = 0.0 !lCO2
+      bc_hw_x_s(1,1,1) = 0.0 !lCO2
+      bc_c_x_s(1,1,2)  = 0.0 !lRNH2
+      bc_hw_x_s(1,1,2) = 0.0 !lRNH2
+      bc_c_x_s(1,1,3)  = 0.0 !RNH3p
+      bc_hw_x_s(1,1,3) = 0.0 !RNH3p
+      bc_c_x_s(1,1,4)  = 0.0 !HCO3m
+      bc_hw_x_s(1,1,4) = 0.0 !HCO3m
+      bc_c_x_s(1,1,5)  = 0.0 !OHm
+      bc_hw_x_s(1,1,5) = 0.0 !OHm
+      bc_c_x_s(1,1,6)  = 0.0 !CO3m2
+      bc_hw_x_s(1,1,6) = 0.0 !CO3m2
+      bc_c_x_s(1,1,7)  = 0.0 !H3Op
+      bc_hw_x_s(1,1,7) = 0.0 !H3Op
+      bc_c_x_s(1,1,8)  = 0.0 !RNHCO2m
+      bc_hw_x_s(1,1,8) = 0.0 !RNHCO2m
+      bc_c_x_s(1,1,9)  = 0.0 !lH2O
+      bc_hw_x_s(1,1,9) = 0.0 !lH2O
+    # Solid 2
+      bc_c_t_s(1,2)  = 0.0
+      bc_hw_t_s(1,2) = 0.0
+      bc_uw_s(1,2)   = 0.0
+      bc_vw_s(1,2)   = 0.0
+      bc_ww_s(1,2)   = 0.0
+
+  # Boundary condition 2: BC_2
+    bc_type(2)     = 'PSW'
+    bc_x_e(2)      = 0.1
+    bc_x_w(2)      = 0.1
+    bc_y_s(2)      = 0.0
+    bc_y_n(2)      = 1.05
+    bc_z_b(2)      = 0.0
+    bc_z_t(2)      = 0.01
+    bc_c_t_g(2)    = 0.0
+    bc_hw_t_g(2)   = 0.0
+    bc_jj_ps(2)    = 0
+    bc_uw_g(2)     = 0.0
+    bc_vw_g(2)     = 0.0
+    bc_ww_g(2)     = 0.0
+    bc_c_x_g(2,1)  = 0.0 !AIR
+    bc_hw_x_g(2,1) = 0.0 !AIR
+    bc_c_x_g(2,2)  = 0.0 !gCO2
+    bc_hw_x_g(2,2) = 0.0 !gCO2
+    bc_c_x_g(2,3)  = 0.0 !gH2O
+    bc_hw_x_g(2,3) = 0.0 !gH2O
+    # Solid 1
+      bc_c_t_s(2,1)    = 0.0
+      bc_hw_t_s(2,1)   = 0.0
+      bc_uw_s(2,1)     = 0.0
+      bc_vw_s(2,1)     = 0.0
+      bc_ww_s(2,1)     = 0.0
+      bc_c_x_s(2,1,1)  = 0.0 !lCO2
+      bc_hw_x_s(2,1,1) = 0.0 !lCO2
+      bc_c_x_s(2,1,2)  = 0.0 !lRNH2
+      bc_hw_x_s(2,1,2) = 0.0 !lRNH2
+      bc_c_x_s(2,1,3)  = 0.0 !RNH3p
+      bc_hw_x_s(2,1,3) = 0.0 !RNH3p
+      bc_c_x_s(2,1,4)  = 0.0 !HCO3m
+      bc_hw_x_s(2,1,4) = 0.0 !HCO3m
+      bc_c_x_s(2,1,5)  = 0.0 !OHm
+      bc_hw_x_s(2,1,5) = 0.0 !OHm
+      bc_c_x_s(2,1,6)  = 0.0 !CO3m2
+      bc_hw_x_s(2,1,6) = 0.0 !CO3m2
+      bc_c_x_s(2,1,7)  = 0.0 !H3Op
+      bc_hw_x_s(2,1,7) = 0.0 !H3Op
+      bc_c_x_s(2,1,8)  = 0.0 !RNHCO2m
+      bc_hw_x_s(2,1,8) = 0.0 !RNHCO2m
+      bc_c_x_s(2,1,9)  = 0.0 !lH2O
+      bc_hw_x_s(2,1,9) = 0.0 !lH2O
+    # Solid 2
+      bc_c_t_s(2,2)  = 0.0
+      bc_hw_t_s(2,2) = 0.0
+      bc_uw_s(2,2)   = 0.0
+      bc_vw_s(2,2)   = 0.0
+      bc_ww_s(2,2)   = 0.0
+
+  # Boundary condition 3: BC_3
+    bc_type(3) = 'PO'
+    bc_x_e(3)  = 0.1
+    bc_x_w(3)  = 0.0
+    bc_y_s(3)  = 1.05
+    bc_y_n(3)  = 1.05
+    bc_z_b(3)  = 0.0
+    bc_z_t(3)  = 0.01
+    bc_p_g(3)  = 1.0132e+05
+
+  # Boundary condition 4: BC_4
+    bc_type(4)  = 'PI'
+    bc_x_e(4)   = 0.1
+    bc_x_w(4)   = 0.0
+    bc_y_s(4)   = 0.0
+    bc_y_n(4)   = 0.0
+    bc_z_b(4)   = 0.0
+    bc_z_t(4)   = 0.01
+    bc_p_g(4)   = 1.0202e+05
+    bc_t_g(4)   = 313.0
+    bc_u_g(4)   = 0.0
+    bc_v_g(4)   = 0.0
+    bc_w_g(4)   = 0.0
+    bc_x_g(4,1) = 0.871 !AIR
+    bc_x_g(4,2) = 0.114 !gCO2
+    bc_x_g(4,3) = 0.015 !gH2O
+    # Solid 1
+      bc_t_s(4,1)   = 313.0
+      bc_u_s(4,1)   = 0.0
+      bc_v_s(4,1)   = 0.0
+      bc_w_s(4,1)   = 0.0
+      bc_x_s(4,1,1) = 0.0 !lCO2
+      bc_x_s(4,1,2) = 0.065 !lRNH2
+      bc_x_s(4,1,3) = 0.065 !RNH3p
+      bc_x_s(4,1,4) = 0.01 !HCO3m
+      bc_x_s(4,1,5) = 0.0 !OHm
+      bc_x_s(4,1,6) = 0.0 !CO3m2
+      bc_x_s(4,1,7) = 0.0 !H3Op
+      bc_x_s(4,1,8) = 0.06 !RNHCO2m
+      bc_x_s(4,1,9) = 0.8 !lH2O
+    # Solid 2
+      bc_t_s(4,2)   = 293.15
+      bc_u_s(4,2)   = 0.0
+      bc_v_s(4,2)   = 0.0
+      bc_w_s(4,2)   = 0.0
+      bc_x_s(4,2,1) = 1.0 !AL(cr) REF ELEME
+
+
+# Point sources
+  # Point source 1: BC_3
+    ps_x_e(1)          = 0.1
+    ps_x_w(1)          = 0.0
+    ps_y_s(1)          = 1.05
+    ps_y_n(1)          = 1.05
+    ps_z_b(1)          = 0.0
+    ps_z_t(1)          = 0.01
+    ps_massflow_g(1)   = 0.0
+    ps_t_g(1)          = 293.15
+    ps_u_g(1)          = 0.0
+    ps_v_g(1)          = 0.0
+    ps_w_g(1)          = 0.0
+    ps_x_g(1,1)        = 0.0 !AIR
+    ps_x_g(1,2)        = 0.0 !gCO2
+    ps_x_g(1,3)        = 1.0 !gH2O
+    ps_massflow_s(1,1) = 0.00825
+    ps_t_s(1,1)        = 317
+    ps_u_s(1,1)        = 0.0
+    ps_v_s(1,1)        = -0.0055
+    ps_w_s(1,1)        = 0.0
+    ps_x_s(1,1,1)      = 0.0 !lCO2
+    ps_x_s(1,1,2)      = 0.2 !lRNH2
+    ps_x_s(1,1,3)      = 0.0 !RNH3p
+    ps_x_s(1,1,4)      = 0.0 !HCO3m
+    ps_x_s(1,1,5)      = 0.0 !OHm
+    ps_x_s(1,1,6)      = 0.0 !CO3m2
+    ps_x_s(1,1,7)      = 0.0 !H3Op
+    ps_x_s(1,1,8)      = 0.0 !RNHCO2m
+    ps_x_s(1,1,9)      = 0.8 !lH2O
+    ps_massflow_s(1,2) = 0.0
+    ps_t_s(1,2)        = 293.15
+    ps_u_s(1,2)        = 0.0
+    ps_v_s(1,2)        = 0.0
+    ps_w_s(1,2)        = 0.0
+
+
+# VTK outputs
+  write_vtk_files         = .True.
+  time_dependent_filename = .True.
+  # VTK output 1: all
+    vtk_filebase(1) = 'all'
+    vtk_x_e(1)      = 0.1 #!MFIX-GUI eq{float(xmax)}
+    vtk_x_w(1)      = 0.0 #!MFIX-GUI eq{float(xmin)}
+    vtk_y_s(1)      = 0.0 #!MFIX-GUI eq{float(ymin)}
+    vtk_y_n(1)      = 1.05 #!MFIX-GUI eq{float(ymax)}
+    vtk_data(1)     = 'C'
+    vtk_dt(1)       = 0.01
+    vtk_nxs(1)      = 0
+    vtk_nys(1)      = 0
+    vtk_nzs(1)      = 0
+    vtk_ep_g(1)     = .True.
+    vtk_p_g(1)      = .True.
+    vtk_t_g(1)      = .True.
+    vtk_vel_g(1)    = .True.
+    vtk_x_g(1,1)    = .True.
+    vtk_x_g(1,2)    = .True.
+    vtk_x_g(1,3)    = .True.
+    vtk_rop_s(1,1)  = .True.
+    vtk_t_s(1,1)    = .True.
+    vtk_vel_s(1,1)  = .True.
+    vtk_x_s(1,1,1)  = .True.
+    vtk_x_s(1,1,2)  = .True.
+    vtk_x_s(1,1,3)  = .True.
+    vtk_x_s(1,1,4)  = .True.
+    vtk_x_s(1,1,5)  = .True.
+    vtk_x_s(1,1,6)  = .True.
+    vtk_x_s(1,1,7)  = .True.
+    vtk_x_s(1,1,8)  = .True.
+    vtk_x_s(1,1,9)  = .True.
+    vtk_rop_s(1,2)  = .True.
+
+
+# SPx outputs
+  spx_dt(1)  = 5.0000e-01
+  spx_dt(2)  = 5.0000e-01
+  spx_dt(3)  = 5.0000e-01
+  spx_dt(4)  = 5.0000e-01
+  spx_dt(5)  = 5.0000e-01
+  spx_dt(6)  = 5.0000e-01
+  spx_dt(7)  = 5.0000e-01
+  spx_dt(8)  = 1.0000e+02
+  spx_dt(9)  = 1.0000e+02
+  spx_dt(10) = 5.0000e-01
+  spx_dt(11) = 1.0
+
+### Residuals
+  resid_string(1) = 'P0'
+  resid_string(2) = 'R1'
+  resid_string(3) = 'V0'
+  resid_string(4) = 'V1'
+  resid_string(5) = 'X101'
+  resid_string(6) = 'X108'
+
+### Two-fluid model
+  c_e            = 0.9
+  c_f            = 0.0
+  ep_star        = 0.05
+  friction_model = 'NONE'
+
+### UDF control
+
+#*****************************************************
+# Undocumented keys                                  *
+#*****************************************************
+  absorption_chem_type = 'EQUILIBRIUM_COUPLED'    #!!!!
+  apply_waf            = .True.    #!!!!
+  ch_pack              = 0.692    #!!!!
+  d_pack               = 0.0255    #!!!!
+  mass_transfer_type   = 'ONDA_1968_MTC'    #!!!!
+  mech_dispersion      = .False.    #!!!!
+  omega_pack           = 0.061    #!!!!
+  sa_pack              = 238.0    #!!!!
+  solvent_absorption   = .True.    #!!!!
+  usr_drag_type        = 'ATTOU_99_MOD'    #!!!!
+  wetarea_type         = 'BILLET_95'    #!!!!
+
+#*****************************************************
+# Miscellaneous keys                                 *
+#*****************************************************
+  c(1)               = 0.1
+  c(10)              = 0.70555555555556 #!MFIX-GUI eq{float(1.27/1.8)}
+  c(11)              = 1.0
+  c(12)              = 1.0
+  c(13)              = 1.0
+  c(14)              = 1.0
+  c(15)              = 1.0
+  c(2)               = 1.0
+  c(3)               = 1.0
+  c(5)               = 3.5 #!MFIX-GUI eq{float(630/180.)}
+  c(6)               = 0.84444444444444 #!MFIX-GUI eq{float(1.52/1.8)}
+  c(7)               = 5.555555556e-05 #!MFIX-GUI eq{float(0.01/180.)}
+  c(8)               = 1.45555555555556 #!MFIX-GUI eq{float(2.62/1.8)}
+  c(9)               = 0.20166666666667 #!MFIX-GUI eq{float(36.3/180.)}
+  call_usr           = .True.
+  call_usr_source(3) = .True.
+  call_usr_source(4) = .True.
+  call_usr_source(5) = .True.
+  ishii              = .True.
+  nlog               = 25
+  nrr                = 8
+  out_dt             = 1.0000e+01
+  res_backup_dt      = 0.5
+  res_backups        = 3
+
+# Chemical reaction section
+@(RXNS)
+CO2_absorption {
+    chem_eq = "gCO2 --> lCO2"
+    dh = -16700000.0
+    fracdh(0) = 0.0
+    fracdh(1) = 1.0
+}
+carbamate_form_single_step {
+    chem_eq = "lCO2 + 2*lRNH2 --> RNHCO2m + RNH3p"
+    dh = 0.0
+    fracdh(1) = 1.0
+}
+fwd_reversion_carbamate {
+    chem_eq = "RNHCO2m + lH2O --> lRNH2 + HCO3m"
+    dh = 0.0
+    fracdh(1) = 1.0
+}
+rev_reversion_carbamate {
+    chem_eq = "lRNH2 + HCO3m --> RNHCO2m + lH2O"
+    dh = 0.0
+    fracdh(1) = 1.0
+}
+fwd_dissociation_co2 {
+    chem_eq = "lCO2 + 2*lH2O --> HCO3m + H3Op"
+    dh = 0.0
+    fracdh(1) = 1.0
+}
+rev_dissociation_co2 {
+    chem_eq = "HCO3m + H3Op --> lCO2 + 2*lH2O"
+    dh = 0.0
+    fracdh(1) = 1.0
+}
+fwd_dissociation_bicarbonate {
+    chem_eq = "HCO3m + lH2O --> CO3m2 + H3Op"
+    dh = 0.0
+    fracdh(1) = 1.0
+}
+rev_dissociation_bicarbonate {
+    chem_eq = "CO3m2 + H3Op --> HCO3m + lH2O"
+    dh = 0.0
+    fracdh(1) = 1.0
+}
+fwd_dissociation_meah {
+    chem_eq = "RNH3p + lH2O --> lRNH2 + H3Op"
+    dh = 0.0
+    fracdh(1) = 1.0
+}
+rev_dissociation_meah {
+    chem_eq = "lRNH2 + H3Op --> RNH3p + lH2O"
+    dh = 0.0
+    fracdh(1) = 1.0
+}
+fwd_ionization_h2o {
+    chem_eq = "2*lH2O --> H3Op + OHm"
+    dh = 0.0
+    fracdh(1) = 1.0
+}
+rev_ionization_h2o {
+    chem_eq = "H3Op + OHm --> 2*lH2O"
+    dh = 0.0
+    fracdh(1) = 1.0
+}
+@(END)
+
+# MFIX-GUI section
+#!MFIX-GUI author = tutorial
+#!MFIX-GUI created_date = 2019-11-24 11:41
+#!MFIX-GUI modified_time = 2019-12-10 14:56
+#!MFIX-GUI gui_version = 19.3.0rc2.post0
+#!MFIX-GUI project_notes = "A model for counter current gas-liquid flow through
+#!MFIX-GUI   a packed column is implemented using MFIX's two fluid approach.
+#!MFIX-GUI   MFIX is traditionally used for modeling gas-solids flows where the
+#!MFIX-GUI   gas phase is treated as the primary continuous phase and any
+#!MFIX-GUI   additional solids are treated as secondary continuous solids
+#!MFIX-GUI   phases. To model solvent absorption three continuous phases are
+#!MFIX-GUI   invoked.\n-The gas phase is modeled as phase 0.\n-This liquid phase
+#!MFIX-GUI   is modeled using solids phase 1.\n-The packing is observed using
+#!MFIX-GUI   solids phase 2.\n\nTo invoke a form of the governing equations more
+#!MFIX-GUI   appropriate to a gas-liquid system the keyword ISHII must be
+#!MFIX-GUI   specified as true in mfix.dat. Additional physics are chemistry are
+#!MFIX-GUI   implemented in the user-defined modules. This minimizes
+#!MFIX-GUI   interference with the core MFIX code.\n-CALL_USR must be set to
+#!MFIX-GUI   true in mfix.dat.\n\nReferences:\n-Carney, J. E. and Finn, J. R.;
+#!MFIX-GUI   Device Scale Modeling of Solvent Absorption using MFIX-TFM;
+#!MFIX-GUI   NETL-PUB-20902; NETL Technical Report Series; U.S. Department of
+#!MFIX-GUI   Energy, National Energy Technology Laboratory: Albany, OR, 2016; p
+#!MFIX-GUI   48.\n-Finn, J. R., and Galvin, J. E.,; Calibration of drag models
+#!MFIX-GUI   for mesoscale simulation of gas-liquid flow through packed beds,
+#!MFIX-GUI   Chem. Eng. Sci., Vol 172, 2017, p. 722-730.\n\nPlease see above
+#!MFIX-GUI   document(s) for details on model setup. A quick list of custom
+#!MFIX-GUI   variables/user input keywords is given here:\n-solvent_absorption :
+#!MFIX-GUI   logical to allow for solvent absorption module
+#!MFIX-GUI   features.\n\n-mass_transfer_type :  mass transfer model. Must be
+#!MFIX-GUI   specified.\n-d_pack : nominal size of packing (length). Used in
+#!MFIX-GUI   Ondas' et al. 1968 model for gas and liquid side mass transport
+#!MFIX-GUI   coefficients. Left undefined it will be assigned the diameter of
+#!MFIX-GUI   solids phase 2 (the packing).\n\n-wetarea_type : wetted area model.
+#!MFIX-GUI   Left undefined and wettted area assumed equal to specific area of
+#!MFIX-GUI   packing for interfacial mass transfer.  However, all interaction
+#!MFIX-GUI   terms are assumed to apply equally.\n-sa_pack : specific area of
+#!MFIX-GUI   packing (area/volume).\n-apply_waf : logical dicating whether to
+#!MFIX-GUI   apply a fractional wetted area to the interphase interaction terms.
+#!MFIX-GUI   If requested then requires specification of
+#!MFIX-GUI   wetarea_type.\n-omega_pack : critical surface tension of packing
+#!MFIX-GUI   (mass/time^2). Used in Ondas' et al. 1968 model for wetted
+#!MFIX-GUI   area.\n-ch_pack : packing specific wetted area parameter. Used in
+#!MFIX-GUI   Billet's 1995 model for wetted area.\n\n-cap_press_type : capillary
+#!MFIX-GUI   pressure model. Left undefined capillary pressure is not modeled.
+#!MFIX-GUI   \n-omega_l0 : value of surface tension (mass/time^2). Left
+#!MFIX-GUI   undefined it is closed with a submodel.  Used in calculation of
+#!MFIX-GUI   capillary pressure.\n\n-usr_drag_type : phase interaction model.
+#!MFIX-GUI   Must be specified.\n-Calibration factors for indicated
+#!MFIX-GUI   quantities\nC(1) : henry's volatility constant\nC(2) : gas-side
+#!MFIX-GUI   mass transfer coefficient\nC(3) : liquid-side mass transfer
+#!MFIX-GUI   coefficient\n-Calibration factors for drag:\nC(5) & C(6) :
+#!MFIX-GUI   gas/liquid viscous and inertial\nC(7) & C(8) : gas/solids viscous
+#!MFIX-GUI   and inertial\nC(9) & C(10): liquid/solids viscous and
+#!MFIX-GUI   inertial\n-Reaction rate constants for certain forward reactions
+#!MFIX-GUI   when using equilibrium_segregated absorber_chem_type.\nC(11)-C(15)
+#!MFIX-GUI   : see reference document and code for specifics
+#!MFIX-GUI   .\n\nabsorber_chem_type : determines the chemistry scheme for
+#!MFIX-GUI   coupled mass transfer and chemical reactions.  See document for
+#!MFIX-GUI   more details.  The setting 'equilibrium_coupled' is
+#!MFIX-GUI   recommended.\nenhancement_factor : value of the enhancement factor.
+#!MFIX-GUI    Left undefined, its value is based on the model of Wellek et al.,
+#!MFIX-GUI   1978. For consistency, it may be assigned a value of 1 depending on
+#!MFIX-GUI   the setting of  absorber_chem_type and mass_transfer_type.\n\n"
+#!MFIX-GUI modified_by = jcarney|dietikej
+#!MFIX-GUI geometry = {"geometry_dict": {}, "tree": {}}
+#!MFIX-GUI visual_props = {"mesh": {"color": "#f44328", "visible": true,
+#!MFIX-GUI   "opacity": 1, "rep": "wire", "edge": "#7a2114"}, "background_mesh":
+#!MFIX-GUI   {"color": "#64b6f7", "visible": true, "opacity": 1.0, "rep":
+#!MFIX-GUI   "wire", "edge": "#325b7b"}, "geometry": {"color": "#e0e0e0",
+#!MFIX-GUI   "visible": true, "opacity": 1.0, "rep": "wire", "edge": "#707070"},
+#!MFIX-GUI   "regions": {"color": "#e0e0e0", "visible": true, "opacity": 0.5,
+#!MFIX-GUI   "rep": "solid", "edge": "#707070"}, "normals": {"color": "#0000e0",
+#!MFIX-GUI   "visible": false, "scale": 0.1, "edge": "#000070"}, "axes":
+#!MFIX-GUI   {"color": "#0000e0", "visible": true, "edge": "#000070"}}
+#!MFIX-GUI regions_dict = {"order": ["IC_1", "IC_2", "IC_4", "BC_1", "BC_2",
+#!MFIX-GUI   "BC_3", "BC_4", "all"], "regions": {"IC_1": {"to": [0.1, 0.9,
+#!MFIX-GUI   0.01], "from": [0.0, 0.15, 0.0], "color": "#c1d8de"}, "IC_2":
+#!MFIX-GUI   {"to": [0.1, 0.15, 0.01], "color": "#d19282"}, "IC_4": {"to": [0.1,
+#!MFIX-GUI   1.05, 0.01], "from": [0.0, 0.9, 0.0], "color": "#6964a8"}, "BC_1":
+#!MFIX-GUI   {"to": [0.0, 1.05, 0.01], "color": "#8fc69e", "type": "YZ-plane"},
+#!MFIX-GUI   "BC_2": {"to": [0.1, 1.05, 0.01], "from": [0.1, 0.0, 0.0], "color":
+#!MFIX-GUI   "#dfa4c4", "type": "YZ-plane"}, "BC_3": {"to": [0.1, 1.05, 0.01],
+#!MFIX-GUI   "from": [0.0, 1.05, 0.0], "color": "#969cd5", "type": "XZ-plane"},
+#!MFIX-GUI   "BC_4": {"to": [0.1, 0.0, 0.01], "color": "#a19272", "type":
+#!MFIX-GUI   "XZ-plane"}, "all": {"to": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmax)"}, {"__type__": "equation", "eq": "float(ymax)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmax)"}], "from":
+#!MFIX-GUI   [{"__type__": "equation", "eq": "float(xmin)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymin)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmin)"}], "color": "#8f8dbc"}}}
+#!MFIX-GUI bc_regions = [[[1], ["BC_1"]], [[2], ["BC_2"]], [[3], ["BC_3"]],
+#!MFIX-GUI   [[4], ["BC_4"]]]
+#!MFIX-GUI ic_regions = [[[1], ["IC_1"]], [[2], ["IC_2"]], [[4], ["IC_4"]]]
+#!MFIX-GUI is_regions = []
+#!MFIX-GUI ps_regions = [[[1], ["BC_3"]]]
+#!MFIX-GUI vtk_regions = [[[1], ["all"]]]
+#!MFIX-GUI usr_regions = []
+#!MFIX-GUI monitor_regions = []
+#!MFIX-GUI log_files = {}
+#!MFIX-GUI graphics = {"order": ["VTK"], "data": {"VTK": {"plot": false, "vtk":
+#!MFIX-GUI   true, "monitors": false, "vtk_state": {"vtu_pattern": null,
+#!MFIX-GUI   "vtp_pattern": null, "cell_arrays": {"ALL": {"EP_G": {"i": 0,
+#!MFIX-GUI   "components": 1, "range": [[0.9399999976158142, 1.0]]}, "P_G":
+#!MFIX-GUI   {"i": 1, "components": 1, "range": [[101325.0, 101325.0]]},
+#!MFIX-GUI   "Gas_Velocity": {"i": 2, "components": 3, "range": [[0.0, 0.0],
+#!MFIX-GUI   [0.0, 0.10000000149011612], [0.0, 0.0]]}, "Solids_Velocity_1":
+#!MFIX-GUI   {"i": 3, "components": 3, "range": [[0.0, 0.0], [0.0, 0.0], [0.0,
+#!MFIX-GUI   0.0]]}, "Solids_Velocity_2": {"i": 4, "components": 3, "range":
+#!MFIX-GUI   [[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]]}, "Solids_density_2": {"i": 5,
+#!MFIX-GUI   "components": 1, "range": [[0.0, 138.0]]},
+#!MFIX-GUI   "AIR_Gas_mass_fractions_1": {"i": 6, "components": 1, "range":
+#!MFIX-GUI   [[1.0, 1.0]]}, "GCO2_Gas_mass_fractions_2": {"i": 7, "components":
+#!MFIX-GUI   1, "range": [[0.0, 0.0]]}, "GH2O_Gas_mass_fractions_3": {"i": 8,
+#!MFIX-GUI   "components": 1, "range": [[0.0, 0.0]]},
+#!MFIX-GUI   "LCO2_Solids_mass_fractions_1_1": {"i": 9, "components": 1,
+#!MFIX-GUI   "range": [[0.0, 0.0]]}, "LRNH2_Solids_mass_fractions_1_2": {"i":
+#!MFIX-GUI   10, "components": 1, "range": [[0.0, 0.0]]},
+#!MFIX-GUI   "RNH3P_Solids_mass_fractions_1_3": {"i": 11, "components": 1,
+#!MFIX-GUI   "range": [[0.0, 0.0]]}, "HCO3M_Solids_mass_fractions_1_4": {"i":
+#!MFIX-GUI   12, "components": 1, "range": [[0.0, 0.0]]},
+#!MFIX-GUI   "OHM_Solids_mass_fractions_1_5": {"i": 13, "components": 1,
+#!MFIX-GUI   "range": [[0.0, 0.0]]}, "CO3M2_Solids_mass_fractions_1_6": {"i":
+#!MFIX-GUI   14, "components": 1, "range": [[0.0, 0.0]]},
+#!MFIX-GUI   "H3OP_Solids_mass_fractions_1_7": {"i": 15, "components": 1,
+#!MFIX-GUI   "range": [[0.0, 0.0]]}, "RNHCO2M_Solids_mass_fractions_1_8": {"i":
+#!MFIX-GUI   16, "components": 1, "range": [[0.0, 0.0]]},
+#!MFIX-GUI   "LH2O_Solids_mass_fractions_1_9": {"i": 17, "components": 1,
+#!MFIX-GUI   "range": [[1.0, 1.0]]}}}, "node_arrays": {"ALL": {"EP_G": {"i": 0,
+#!MFIX-GUI   "components": 1, "range": [[0.9399999976158142, 1.0]], "color":
+#!MFIX-GUI   "#e0e0e0", "single_color": false, "color_map": "viridis",
+#!MFIX-GUI   "reversed": false, "from": 0.94, "to": 1.0}, "P_G": {"i": 1,
+#!MFIX-GUI   "components": 1, "range": [[101325.0, 101325.0]]}, "Gas_Velocity":
+#!MFIX-GUI   {"i": 2, "components": 3, "range": [[0.0, 0.0], [0.0,
+#!MFIX-GUI   0.10000000149011612], [0.0, 0.0]], "color": "#e0e0e0",
+#!MFIX-GUI   "single_color": false, "color_map": "viridis", "reversed": false,
+#!MFIX-GUI   "from": 2.13, "to": 2.69}, "Solids_Velocity_1": {"i": 3,
+#!MFIX-GUI   "components": 3, "range": [[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]]},
+#!MFIX-GUI   "Solids_Velocity_2": {"i": 4, "components": 3, "range": [[0.0,
+#!MFIX-GUI   0.0], [0.0, 0.0], [0.0, 0.0]]}, "Solids_density_2": {"i": 5,
+#!MFIX-GUI   "components": 1, "range": [[0.0, 138.0]]},
+#!MFIX-GUI   "AIR_Gas_mass_fractions_1": {"i": 6, "components": 1, "range":
+#!MFIX-GUI   [[1.0, 1.0]]}, "GCO2_Gas_mass_fractions_2": {"i": 7, "components":
+#!MFIX-GUI   1, "range": [[0.0, 0.0]], "color": "#e0e0e0", "single_color":
+#!MFIX-GUI   false, "color_map": "viridis", "reversed": false, "from": 0.0,
+#!MFIX-GUI   "to": 0.0}, "GH2O_Gas_mass_fractions_3": {"i": 8, "components": 1,
+#!MFIX-GUI   "range": [[0.0, 0.0]]}, "LCO2_Solids_mass_fractions_1_1": {"i": 9,
+#!MFIX-GUI   "components": 1, "range": [[0.0, 0.0]]},
+#!MFIX-GUI   "LRNH2_Solids_mass_fractions_1_2": {"i": 10, "components": 1,
+#!MFIX-GUI   "range": [[0.0, 0.0]]}, "RNH3P_Solids_mass_fractions_1_3": {"i":
+#!MFIX-GUI   11, "components": 1, "range": [[0.0, 0.0]]},
+#!MFIX-GUI   "HCO3M_Solids_mass_fractions_1_4": {"i": 12, "components": 1,
+#!MFIX-GUI   "range": [[0.0, 0.0]]}, "OHM_Solids_mass_fractions_1_5": {"i": 13,
+#!MFIX-GUI   "components": 1, "range": [[0.0, 0.0]]},
+#!MFIX-GUI   "CO3M2_Solids_mass_fractions_1_6": {"i": 14, "components": 1,
+#!MFIX-GUI   "range": [[0.0, 0.0]]}, "H3OP_Solids_mass_fractions_1_7": {"i": 15,
+#!MFIX-GUI   "components": 1, "range": [[0.0, 0.0]]},
+#!MFIX-GUI   "RNHCO2M_Solids_mass_fractions_1_8": {"i": 16, "components": 1,
+#!MFIX-GUI   "range": [[0.0, 0.0]]}, "LH2O_Solids_mass_fractions_1_9": {"i": 17,
+#!MFIX-GUI   "components": 1, "range": [[1.0, 1.0]], "color": "#e0e0e0",
+#!MFIX-GUI   "single_color": false, "color_map": "viridis", "reversed": false,
+#!MFIX-GUI   "from": 0.8, "to": 1.0}}}, "point_arrays": {}, "frame": -1,
+#!MFIX-GUI   "camera": {"position": [0.05000000074505806, 0.5249999761581421,
+#!MFIX-GUI   2.0376226713552037], "focal_point": [0.05000000074505806,
+#!MFIX-GUI   0.5249999761581421, 0.0], "view_angle": 30.0, "view_up": [0.0, 1.0,
+#!MFIX-GUI   0.0], "parallel": 0, "parallel_scale": 0.5273755540794013},
+#!MFIX-GUI   "particle_options": {"mapper": "point gaussian", "splat": "sphere",
+#!MFIX-GUI   "glyph": "sphere", "max_points": 10000}, "geometry_style": "solid",
+#!MFIX-GUI   "geometry_color": "#e0e0e0", "color_bar_mapper": "cells/nodes",
+#!MFIX-GUI   "color_bar_pos": "right", "color_bar_color": "#000000",
+#!MFIX-GUI   "color_bar_n_labels": 10, "color_bar_label_fmt": "%.2f",
+#!MFIX-GUI   "time_label_format": "{:.2f} s", "time_label_pos": "top right",
+#!MFIX-GUI   "time_label_color": "#000000", "time_label_text_size": 24,
+#!MFIX-GUI   "image_stack_dir":
+#!MFIX-GUI   "/.nfs/home/3/dietikej/MFiX/19.3/Absorption_column_2d",
+#!MFIX-GUI   "image_stack_prefix": "frame_", "image_stack_width": "1920",
+#!MFIX-GUI   "image_stack_height": "1080", "image_stack_type": "png",
+#!MFIX-GUI   "cells_component": "mag", "points_component": "mag", "visible":
+#!MFIX-GUI   {"cells": true, "points": false, "geometry": true, "color_bar":
+#!MFIX-GUI   true, "time_label": true, "axes": true}, "opacity": {"cells": 1.0,
+#!MFIX-GUI   "points": 1.0, "geometry": 0.4, "color_bar": 1.0, "time_label":
+#!MFIX-GUI   1.0}}}}}
+#!MFIX-GUI retained_keys = {"mu_gmax": 10}
+#!MFIX-GUI ui_state = {"mode": "modeler", "navigation": "Model setup", "graphic_tab": 2}
+#!MFIX-GUI parameters = {"order": ["min", "max", "xmin", "xmax", "ymin", "ymax",
+#!MFIX-GUI   "zmin", "zmax", "km", "m", "cm", "mm", "um", "mile", "yard", "ft",
+#!MFIX-GUI   "ins"], "parameters": {"min": 0.0, "max": 0.0, "xmin": 0, "xmax":
+#!MFIX-GUI   0.1, "ymin": 0, "ymax": 1.05, "zmin": 0, "zmax": 0.01, "km":
+#!MFIX-GUI   1000.0, "m": 1.0, "cm": 0.01, "mm": 0.001, "um": 1e-06, "mile":
+#!MFIX-GUI   1609.34, "yard": 0.9144, "ft": 0.3048, "ins": 0.0254}}
+#!MFIX-GUI BUILD_DMP = 0
+#!MFIX-GUI BUILD_FC_FLAGS = 
+#!MFIX-GUI BUILD_INTERACTIVE = PYMFIX
+#!MFIX-GUI BUILD_PARALLEL = 1
+#!MFIX-GUI BUILD_SMP = 0
+#!MFIX-GUI BUILD_TYPE = RELWITHDEBINFO
+#!MFIX-GUI mfix_exe = /.nfs/home/3/dietikej/MFiX/develop/mfix/legacy_tutorials/Solvent_Absorption/mfixsolver
+#!MFIX-GUI queue_template = {"JOB_NAME": "${PROJECT_NAME}", "CORES": 40,
+#!MFIX-GUI   "QUEUE": "general", "LONG": "", "MODULES": [], "template": "Joule"}
+#!MFIX-GUI submit_to_queue = 0
+#!MFIX-GUI OMP_NUM_THREADS = 1
+
+THERMO DATA
+AIR                     User Defined      0.G   200.000  6000.000  B  29.00000 1
+ 3.08792717E+00 1.24597184E-03-4.23718945E-07 6.74774789E-11-3.97076972E-15    2
+-9.95262755E+02 5.95960930E+00 3.56839620E+00-6.78729429E-04 1.55371476E-06    3
+-3.29937060E-12-4.66395387E-13-1.06234659E+03 3.71582965E+00-1.50965000E+01    4
+
+AL(cr) REF ELEME        User Defined      0.S   200.000   933.610  B  26.98154 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.01032822E+00 1.20775640E-02-2.62098556E-05    3
+ 2.64295083E-08-9.01946533E-12-6.54447545E+02-5.00441242E+00 0.00000000E+00    4
+
+CO3m2                   User Defined      0.S   200.000   999.000  B  60.00890 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-8.13140000E+04    4
+
+gCO2                    User Defined      0.G   200.000  6000.000  B  44.00950 1
+ 4.63651110E+00 2.74145690E-03-9.95897590E-07 1.60386660E-10-9.16198570E-15    2
+-4.90249040E+04-1.93489550E+00 2.35681300E+00 8.98412990E-03-7.12206320E-06    3
+ 2.45730080E-09-1.42885480E-13-4.83719710E+04 9.90090350E+00-4.73281050E+04    4
+
+gH2O                    User Defined      0.G   200.000  6000.000  B  18.01520 1
+ 2.67703890E+00 2.97318160E-03-7.73768890E-07 9.44335140E-11-4.26899910E-15    2
+-2.98858940E+04 6.88255000E+00 4.19863520E+00-2.03640170E-03 6.52034160E-06    3
+-5.48792690E-09 1.77196800E-12-3.02937260E+04-8.49009010E-01-2.90848170E+04    4
+
+H3Op                    User Defined      0.S   200.000   999.000  B  19.02310 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-3.43560000E+04    4
+
+HCO3m                   User Defined      0.S   200.000   999.000  B  61.01680 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-8.31003000E+04    4
+
+lCO2                    User Defined      0.S   200.000  1000.000  B  44.00950 1
+ 4.63651110E+00 2.74145690E-03-9.95897590E-07 1.60386660E-10-9.16198570E-15    2
+-4.90249040E+04-1.93489550E+00 2.35681300E+00 8.98412990E-03-7.12206320E-06    3
+ 2.45730080E-09-1.42885480E-13-4.83719710E+04 9.90090350E+00-4.73281050E+04    4
+
+lH2O                    User Defined      0.S   273.150   600.000  B  18.01520 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 7.25575005E+01-6.62445402E-01 2.56198746E-03    3
+-4.36591923E-06 2.78178981E-09-4.18865499E+04-2.88280137E+02-3.43772513E+04    4
+
+lRNH2                   User Defined      0.S   200.000   999.000  B  61.08280 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-6.10420000E+04    4
+
+OHm                     User Defined      0.S   200.000   999.000  B  17.00730 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-2.76450000E+04    4
+
+RNH3p                   User Defined      0.S   200.000   999.000  B  62.09070 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-3.93510000E+04    4
+
+RNHCO2m                 User Defined      0.S   200.000   847.000  B 104.08440 1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 1.45600000E+01 5.80000000E-03 4.81000000E-05    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00-8.36327000E+04    4
+

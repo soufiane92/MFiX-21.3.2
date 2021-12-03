@@ -1,0 +1,11 @@
+MODULE usr
+
+   DOUBLE PRECISION DUMMY_DP
+
+! Sherwood number
+   DOUBLE PRECISION, DIMENSION(:, :), ALLOCATABLE :: N_Sh
+
+! Pre-exponential factors:
+   DOUBLE PRECISION :: A1F, A1R, A2F, A2R
+
+END MODULE usr

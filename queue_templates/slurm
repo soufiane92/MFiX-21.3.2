@@ -1,0 +1,71 @@
+#!/bin/bash -l
+## CONFIG
+# Special values
+# SCRIPT - the path of this script, after replacement in the run directory
+# PROJECT_NAME - name of the opened project
+# JOB_ID - the job id extracted using job_id_regex
+# COMMAND - the command to run mfix
+# MFIX_HOME - the path to the mfix directory
+
+[options]
+name: Joule
+job_id_regex: (\d+)
+status_regex: ([rqw])
+submit: sbatch ${SCRIPT}
+delete: scancel ${JOB_ID}
+status: squeue -j ${JOB_ID}
+
+[JOB_NAME]
+widget: lineedit
+label: Job Name
+value: ${PROJECT_NAME}
+help: The name of the job.
+
+[CORES]
+widget: spinbox
+label: Number of Cores
+min_value: 1
+max_value: 9999
+value: 40
+help: The number of cores to request.
+
+[QUEUE]
+widget: combobox
+label: Queue
+value: general
+items: general|bigmem|shared|gpu
+help: The Queue to submit to.
+
+[LONG]
+widget: checkbox
+label: Long job
+value: false
+true:  #SBATCH --qos=long
+help: Specify the job as long.
+
+
+[MODULES]
+widget: listwidget
+label: Modules
+items: gnu/6.5.0 openmpi/3.1.3_gnu6.5 |
+       gnu/8.2.0 openmpi/4.0.1_gnu8.2 |
+       gnu/8.4.0 openmpi/4.0.3_gnu8.4 |
+       gnu/9.3.0 openmpi/4.0.4_gnu9.3
+help: Select the modules that need to be loaded.
+
+## END CONFIG
+## The name for the job.
+#SBATCH --job-name=${JOB_NAME}
+##
+## Number of cores to request
+#SBATCH --tasks=${CORES}
+##
+## Queue Name
+#SBATCH --partition=${QUEUE}
+${LONG}
+
+##Load Modules
+module load ${MODULES}
+
+##Run the job
+${COMMAND}

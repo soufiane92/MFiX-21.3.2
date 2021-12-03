@@ -1,0 +1,689 @@
+#! File written Mon Jul 20 13:25:37 2020
+#! MFiX version 20.1.2 by tutorial
+#! Template used to format file: "detailed"
+
+
+#_______________________________________________________________________
+# Project Description
+
+description     = '3D PIC cyclone'
+run_name        = 'cyclone_pic_3d_jfd_cfl'
+units           = 'SI'
+
+#_______________________________________________________________________
+# Run
+
+run_type = 'new'
+tstop    = 1.0
+
+dt     = 5.0000e-03
+dt_min = 1.0000e-06
+dt_max = 1.0000e-02
+
+
+#_______________________________________________________________________
+# Energy Equation
+
+energy_eq = .False.
+
+#_______________________________________________________________________
+# Turbulence
+
+turbulence_model = 'NONE'
+
+#_______________________________________________________________________
+# Gravity
+
+gravity_x = 0.0
+gravity_y = -9.81
+gravity_z = 0.0
+
+#_______________________________________________________________________
+# Drag
+
+drag_type = 'GIDASPOW'
+
+#_______________________________________________________________________
+# Advanced
+
+
+#_______________________________________________________________________
+# Geometry - MFiX Box
+
+coordinates = 'cartesian'
+
+
+x_min = -0.07 #!MFIX-GUI eq{float(-r_barrel-.01)}
+x_max = 0.09 #!MFIX-GUI eq{float(r_barrel+0.03)}
+
+y_min = 0.0
+y_max = 0.4
+
+z_min = -0.07 #!MFIX-GUI eq{float(-r_barrel-.01)}
+z_max = 0.07 #!MFIX-GUI eq{float(r_barrel+.01)}
+
+
+#_______________________________________________________________________
+# Geometry - Input
+
+cartesian_grid = .True.
+
+
+use_stl = .True.
+
+
+## Geometry Input - STL File
+
+
+## Geometry Input - .msh file
+
+
+#_______________________________________________________________________
+# Background mesh - Grid spacing
+
+imax = 32 #!MFIX-GUI eq{int((xmax-xmin)/5e-3)}
+jmax = 60
+kmax = 28 #!MFIX-GUI eq{int((zmax-zmin)/5e-3)}
+
+
+#_______________________________________________________________________
+# Cut cell tolerances
+
+
+tol_small_cell       = 0.05
+tol_small_area       = 0.05
+tol_snap(1)          = 0.0
+fac_dim_max_cut_cell = 0.5
+itermax_int          = 50000
+dim_facets_per_cell  = 25
+tol_delh             = 0.1
+
+stl_small_angle = 0.0
+tol_stl         = 1.0000e-06
+tol_stl_dp      = 1.0000e-08
+
+
+#_______________________________________________________________________
+# Fluid Phase
+
+
+mu_g0  = 1.8000e-05
+mw_avg = 28.8
+
+species_eq(0) = .False.
+
+
+#_______________________________________________________________________
+# Solids Phase - Material
+
+mmax = 1
+
+# Solid 1
+momentum_x_eq(1) = .False.
+momentum_y_eq(1) = .False.
+momentum_z_eq(1) = .False.
+
+solids_model(1) = 'PIC'
+
+d_p0(1)  = 8.7100e-04
+ro_s0(1) = 8.6000e+02
+
+species_eq(1) = .False.
+nmax_s(1)     = 0
+
+
+# Maximum packing
+ep_star = 0.4
+
+
+#_______________________________________________________________________
+# Solids Phase - TFM settings
+
+
+friction_model = 'SCHAEFFER'
+
+
+#_______________________________________________________________________
+# Solids Phase - Lagrangian settings (common to DEM/PIC)
+
+gener_part_config = .True.
+
+
+des_interp_mean_fields = .True.
+des_interp_on          = .True.
+des_interp_scheme      = 'LINEAR_HAT'
+des_explicitly_coupled = .True.
+
+
+#_______________________________________________________________________
+# Solids Phase - PIC settings
+
+fric_exp_pic      = 3.0
+psfac_fric_pic    = 100.0
+mppic_coeff_en1   = 0.85
+fric_non_sing_fac = 1.0000e-07
+
+mppic_coeff_en_wall = 0.85
+mppic_coeff_et_wall = 0.85
+
+mppic_velfac_coeff = 1.0
+
+pic_cfl                 = 0.1
+pic_cfl_parcel_fraction = 0.01
+pic_cfl_control         = 'MAX'
+
+
+#_______________________________________________________________________
+# DEM contact
+
+
+#_______________________________________________________________________
+# DEM cohesion
+
+
+#_______________________________________________________________________
+# DEM - Advanced
+
+
+#_______________________________________________________________________
+# Initial conditions
+
+# Initial condition 1: IC_1
+ic_x_w(1) = -0.07 #!MFIX-GUI eq{float(xmin)}
+ic_x_e(1) = 0.09 #!MFIX-GUI eq{float(xmax)}
+ic_y_s(1) = 0.0 #!MFIX-GUI eq{float(ymin)}
+ic_y_n(1) = 0.4 #!MFIX-GUI eq{float(ymax)}
+ic_z_b(1) = -0.07 #!MFIX-GUI eq{float(zmin)}
+ic_z_t(1) = 0.07 #!MFIX-GUI eq{float(zmax)}
+
+## Fluid Phase
+ic_ep_g(1) = 1.0
+ic_t_g(1)  = 293.15
+ic_u_g(1)  = 0.0
+ic_v_g(1)  = 0.0
+ic_w_g(1)  = 0.0
+
+
+## Solid 1
+ic_ep_s(1,1)    = 0.0
+ic_t_s(1,1)     = 293.15
+ic_u_s(1,1)     = 0.0
+ic_v_s(1,1)     = 0.0
+ic_w_s(1,1)     = 0.0
+ic_theta_m(1,1) = 0.0
+
+
+ic_pic_const_statwt(1,1) = 12.0
+
+
+ic_des_fit_to_region(1) = .False.
+
+
+#_______________________________________________________________________
+# Cyclic Boundary conditions
+
+
+#_______________________________________________________________________
+# Boundary conditions
+
+# Boundary condition 1: BC_1
+bc_type(1) = 'MI'
+bc_x_w(1)  = 0.09 #!MFIX-GUI eq{float(xmax)}
+bc_x_e(1)  = 0.09 #!MFIX-GUI eq{float(xmax)}
+bc_y_s(1)  = 0.0 #!MFIX-GUI eq{float(ymin)}
+bc_y_n(1)  = 0.4 #!MFIX-GUI eq{float(ymax)}
+bc_z_b(1)  = -0.07 #!MFIX-GUI eq{float(zmin)}
+bc_z_t(1)  = 0.07 #!MFIX-GUI eq{float(zmax)}
+
+## Fluid Phase
+bc_ep_g(1) = 0.995
+bc_p_g(1)  = 1.0132e+05
+bc_t_g(1)  = 293.15
+bc_u_g(1)  = -3.5
+bc_v_g(1)  = 0.0
+bc_w_g(1)  = 0.0
+
+
+## Solid 1
+bc_ep_s(1,1) = 0.005
+bc_t_s(1,1)  = 293.15
+bc_u_s(1,1)  = -3.5
+bc_v_s(1,1)  = 0.0
+bc_w_s(1,1)  = 0.0
+
+
+bc_pic_mi_const_statwt(1,1) = 12.0
+# Boundary condition 2: BC_2
+bc_type(2) = 'PO'
+bc_x_w(2)  = -0.07 #!MFIX-GUI eq{float(xmin)}
+bc_x_e(2)  = 0.09 #!MFIX-GUI eq{float(xmax)}
+bc_y_s(2)  = 0.4 #!MFIX-GUI eq{float(ymax)}
+bc_y_n(2)  = 0.4 #!MFIX-GUI eq{float(ymax)}
+bc_z_b(2)  = -0.07 #!MFIX-GUI eq{float(zmin)}
+bc_z_t(2)  = 0.07 #!MFIX-GUI eq{float(zmax)}
+
+## Fluid Phase
+bc_p_g(2) = 1.0132e+05
+
+
+## Solid 1
+
+
+# Boundary condition 3: BC_3
+bc_type(3) = 'PO'
+bc_x_w(3)  = -0.07 #!MFIX-GUI eq{float(xmin)}
+bc_x_e(3)  = 0.09 #!MFIX-GUI eq{float(xmax)}
+bc_y_s(3)  = 0.0 #!MFIX-GUI eq{float(ymin)}
+bc_y_n(3)  = 0.0 #!MFIX-GUI eq{float(ymin)}
+bc_z_b(3)  = -0.07 #!MFIX-GUI eq{float(zmin)}
+bc_z_t(3)  = 0.07 #!MFIX-GUI eq{float(zmax)}
+
+## Fluid Phase
+bc_p_g(3) = 1.0132e+05
+
+
+## Solid 1
+
+
+# Boundary condition 4: BC_4
+bc_type(4) = 'CG_NSW'
+bc_x_w(4)  = -0.07 #!MFIX-GUI eq{float(xmin)}
+bc_x_e(4)  = 0.09 #!MFIX-GUI eq{float(xmax)}
+bc_y_s(4)  = 0.0 #!MFIX-GUI eq{float(ymin)}
+bc_y_n(4)  = 0.4 #!MFIX-GUI eq{float(ymax)}
+bc_z_b(4)  = -0.07 #!MFIX-GUI eq{float(zmin)}
+bc_z_t(4)  = 0.07 #!MFIX-GUI eq{float(zmax)}
+
+## Fluid Phase
+
+
+bc_uw_g(4) = 0.0
+bc_vw_g(4) = 0.0
+bc_ww_g(4) = 0.0
+
+
+## Solid 1
+
+
+bc_jj_ps(4) = 0
+
+
+#_______________________________________________________________________
+# Internal surfaces 1
+
+# Internal surface 1: BC_3
+is_type(1) = 'IMPERMEABLE'
+is_x_w(1)  = -0.07 #!MFIX-GUI eq{float(xmin)}
+is_x_e(1)  = 0.09 #!MFIX-GUI eq{float(xmax)}
+is_y_s(1)  = 0.0 #!MFIX-GUI eq{float(ymin)}
+is_y_n(1)  = 0.0 #!MFIX-GUI eq{float(ymin)}
+is_z_b(1)  = -0.07 #!MFIX-GUI eq{float(zmin)}
+is_z_t(1)  = 0.07 #!MFIX-GUI eq{float(zmax)}
+
+
+#_______________________________________________________________________
+# Chemistry solver
+
+
+#_______________________________________________________________________
+# Numerics
+
+detect_stall = .False.
+max_nit      = 75
+
+norm_g = 1.0
+
+tol_resid = 1.0000e-03
+
+
+max_inlet_vel_fac = 1.0000e+06
+
+
+#_______________________________________________________________________
+# Output
+
+res_dt = 0.03125
+
+
+group_resid = .True.
+
+
+full_log = .True.
+nlog     = 5000
+
+
+#_______________________________________________________________________
+# VTK outputs
+
+write_vtk_files         = .True.
+time_dependent_filename = .True.
+vtu_dir                 = 'VTUS'
+
+# VTK output 1: IC_1
+vtk_x_w(1) = -0.07 #!MFIX-GUI eq{float(xmin)}
+vtk_x_e(1) = 0.09 #!MFIX-GUI eq{float(xmax)}
+vtk_y_s(1) = 0.0 #!MFIX-GUI eq{float(ymin)}
+vtk_y_n(1) = 0.4 #!MFIX-GUI eq{float(ymax)}
+vtk_z_b(1) = -0.07 #!MFIX-GUI eq{float(zmin)}
+vtk_z_t(1) = 0.07 #!MFIX-GUI eq{float(zmax)}
+
+vtk_filebase(1) = 'PART'
+vtk_dt(1)       = 0.03125
+
+vtk_nxs(1) = 0
+vtk_nys(1) = 0
+vtk_nzs(1) = 0
+
+vtk_data(1)        = 'P'
+vtk_select_mode(1) = 'I'
+
+
+## Fluid Phase
+
+
+## Solid 1
+
+
+vtk_part_vel(1) = .True.
+
+
+vtk_part_id(1) = .True.
+
+# VTK output 2: IC_1
+vtk_x_w(2) = -0.07 #!MFIX-GUI eq{float(xmin)}
+vtk_x_e(2) = 0.09 #!MFIX-GUI eq{float(xmax)}
+vtk_y_s(2) = 0.0 #!MFIX-GUI eq{float(ymin)}
+vtk_y_n(2) = 0.4 #!MFIX-GUI eq{float(ymax)}
+vtk_z_b(2) = -0.07 #!MFIX-GUI eq{float(zmin)}
+vtk_z_t(2) = 0.07 #!MFIX-GUI eq{float(zmax)}
+
+vtk_filebase(2) = 'FLUID'
+vtk_dt(2)       = 0.03125
+
+vtk_nxs(2) = 0
+vtk_nys(2) = 0
+vtk_nzs(2) = 0
+
+vtk_data(2) = 'C'
+
+
+## Fluid Phase
+vtk_ep_g(2)  = .True.
+vtk_vel_g(2) = .True.
+
+
+## Solid 1
+
+
+#_______________________________________________________________________
+# Monitors
+
+# Monitor 1: probe
+monitor_name(1) = 'probe'
+monitor_type(1) = 0
+monitor_dt(1)   = 0.01
+
+monitor_x_w(1) = 0.08 #!MFIX-GUI eq{float(xmax-.01)}
+monitor_x_e(1) = 0.08 #!MFIX-GUI eq{float(xmax-.01)}
+monitor_y_s(1) = 0.31 #!MFIX-GUI eq{float(h_barrel/2+0.24-h_inlet/2-.015)}
+monitor_y_n(1) = 0.31 #!MFIX-GUI eq{float(h_barrel/2+0.24-h_inlet/2-.015)}
+monitor_z_b(1) = 0.05 #!MFIX-GUI eq{float(r_barrel-w_inlet/2)}
+monitor_z_t(1) = 0.05 #!MFIX-GUI eq{float(r_barrel-w_inlet/2)}
+
+## Fluid Phase
+monitor_p_g(1) = .True.
+monitor_u_g(1) = .True.
+monitor_v_g(1) = .True.
+monitor_w_g(1) = .True.
+
+
+## Solid 1
+
+
+# Monitor 2: IC_1
+monitor_name(2) = 'IC_1'
+monitor_type(2) = 11
+monitor_dt(2)   = 0.05
+
+monitor_x_w(2) = -0.07 #!MFIX-GUI eq{float(xmin)}
+monitor_x_e(2) = 0.09 #!MFIX-GUI eq{float(xmax)}
+monitor_y_s(2) = 0.0 #!MFIX-GUI eq{float(ymin)}
+monitor_y_n(2) = 0.4 #!MFIX-GUI eq{float(ymax)}
+monitor_z_b(2) = -0.07 #!MFIX-GUI eq{float(zmin)}
+monitor_z_t(2) = 0.07 #!MFIX-GUI eq{float(zmax)}
+
+## Fluid Phase
+monitor_ep_g(2) = .True.
+
+
+## Solid 1
+
+
+#_______________________________________________________________________
+# Parallelization
+
+nodesi = 1
+nodesj = 1
+nodesk = 1
+
+enable_dmp_log = .False.
+
+
+#_______________________________________________________________________
+# Batch
+
+chk_batchq_end  = .True.
+batch_wallclock = 8.6400e+44
+term_buffer     = 3.0000e+02
+
+#_______________________________________________________________________
+# Dashboard
+
+write_dashboard = .False.
+
+#_______________________________________________________________________
+# Unsupported keys
+
+
+#_______________________________________________________________________
+# End of keywords
+#
+
+# MFIX-GUI section
+#!MFIX-GUI gui_version = 20.1.2
+#!MFIX-GUI project_notes = "Similar to NETL's chemical looping reactor cyclone.
+#!MFIX-GUI   Used as an optimization demo."
+#!MFIX-GUI modified_by = |developer|
+#!MFIX-GUI geometry = {"geometry_dict": {"box": {"geo_type": "implicit",
+#!MFIX-GUI   "bounds": [-1.4901161415892261e-09, 0.20000000298023224,
+#!MFIX-GUI   0.27000001072883606, 0.3499999940395355, 0.03999999910593033,
+#!MFIX-GUI   0.05999999865889549], "centerx": 0.1, "centery": {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(h_barrel/2+0.24-h_inlet/2-.015)"},
+#!MFIX-GUI   "centerz": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(r_barrel-w_inlet/2)"}, "lengthx": 0.2, "lengthy":
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(h_inlet)"}, "lengthz":
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(w_inlet)"}, "type": "box",
+#!MFIX-GUI   "visible": false}, "cylinder1": {"geo_type": "implicit", "bounds":
+#!MFIX-GUI   [-0.021462999284267426, 0.021462999284267426, -0.10000000149011612,
+#!MFIX-GUI   0.10000000149011612, -0.021462999284267426, 0.021462999284267426],
+#!MFIX-GUI   "radius": {"__type__": "equation", "eq": "float(1.69*ins / 2)"},
+#!MFIX-GUI   "height": 0.2, "type": "cylinder", "visible": false}, "cone":
+#!MFIX-GUI   {"geo_type": "implicit", "bounds": [-0.05999999865889549,
+#!MFIX-GUI   0.05999999865889549, 0.017500000074505806, 0.11749999970197678,
+#!MFIX-GUI   -0.05999999865889549, 0.05999999865889549], "centery": 0.0675,
+#!MFIX-GUI   "rotationz": -90.0, "radius": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(r_barrel)"}, "height": 0.1, "type": "cone", "visible":
+#!MFIX-GUI   false}, "cylinder": {"geo_type": "implicit", "bounds":
+#!MFIX-GUI   [-0.05999999865889549, 0.05999999865889549, 0.11500000208616257,
+#!MFIX-GUI   0.36500000953674316, -0.05999999865889549, 0.05999999865889549],
+#!MFIX-GUI   "centery": 0.24, "radius": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(r_barrel)"}, "height": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(h_barrel)"}, "type": "cylinder", "visible": false},
+#!MFIX-GUI   "cylinder2": {"geo_type": "implicit", "bounds":
+#!MFIX-GUI   [-0.014999999664723873, 0.014999999664723873, 0.20000000298023224,
+#!MFIX-GUI   0.6000000238418579, -0.014999999664723873, 0.014999999664723873],
+#!MFIX-GUI   "centery": 0.4, "radius": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(r_vortex)"}, "height": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(h_vortex)"}, "type": "cylinder", "visible": false},
+#!MFIX-GUI   "cylinder3": {"geo_type": "implicit", "bounds":
+#!MFIX-GUI   [-0.02500000037252903, 0.02500000037252903, 0.20000000298023224,
+#!MFIX-GUI   0.6000000238418579, -0.02500000037252903, 0.02500000037252903],
+#!MFIX-GUI   "centery": 0.4, "radius": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(r_vortex+.01)"}, "height": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(h_vortex)"}, "type": "cylinder", "visible": false}, "union":
+#!MFIX-GUI   {"geo_type": "boolean_implicit", "children": ["box", "cone",
+#!MFIX-GUI   "cylinder", "cylinder1"], "visible": false, "type": "union",
+#!MFIX-GUI   "bounds": [-0.05999999865889549, 0.20000000298023224,
+#!MFIX-GUI   -0.10000000149011612, 0.36500000953674316, -0.05999999865889549,
+#!MFIX-GUI   0.05999999865889549]}, "difference": {"geo_type":
+#!MFIX-GUI   "boolean_implicit", "children": ["union", "cylinder3"], "visible":
+#!MFIX-GUI   false, "type": "difference", "bounds": [-0.05999999865889549,
+#!MFIX-GUI   0.20000000298023224, -0.10000000149011612, 0.6000000238418579,
+#!MFIX-GUI   -0.05999999865889549, 0.05999999865889549]}, "union1": {"geo_type":
+#!MFIX-GUI   "boolean_implicit", "children": ["difference", "cylinder2"],
+#!MFIX-GUI   "visible": false, "type": "union", "bounds": [-0.05999999865889549,
+#!MFIX-GUI   0.20000000298023224, -0.10000000149011612, 0.6000000238418579,
+#!MFIX-GUI   -0.05999999865889549, 0.05999999865889549]}, "sample_implicit":
+#!MFIX-GUI   {"geo_type": "filter", "targetreduction": 0.6, "visible": false,
+#!MFIX-GUI   "samplesx": 50.0, "samplesy": 160.0, "samplesz": 50.0, "type":
+#!MFIX-GUI   "sample_implicit", "minx": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(-r_barrel)"}, "maxx": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(r_barrel+.1)"}, "miny": -0.01, "maxy": 0.6, "minz":
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(-r_barrel)"}, "maxz":
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(r_barrel+.01)"}}, "clean":
+#!MFIX-GUI   {"geo_type": "filter", "samplesx": 50.0, "type": "clean"}}, "tree":
+#!MFIX-GUI   {"box": [], "cone": [], "cylinder": [], "cylinder1": [], "union":
+#!MFIX-GUI   ["box", "cone", "cylinder", "cylinder1"], "cylinder3": [],
+#!MFIX-GUI   "difference": ["union", "cylinder3"], "cylinder2": [], "union1":
+#!MFIX-GUI   ["difference", "cylinder2"], "sample_implicit": ["union1"],
+#!MFIX-GUI   "clean": ["sample_implicit"]}}
+#!MFIX-GUI visual_props = {"mesh": {"color": "#f44328", "visible": true,
+#!MFIX-GUI   "opacity": 1, "rep": "wire", "edge": "#7a2114"}, "background_mesh":
+#!MFIX-GUI   {"color": "#64b6f7", "visible": true, "opacity": 1, "rep": "wire",
+#!MFIX-GUI   "edge": "#325b7b"}, "geometry": {"color": "#ffffff", "visible":
+#!MFIX-GUI   true, "opacity": 0.5, "rep": "edges", "edge": "#7f7f7f"},
+#!MFIX-GUI   "regions": {"color": "#e0e0e0", "visible": true, "opacity": 0.5,
+#!MFIX-GUI   "rep": "solid", "edge": "#707070"}, "normals": {"color": "#0000e0",
+#!MFIX-GUI   "visible": false, "scale": 0.1, "edge": "#000070"}, "axes":
+#!MFIX-GUI   {"color": "#0000e0", "visible": true, "edge": "#000070"},
+#!MFIX-GUI   "boundary": {"color": "#0000e0", "opacity": 1, "rep": "edges",
+#!MFIX-GUI   "visible": false, "color_by": "bc_id", "edge": "#000070"}}
+#!MFIX-GUI regions_dict = {"order": ["IC_1", "BC_1", "BC_2", "BC_3", "BC_4",
+#!MFIX-GUI   "probe"], "regions": {"IC_1": {"to": [{"__type__": "equation",
+#!MFIX-GUI   "eq": "float(xmax)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(ymax)"}, {"__type__": "equation", "eq": "float(zmax)"}],
+#!MFIX-GUI   "from": [{"__type__": "equation", "eq": "float(xmin)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(ymin)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(zmin)"}], "color": "#dcdcdc"}, "BC_1":
+#!MFIX-GUI   {"to": [{"__type__": "equation", "eq": "float(xmax)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymax)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmax)"}], "from": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmax)"}, {"__type__": "equation", "eq": "float(ymin)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmin)"}], "color": "#55aaff",
+#!MFIX-GUI   "type": "YZ-plane"}, "BC_2": {"to": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmax)"}, {"__type__": "equation", "eq": "float(ymax)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmax)"}], "from":
+#!MFIX-GUI   [{"__type__": "equation", "eq": "float(xmin)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymax)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmin)"}], "color": "#ffaa00", "type": "XZ-plane"}, "BC_3":
+#!MFIX-GUI   {"to": [{"__type__": "equation", "eq": "float(xmax)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymin)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmax)"}], "from": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmin)"}, {"__type__": "equation", "eq": "float(ymin)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmin)"}], "color": "#00ff00",
+#!MFIX-GUI   "type": "XZ-plane"}, "BC_4": {"facet_count": 42062, "to":
+#!MFIX-GUI   [{"__type__": "equation", "eq": "float(xmax)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(ymax)"}, {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(zmax)"}], "from": [{"__type__": "equation", "eq":
+#!MFIX-GUI   "float(xmin)"}, {"__type__": "equation", "eq": "float(ymin)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(zmin)"}], "color": "#9e6db1",
+#!MFIX-GUI   "geometry_pool": ["clean"], "type": "STL"}, "probe": {"to":
+#!MFIX-GUI   [{"__type__": "equation", "eq": "float(xmax-.01)"}, {"__type__":
+#!MFIX-GUI   "equation", "eq": "float(h_barrel/2+0.24-h_inlet/2-.015)"},
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(r_barrel-w_inlet/2)"}],
+#!MFIX-GUI   "from": [{"__type__": "equation", "eq": "float(xmax-.01)"},
+#!MFIX-GUI   {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(h_barrel/2+0.24-h_inlet/2-.015)"}, {"__type__": "equation",
+#!MFIX-GUI   "eq": "float(r_barrel-w_inlet/2)"}], "color": "#91c186", "type":
+#!MFIX-GUI   "point"}}}
+#!MFIX-GUI bc_regions = [[[1], ["BC_1"]], [[2], ["BC_2"]], [[3], ["BC_3"]],
+#!MFIX-GUI   [[4], ["BC_4"]]]
+#!MFIX-GUI ic_regions = [[[1], ["IC_1"]]]
+#!MFIX-GUI is_regions = [[[1], ["BC_3"]]]
+#!MFIX-GUI ps_regions = []
+#!MFIX-GUI vtk_regions = [[[1], ["IC_1"]], [[2], ["IC_1"]]]
+#!MFIX-GUI monitor_regions = [[1, "probe"], [2, "IC_1"]]
+#!MFIX-GUI parameters = {"order": ["min", "max", "xmin", "xmax", "ymin", "ymax",
+#!MFIX-GUI   "zmin", "zmax", "km", "m", "cm", "mm", "um", "mile", "yard", "ft",
+#!MFIX-GUI   "ins", "r_vortex", "r_barrel", "w_inlet", "h_inlet", "h_barrel",
+#!MFIX-GUI   "h_vortex"], "parameters": {"min": 0.0, "max": 0.0, "xmin":
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(-r_barrel-.01)"}, "xmax":
+#!MFIX-GUI   {"__type__": "equation", "eq": "float(r_barrel+0.03)"}, "ymin":
+#!MFIX-GUI   0.0, "ymax": 0.4, "zmin": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(-r_barrel-.01)"}, "zmax": {"__type__": "equation", "eq":
+#!MFIX-GUI   "float(r_barrel+.01)"}, "km": 1000.0, "m": 1.0, "cm": 0.01, "mm":
+#!MFIX-GUI   0.001, "um": {"__type__": "equation", "eq": "float(1e-06)"},
+#!MFIX-GUI   "mile": 1609.34, "yard": 0.9144, "ft": 0.3048, "ins": 0.0254,
+#!MFIX-GUI   "r_vortex": 0.015, "r_barrel": 0.06, "w_inlet": 0.02, "h_inlet":
+#!MFIX-GUI   0.08, "h_barrel": 0.25, "h_vortex": 0.4}}
+#!MFIX-GUI OMP_NUM_THREADS = 1
+#!MFIX-GUI author = tutorial
+#!MFIX-GUI created_date = 2019-03-07 12:14
+#!MFIX-GUI modified_time = 2020-07-20 11:50
+#!MFIX-GUI usr_regions = []
+#!MFIX-GUI log_files = {"solver_output": [false, "Dt", "overwrite"], "dt":
+#!MFIX-GUI   [true, "Dt", "overwrite"]}
+#!MFIX-GUI graphics = {"order": ["DT", "VTK"], "data": {"DT": {"plot": true,
+#!MFIX-GUI   "vtk": false, "monitors": false}, "VTK": {"plot": false, "vtk":
+#!MFIX-GUI   true, "monitors": false, "vtk_state": {"vtu_pattern": "FLUID",
+#!MFIX-GUI   "vtp_pattern": "PART", "cell_arrays": {"FLUID": {"EP_G": {"i": 0,
+#!MFIX-GUI   "components": 1, "range": [[0.7786782383918762, 1.0]], "magnitude":
+#!MFIX-GUI   [0.7786782383918762, 1.0]}, "Gas_Velocity": {"i": 1, "components":
+#!MFIX-GUI   3, "range": [[-4.4773712158203125, 4.572078704833984],
+#!MFIX-GUI   [-1.4164186716079712, 9.909087181091309], [-4.630278587341309,
+#!MFIX-GUI   4.357762336730957]], "magnitude": [0.0, 10.044786434417883]}}},
+#!MFIX-GUI   "node_arrays": {"FLUID": {"EP_G": {"i": 0, "components": 1,
+#!MFIX-GUI   "range": [[0.7786782383918762, 1.0]], "magnitude":
+#!MFIX-GUI   [0.7786782383918762, 1.0]}, "Gas_Velocity": {"i": 1, "components":
+#!MFIX-GUI   3, "range": [[-4.4773712158203125, 4.572078704833984],
+#!MFIX-GUI   [-1.4164186716079712, 9.909087181091309], [-4.630278587341309,
+#!MFIX-GUI   4.357762336730957]], "magnitude": [0.0, 10.044786434417883]}}},
+#!MFIX-GUI   "point_arrays": {"PART": {"Velocity": {"i": 0, "number_of_tuples":
+#!MFIX-GUI   1050, "components": 3, "range": [[-3.5003650188446045,
+#!MFIX-GUI   2.4089882373809814], [-1.5004315376281738, 0.9246618151664734],
+#!MFIX-GUI   [-2.9407360553741455, 1.998193383216858]], "magnitude":
+#!MFIX-GUI   [0.007049130633564158, 3.512110256606874]}, "Particle_ID": {"i": 1,
+#!MFIX-GUI   "number_of_tuples": 1050, "components": 1, "range": [[71.0,
+#!MFIX-GUI   1500.0]], "magnitude": [71.0, 1500.0]}}}, "frame": 32, "camera":
+#!MFIX-GUI   {"position": [-0.4755753783617084, 0.7880346127022527,
+#!MFIX-GUI   1.0517564046733656], "focal_point": [0.0500045046210289,
+#!MFIX-GUI   0.29500001203268766, 0.0006393212825059891], "view_angle": 30.0,
+#!MFIX-GUI   "view_up": [0.16708430368361182, 0.9221149904706414,
+#!MFIX-GUI   -0.34897962664300597], "parallel": 0, "parallel_scale":
+#!MFIX-GUI   0.3298460071701452}, "particle_options": {"max_points": 10000,
+#!MFIX-GUI   "glyph": "sphere", "mapper": "point gaussian", "splat": "sphere"},
+#!MFIX-GUI   "geometry_style": "solid", "geometry_color": "#e0e0e0",
+#!MFIX-GUI   "color_bar_mapper": "points", "color_bar_pos": "right",
+#!MFIX-GUI   "color_bar_color": "#000000", "color_bar_n_labels": 10,
+#!MFIX-GUI   "color_bar_label_fmt": "%.2f", "time_label_format": "{:.2f} s",
+#!MFIX-GUI   "time_label_pos": "top right", "time_label_color": "#000000",
+#!MFIX-GUI   "time_label_text_size": 24,
+#!MFIX-GUI   "image_stack_prefix": "frame_", "image_stack_width": "1920",
+#!MFIX-GUI   "image_stack_height": "1080", "image_stack_type": "png",
+#!MFIX-GUI   "cells_color_by": "EP_G", "cells_component": "mag",
+#!MFIX-GUI   "points_color_by": "Velocity", "points_component": "mag",
+#!MFIX-GUI   "visible": {"cells": false, "points": true, "geometry": true,
+#!MFIX-GUI   "color_bar": true, "time_label": true, "axes": true}, "opacity":
+#!MFIX-GUI   {"cells": 1.0, "points": 1.0, "geometry": 0.4, "color_bar": 1.0,
+#!MFIX-GUI   "time_label": 1.0}}}}}
+#!MFIX-GUI ui_state = {"mode": "modeler", "navigation": "Run", "graphic_tab": 4}
+#!MFIX-GUI queue_template = {"JOB_NAME": "${PROJECT_NAME}", "CORES": 40,
+#!MFIX-GUI   "QUEUE": "general", "LONG": "", "MODULES": [], "template": "Joule"}
+#!MFIX-GUI submit_to_queue = 0
+#!MFIX-GUI BUILD_DMP = 0
+#!MFIX-GUI BUILD_SMP = 0
+#!MFIX-GUI BUILD_PARALLEL = 1
+#!MFIX-GUI retained_keys = {}
+#!MFIX-GUI BUILD_FC_FLAGS =
+#!MFIX-GUI BUILD_INTERACTIVE = PYMFIX
+#!MFIX-GUI BUILD_TYPE = RELWITHDEBINFO

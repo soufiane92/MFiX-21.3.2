@@ -1,0 +1,8 @@
+MODULE usr
+
+   DOUBLE PRECISION DUMMY_DP
+
+! Sherwood number
+   DOUBLE PRECISION, DIMENSION(:, :), ALLOCATABLE :: N_Sh
+
+END MODULE usr

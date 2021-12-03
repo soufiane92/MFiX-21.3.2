@@ -1,0 +1,1428 @@
+#! File written {date}
+#! MFiX version {version} by {user} on {host}
+#! Template used to format file: "detailed"
+
+{if comment_block}
+#! Following comments are retained from the original mfix file
+{_}
+{end if}
+
+{align on}
+#_______________________________________________________________________
+# Project Description
+
+{description}
+{project_version}
+{run_name}
+{units}
+
+#_______________________________________________________________________
+# Run
+
+{run_type}
+{time}
+{tstop}
+
+{dt}
+{dt_min}
+{dt_max}
+{dt_fac}
+
+
+{automatic_restart}
+{iter_restart}
+{auto_restart}
+{persistent_mode}
+
+{ppo}
+
+#_______________________________________________________________________
+# Energy Equation
+
+{energy_eq!}
+
+#_______________________________________________________________________
+# Turbulence
+
+{turbulence_model!}
+{mu_gmax}
+
+#_______________________________________________________________________
+# Gravity
+
+{gravity}
+{gravity_x}
+{gravity_y}
+{gravity_z}
+
+#_______________________________________________________________________
+# Drag
+
+{drag_type!}
+{drag_c1}
+{drag_d1}
+{lam_hys}
+{sphericity_dg}
+{ref_length_dg}
+
+#_______________________________________________________________________
+# Advanced
+
+{model_b}
+{jackson}
+{ishii}
+
+{subgrid_type}
+{filter_size_ratio}
+{subgrid_wall}
+
+{shear}
+{v_sh}
+
+#_______________________________________________________________________
+# Geometry - MFiX Box
+
+{coordinates}
+
+{xmin}
+
+{x_min}
+{x_max}
+{xlength}
+
+{y_min}
+{y_max}
+{ylength}
+
+{z_min}
+{z_max}
+{zlength}
+
+{cylindrical_2d}
+{i_cyl_num}
+{i_cyl_transition}
+
+
+#_______________________________________________________________________
+# Geometry - Input
+
+{cartesian_grid!}
+
+{if cartesian_grid}
+
+{n_quadric}
+{use_stl}
+{use_msh}
+{use_polygon}
+{n_usr_def}
+
+
+{if Quadrics}
+## Geometry - Quadrics
+
+{quadric_scale}
+
+{loop Quadric}
+{quadric_form(q)}
+{bc_id_q(q)}
+
+{lambda_x(q)}
+{lambda_y(q)}
+{lambda_z(q)}
+{dquadric(q)}
+
+{t_x(q)}
+{t_y(q)}
+{t_z(q)}
+
+{theta_x(q)}
+{theta_y(q)}
+{theta_z(q)}
+
+{bend_r1(q)}
+{bend_r2(q)}
+{bend_theta1(q)}
+{bend_theta2(q)}
+
+{c2c_r1(q)}
+{c2c_r2(q)}
+{c2c_y1(q)}
+{c2c_y2(q)}
+
+{radius(q)}
+
+{half_angle(q)}
+
+{n_x(q)}
+{n_y(q)}
+{n_z(q)}
+
+{reactor1_r1(q)}
+{reactor1_r2(q)}
+{reactor1_rr1(q)}
+{reactor1_rr2(q)}
+{reactor1_theta1(q)}
+{reactor1_theta2(q)}
+{reactor1_y1(q)}
+{reactor1_y2(q)}
+{reactor1_yr1(q)}
+{reactor1_yr2(q)}
+
+{torus_r1(q)}
+{torus_r2(q)}
+
+{ucoil_r1(q)}
+{ucoil_r2(q)}
+{ucoil_y1(q)}
+{ucoil_y2(q)}
+
+{clip_xmax(q)}
+{clip_xmin(q)}
+{clip_ymax(q)}
+{clip_ymin(q)}
+{clip_zmax(q)}
+{clip_zmin(q)}
+{fluid_in_clipped_region(q)}
+
+{piece_xmax(q)}
+{piece_xmin(q)}
+{piece_ymax(q)}
+{piece_ymin(q)}
+{piece_zmax(q)}
+{piece_zmin(q)}
+
+{end loop Quadric}
+
+{n_group}
+
+{group_q*}
+
+{loop Group}
+{group_size(Group)}
+{group_relation(Group)}
+{relation_with_previous(Group)}
+
+{end loop Group}
+
+
+{end if Quadrics}
+
+## Geometry Input - STL File
+
+{stl_bc_id}
+
+{out_stl_value}
+
+{tx_stl}
+{ty_stl}
+{tz_stl}
+
+{scale_stl}
+
+## Geometry Input - .msh file
+
+{scale_msh}
+
+{out_msh_value}
+
+{tx_msh}
+{ty_msh}
+{tz_msh}
+
+{end if cartesian_grid}
+#_______________________________________________________________________
+# Background mesh - Grid spacing
+
+{imax}
+{jmax}
+{kmax}
+{no_k}
+
+{loop cell}
+   {dx(cell)}
+   {dy(cell)}
+   {dz(cell)}
+{end loop cell}
+
+{loop ctrl}
+   {cpx(ctrl)}
+   {ncx(ctrl)}
+   {erx(ctrl)}
+   {first_dx(ctrl)}
+   {last_dx(ctrl)}
+
+{end loop ctrl}
+
+{loop ctrl}
+   {cpy(ctrl)}
+   {ncy(ctrl)}
+   {ery(ctrl)}
+   {first_dy(ctrl)}
+   {last_dy(ctrl)}
+
+{end loop ctrl}
+
+{loop ctrl}
+   {cpz(ctrl)}
+   {ncz(ctrl)}
+   {erz(ctrl)}
+   {first_dz(ctrl)}
+   {last_dz(ctrl)}
+
+{end loop ctrl}
+
+{if cartesian_grid}
+#_______________________________________________________________________
+# Cut cell tolerances
+
+{re_indexing}
+{minimize_send_recv}
+
+{tol_small_cell}
+{tol_small_area}
+{tol_merge}
+{tol_snap*}
+{fac_dim_max_cut_cell}
+{itermax_int}
+{tol_f}
+{dim_facets_per_cell}
+{tol_delh}
+
+{stl_small_angle}
+{tol_stl}
+{tol_stl_dp}
+
+{alpha_max}
+
+{tol_msh}
+
+{tol_poly}
+
+{cad_propagate_order}
+{ray_dir}
+
+{set_corner_cells}
+{pg_option}
+{cg_safe_mode}
+{cg_ur_fac}
+
+{adjust_proc_domain_size}
+{report_best_domain_size}
+{nodesi_report}
+{nodesj_report}
+{nodesk_report}
+
+{dwall_brute_force}
+
+{print_warnings}
+{print_progress_bar}
+{bar_char}
+{bar_resolution}
+{bar_width}
+
+
+{end if cartesian_grid}
+
+#_______________________________________________________________________
+# Fluid Phase {if phase_name(0)}: {_} {end if}
+
+{momentum_*_eq(0)}
+
+{ro_g0}
+{mu_g0}
+{mw_avg}
+{c_pg0}
+{k_g0}
+{dif_g0}
+
+{species_eq(0)}
+{nmax_g}
+{loop species}
+## Fluid species {s }:
+   {species_g(s)}
+   {species_alias_g(s)}
+   {mw_g(s)}
+
+{end loop species}
+
+{p_ref}
+{p_scale}
+
+
+{if category solid}
+#_______________________________________________________________________
+# Solids Phase - Material
+
+{mmax}
+{dil_factor_vsd}
+
+{loop Phase}
+# Solid {P}{if phase_name(P)}: {_} {end if}
+{momentum_x_eq(P)}
+{momentum_y_eq(P)}
+{momentum_z_eq(P)}
+
+{solids_model(P)}
+
+{d_p0(P)}
+{cgp_stat_wt(P)}
+{ro_s0(P)}
+{k_s0(P)}
+{c_ps0(P)}
+
+{species_eq(P)}
+{nmax_s(P)}
+
+{loop species(P)}
+## Solid {P} species {s}
+   {species_s(P,S)}
+   {species_alias_s(P,S)}
+   {mw_s(P,S)}
+   {ro_xs0(P,S)}
+   {x_s0(P,S)}
+
+{end loop Species}
+
+{inert_species(P)}
+{dil_inert_x_vsd(P)}
+
+{end loop Phase}
+
+# Maximum packing
+{ep_star}
+
+{category solid}
+{end if category}
+
+#_______________________________________________________________________
+# Solids Phase - TFM settings
+
+{loop phase}
+{ep_s_max(P)}
+{mu_s0(P)}
+{dif_s0(P)}
+{close_packed(P)}
+
+{end loop phase}
+
+{kt_type}
+{friction_model!}
+{eps_f_min}
+{jenkins}
+
+{c_e}
+{e_w}
+{c_f}
+
+{phi}
+{phi_w}
+{phip}
+{phip0}
+
+{rdf_type}
+{blending_function}
+{segregation_slope_coefficient}
+{yu_standish}
+{fedors_landel}
+{r_p(*)}
+
+{v_ex}
+
+{added_mass}
+{m_am}
+
+
+#_______________________________________________________________________
+# Solids Phase - Lagrangian settings (common to DEM/PIC)
+
+{gener_part_config}
+{particles}
+
+{des_intg_method}
+
+{des_oneway_coupled}
+
+{des_interp_mean_fields}
+{des_interp_on}
+{des_interp_scheme}
+{des_interp_width}
+{des_explicitly_coupled}
+{des_diffuse_width}
+
+
+{if category PIC}
+#_______________________________________________________________________
+# Solids Phase - PIC settings
+
+{fric_exp_pic}
+{psfac_fric_pic}
+{mppic_coeff_en1}
+{fric_non_sing_fac}
+
+{mppic_coeff_en_wall}
+{mppic_coeff_et_wall}
+
+{mppic_velfac_coeff}
+
+{pic_cfl}
+{pic_cfl_parcel_fraction}
+{pic_cfl_control}
+{pic_collision_damping}
+
+
+{end if}
+
+
+#_______________________________________________________________________
+# DEM contact
+
+{des_coll_model}
+
+{mew}
+{mew_w}
+
+{kn}
+{kn_w}
+{kt_fac}
+{kt_w_fac}
+
+{des_en_*}
+{des_et_*}
+{des_etat_fac}
+{des_etat_w_fac}
+
+{loop phase}
+{e_young(P)}
+{e_young_actual(P)}
+{v_poisson(P)}
+{v_poisson_actual(P)}
+{end loop phase}
+{ew_young}
+{ew_young_actual}
+
+{vw_poisson}
+{vw_poisson_actual}
+
+{use_vdh_dem_model}
+
+{des_min_cond_dist}
+{des_conv_corr}
+{flpc}
+
+{loop phase}
+{des_em(P)}
+{end loop}
+
+#_______________________________________________________________________
+# DEM cohesion
+
+{use_cohesion}
+{van_der_waals}
+
+{hamaker_constant}
+{vdw_inner_cutoff}
+{vdw_outer_cutoff}
+{wall_hamaker_constant}
+{wall_vdw_inner_cutoff}
+{wall_vdw_outer_cutoff}
+
+{asperities}
+
+
+#_______________________________________________________________________
+# DEM - Advanced
+
+{nfactor}
+
+{desgridsearch_imax}
+{desgridsearch_jmax}
+{desgridsearch_kmax}
+
+{des_neighbor_search}
+
+{neighbor_search_n}
+{factor_rlm}
+
+{neighbor_search_rad_ratio}
+{minimize_des_facet_list}
+
+{dtsolid_factor}
+{dtsolid_update_dt}
+{remove_rogue_particles}
+{des_buff_resize_factor}
+
+{if scalars}
+#_______________________________________________________________________
+# Scalars
+
+{nscalar}
+
+{loop scl}
+  {phase4scalar(scl)}{if scalar_name(scl)} ! {_} {end if}
+{end loop scl}
+{end if}
+
+
+{if ICs}
+#_______________________________________________________________________
+# Initial conditions
+
+{loop IC}
+# Initial condition {IC}{if region_name(IC)}: {_} {end if}
+{ic_type(IC)}
+{ic_x_w(IC)}
+{ic_x_e(IC)}
+{ic_y_s(IC)}
+{ic_y_n(IC)}
+{ic_z_b(IC)}
+{ic_z_t(IC)}
+
+## Fluid Phase {if phase_name(0)}: {_} {end if}
+{ic_ep_g(IC)}
+{ic_p_g(IC)}
+{ic_t_g(IC)}
+{ic_u_g(IC)}
+{ic_v_g(IC)}
+{ic_w_g(IC)}
+
+{loop species(0)}
+  {if ic_*(IC,S)} {_} {if species_name(s)}!  {_}{end if}{end if}
+{end loop species}
+
+{ic_l_scale(IC)}
+{ic_k_turb_g(IC)}
+{ic_e_turb_g(IC)}
+
+{ic_gama_rg(IC)}
+{ic_t_rg(IC)}
+
+{ic_p_star(IC)}
+
+{loop Phase}
+
+## Solid {P}{if phase_name(P)}: {_} {end if}
+{ic_ep_s(IC,P)}
+
+{IC_PSD_type(IC,P)}
+{IC_PSD_mean_dp(IC,P)}
+{IC_PSD_stdev(IC,P)}
+{IC_PSD_min_dp(IC,P)}
+{IC_PSD_max_dp(IC,P)}
+
+
+{IC_DES_LATTICE(IC,P)}
+{IC_DES_SPACING(IC,P)}
+{IC_DES_SPACE_FACTOR_X(IC,P)}
+{IC_DES_SPACE_FACTOR_Y(IC,P)}
+{IC_DES_SPACE_FACTOR_Z(IC,P)}
+{IC_DES_RAND(IC,P)}
+{IC_DES_RAND_FACTOR_X(IC,P)}
+{IC_DES_RAND_FACTOR_Y(IC,P)}
+{IC_DES_RAND_FACTOR_Z(IC,P)}
+{IC_DES_SM(IC,P)}
+{IC_DES_NP(IC,P)}
+{IC_DES_CHECK_STL_OVERLAP(IC,P)}
+
+
+{ic_rop_s(IC,P)}
+{ic_t_s(IC,P)}
+{ic_u_s(IC,P)}
+{ic_v_s(IC,P)}
+{ic_w_s(IC,P)}
+{ic_theta_m(IC,P)}
+
+{loop species(P)}
+  {if ic_x_s*(IC, P, S)} {_} {if species_name(P,s)}!  {_}{end if}{end if}
+{end loop species}
+
+{ic_gama_rs(IC, P)}
+{ic_t_rs(IC, P)}
+
+{ic_pic_const_statwt(IC,P)}
+{ic_*(IC, P)}
+
+{end loop Phase}
+
+{ic_des_fit_to_region(IC)}
+
+{loop scalar}
+  {ic_*(IC, scalar)}
+{end loop scalar}
+
+{ic_*(IC)}
+
+{end loop IC}
+{end if ICs}
+
+#_______________________________________________________________________
+# Cyclic Boundary conditions
+
+{cyclic_x}
+{cyclic_x_pd}
+{delp_x}
+
+{cyclic_y}
+{cyclic_y_pd}
+{delp_y}
+
+{cyclic_z}
+{cyclic_z_pd}
+{delp_z}
+
+{flux_g}
+
+
+{if BCs}
+#_______________________________________________________________________
+# Boundary conditions
+{bc_jj_m}
+
+{loop BC}
+# Boundary condition {BC}{if region_name(BC)}: {_} {end if}
+{bc_type(BC)}
+{bc_x_w(BC)}
+{bc_x_e(BC)}
+{bc_y_s(BC)}
+{bc_y_n(BC)}
+{bc_z_b(BC)}
+{bc_z_t(BC)}
+
+{bc_mi_start_time(BC)}
+{bc_mi_end_time(BC)}
+
+## Fluid Phase {if phase_name(0)}: {_} {end if}
+{bc_ep_g(BC)}
+{bc_volflow_g(BC)}
+{bc_massflow_g(BC)}
+{bc_p_g(BC)}
+{bc_t_g(BC)}
+{bc_u_g(BC)}
+{bc_v_g(BC)}
+{bc_w_g(BC)}
+
+{bc_dt_0(BC)}
+{bc_jet_g0(BC)}
+{bc_dt_h(BC)}
+{bc_jet_gh(BC)}
+{bc_dt_l(BC)}
+{bc_jet_gl(BC)}
+
+{bc_k_turb_g(BC)}
+{bc_e_turb_g(BC)}
+
+{bc_hw_g(BC)}
+{bc_uw_g(BC)}
+{bc_vw_g(BC)}
+{bc_ww_g(BC)}
+
+{bc_hw_t_g(BC)}
+{bc_tw_g(BC)}
+{bc_c_t_g(BC)}
+
+{loop species(0)}
+  {if bc_*(BC,S)} {_} {if species_name(s)}!  {_}{end if}{end if}
+{end loop species}
+
+{loop scalar}
+  {bc_scalar(BC, Scalar)}
+  {bc_hw_scalar(BC, Scalar)}
+  {bc_scalarw(BC, Scalar)}
+  {bc_c_scalar(BC, Scalar)}
+  {*(BC, Scalar)}
+{end loop scalar}
+
+{loop Phase}
+## Solid {P}{if phase_name(P)}: {_} {end if}
+{bc_ep_s(BC,P)}
+
+{BC_PSD_type(BC,P)}
+{BC_PSD_mean_dp(BC,P)}
+{BC_PSD_stdev(BC,P)}
+{BC_PSD_min_dp(BC,P)}
+{BC_PSD_max_dp(BC,P)}
+
+{bc_rop_s(BC,P)}
+{bc_volflow_s(BC,P)}
+{bc_massflow_s(BC,P)}
+{bc_t_s(BC,P)}
+{bc_u_s(BC,P)}
+{bc_v_s(BC,P)}
+{bc_w_s(BC,P)}
+
+{bc_theta_m(BC,P)}
+{bc_thetaw_m(BC,P)}
+{bc_hw_theta_m(BC,P)}
+{bc_c_theta_m(BC,P)}
+
+{bc_hw_s(BC,P)}
+{bc_uw_s(BC,P)}
+{bc_vw_s(BC,P)}
+{bc_ww_s(BC,P)}
+
+{bc_jj_ps(BC)}
+
+{bc_hw_t_s(BC,P)}
+{bc_tw_s(BC,P)}
+{bc_c_t_s(BC,P)}
+
+{loop species(P)}
+  {if bc_*(BC,P,S)} {_} {if species_name(P,s)}!  {_}{end if}{end if}
+{end loop species}
+
+{bc_pic_mi_const_statwt(BC,P)}
+{*(BC,P)}
+{end loop Phase}
+{bc_po_apply_to_des(BC)}
+{bc_mi_apply_to_des(BC)}
+{end loop BC}
+{end if BCs}
+
+
+
+{if PSs}
+#_______________________________________________________________________
+# Point sources
+
+{loop PS}
+{ps_x_w(PS)}
+{ps_x_e(PS)}
+{ps_y_s(PS)}
+{ps_y_n(PS)}
+{ps_z_b(PS)}
+{ps_z_t(PS)}
+
+## Fluid Phase {if phase_name(0)}: {_} {end if}
+{ps_massflow_g(PS)}
+{ps_t_g(PS)}
+{ps_u_g(PS)}
+{ps_v_g(PS)}
+{ps_w_g(PS)}
+
+{loop species(0)}
+  {if ps_*(PS,S)} {_} {if species_name(s)}!  {_}{end if}{end if}
+{end loop species}
+
+{loop phase}
+## Solid {P}{if phase_name(P)}: {_} {end if}
+{ps_massflow_s(PS, P)}
+{ps_t_s(PS, P)}
+{ps_u_s(PS, P)}
+{ps_v_s(PS, P)}
+{ps_w_s(PS, P)}
+
+{loop species(P)}
+   {if ps_*(PS, P, S)} {_} {if species_name(P,s)}!  {_}{end if}{end if}
+{end loop species}
+
+{end loop phase}
+{*(PS)}
+
+{end loop PS}
+{end if PSs}
+
+
+
+{if ISs}
+#_______________________________________________________________________
+# Internal surfaces {_}
+
+{loop IS}
+# Internal surface {IS}{if region_name(IS)}: {_} {end if}
+{is_type(IS)}
+{is_x_w(IS)}
+{is_x_e(IS)}
+{is_y_s(IS)}
+{is_y_n(IS)}
+{is_z_b(IS)}
+{is_z_t(IS)}
+
+{is_pc(IS,1)}
+{is_pc(IS,2)}
+{loop phase}
+{is_vel_s(IS,P)}
+{*(IS,P)}
+{end loop phase}
+{*(IS)}
+{end loop IS}
+{end if ISs}
+
+
+#_______________________________________________________________________
+# Chemistry solver
+
+{use_rrates}
+
+{stiff_chemistry}
+{stiff_chem_max_steps}
+
+
+#_______________________________________________________________________
+# Numerics
+
+{detect_stall}
+{max_nit}
+
+{norm_g}
+{ppg_den}
+{norm_s}
+{epp_den}
+
+{tol_resid}
+{tol_resid_t}
+{tol_resid_x}
+{tol_resid_th}
+{tol_resid_k_epsilon}
+{tol_resid_scalar}
+
+{tol_diverge}
+
+{dil_ep_s}
+{zero_ep_s}
+{zero_x_gs}
+
+{tmin}
+{tmax}
+
+{loop eq}
+  {ur_fac(eq)}
+  {leq_it(eq)}
+  {leq_method(eq)}
+  {leq_sweep(eq)}
+  {leq_tol(eq)}
+  {leq_pc(eq)}
+  {discretize(eq)}
+
+{end loop eq}
+
+{max_inlet_vel_fac}
+{ur_f_gs}
+{ur_kth_sml}
+
+{def_cor}
+{cn_on}
+
+{chi_scheme}
+{do_transpose}
+{icheck_bicgs}
+{is_serial}
+{opt_parallel}
+{use_doloop}
+
+{category numerical}
+
+
+
+#_______________________________________________________________________
+# Output
+
+{res_dt}
+{res_backups}
+{res_backup_dt}
+
+{print_des_data}
+{vtp_dir}
+{des_output_type}
+{write_part_out}
+{part_out_zero_vel}
+
+
+{part_out_x_min}
+{part_out_x_max}
+{part_out_x_exclude}
+
+{part_out_y_min}
+{part_out_y_max}
+{part_out_y_exclude}
+
+{part_out_z_min}
+{part_out_z_max}
+{part_out_z_exclude}
+
+{part_out_phase}
+
+{part_out_diameter_min}
+{part_out_diameter_max}
+{part_out_diameter_exclude}
+
+{part_out_density_min}
+{part_out_density_max}
+{part_out_density_exclude}
+
+{part_out_u_min}
+{part_out_u_max}
+{part_out_u_exclude}
+
+{part_out_v_min}
+{part_out_v_max}
+{part_out_v_exclude}
+
+{part_out_w_min}
+{part_out_w_max}
+{part_out_w_exclude}
+
+{part_out_temp_min}
+{part_out_temp_max}
+{part_out_temp_exclude}
+
+{part_out_x_s_min}
+{part_out_x_s_max}
+{part_out_x_s_exclude}
+
+{part_out_usr_var_min}
+{part_out_usr_var_max}
+{part_out_usr_var_exclude}
+
+{part_in_x_min}
+{part_in_x_max}
+{part_in_x_exclude}
+
+{part_in_y_min}
+{part_in_y_max}
+{part_in_y_exclude}
+
+{part_in_z_min}
+{part_in_z_max}
+{part_in_z_exclude}
+
+{part_in_phase}
+
+{part_in_diameter_min}
+{part_in_diameter_max}
+{part_in_diameter_exclude}
+
+{part_in_density_min}
+{part_in_density_max}
+{part_in_density_exclude}
+
+{part_in_u_min}
+{part_in_u_max}
+{part_in_u_exclude}
+
+{part_in_v_min}
+{part_in_v_max}
+{part_in_v_exclude}
+
+{part_in_w_min}
+{part_in_w_max}
+{part_in_w_exclude}
+
+{part_in_temp_min}
+{part_in_temp_max}
+{part_in_temp_exclude}
+
+{part_in_x_s_min}
+{part_in_x_s_max}
+{part_in_x_s_exclude}
+
+{part_in_usr_var_min}
+{part_in_usr_var_max}
+{part_in_usr_var_exclude}
+
+{bdist_io}
+{bstart_with_one_res}
+
+{nrr}
+
+{loop sp}
+  {spx_dt(sp)}
+{end loop sp}
+
+{phip_out_jj}
+
+{group_resid}
+
+{if residuals}
+# Residuals
+{loop res}
+  {*(res)}
+{end loop res}
+{end if}
+
+{full_log}
+{nlog}
+{out_dt}
+
+{report_solid_inventory}
+{report_solid_inventory_dt}
+{breakdown_solid_inventory_by_phase}
+{report_mass_balance_dt}
+{report_neg_density}
+{report_neg_specificheat}
+
+{debug_des}
+{focus_particle}
+{des_report_mass_interp}
+{pic_report_seeding_stats}
+{pic_report_deletion_stats}
+
+
+{if vtks}
+#_______________________________________________________________________
+# VTK outputs
+
+{write_vtk_files}
+{time_dependent_filename}
+{vtu_dir}
+
+{loop v}
+# VTK output {v}{if region_name(v)}: {_} {end if}
+{vtk_x_w(v)}
+{vtk_x_e(v)}
+{vtk_y_s(v)}
+{vtk_y_n(v)}
+{vtk_z_b(v)}
+{vtk_z_t(v)}
+
+{vtk_filebase(v)}
+{vtk_dt(v)}
+
+{vtk_nxs(v)}
+{vtk_nys(v)}
+{vtk_nzs(v)}
+{vtk_slice_tol(v)}
+{vtk_cutcell_only(v)}
+
+{vtk_data(v)}
+{vtk_select_mode(v)}
+{loop geo}
+   {vtk_geo(v,geo)}
+{end loop geo}
+
+
+{vtk_domain_decomposition(v)}
+
+## Fluid Phase {if phase_name(0)}: {_} {end if}
+{vtk_ep_g(v)}
+{vtk_p_g(v)}
+{vtk_t_g(v)}
+{vtk_u_g(v)}
+{vtk_v_g(v)}
+{vtk_w_g(v)}
+{vtk_vel_g(v)}
+{vtk_mw_mix_g(v)}
+
+{loop species(0)}
+  {if vtk_x_g(v,s)} {_} {if species_name(s)}!  {_}{end if}{end if}
+{end loop species}
+
+{loop scalar}
+  {vtk_scalar(v,scalar)}
+  {vtk_*(v,scalar)}
+{end loop scalar}
+
+
+{vtk_k_turb_g(v)}
+{vtk_e_turb_g(v)}
+
+{vtk_vorticity(v)}
+{vtk_lambda_2(v)}
+
+{vtk_bc_id(v)}
+{vtk_dwall(v)}
+{vtk_ijk(v)}
+{vtk_normal(v)}
+
+{vtk_dbg_file(v)}
+{loop idx}
+{vtk_debug(v, idx)}
+{end loop}
+{vtk_facet_count_des(v)}
+{vtk_nb_facet_des(v)}
+
+{vtk_partition(v)}
+
+{loop Phase}
+## Solid {P}{if phase_name(P)}: {_} {end if}
+{vtk_ep_s(v,p)}
+{vtk_ro_s(v,p)}
+{vtk_rop_s(v,p)}
+{vtk_u_s(v,p)}
+{vtk_v_s(v,p)}
+{vtk_w_s(v,p)}
+{vtk_vel_s(v,p)}
+{vtk_p_s(v,p)}
+{vtk_t_s(v,p)}
+{vtk_theta_m(v,p)}
+
+{loop Species(P)}
+  {if vtk_x_s(v, P, s)}  {_} {if species_name(P,s)}!  {_}{end if}{end if}
+{end loop species}
+
+
+{vtk_part_phase(v,p)}
+
+{end loop Phase}
+
+{vtk_p_star(v)}
+
+{vtk_part_diameter(v)}
+{vtk_part_cgp_stat_wt(v)}
+{vtk_part_physical_diameter(v)}
+{vtk_part_vel(v)}
+{vtk_part_angular_vel(v)}
+{vtk_part_orientation(v)}
+{vtk_part_temp(v)}
+
+{loop Des_species}
+  {vtk_part_x_s(v,Des_species)}
+{end loop Des_species}
+
+## Reaction rates (cell data)
+{loop rate}
+  {vtk_fluid_rrate(v,rate)}
+{end loop rate}
+
+## Reaction rates (particle/parcel data converted to cell data)
+{loop rate}
+  {vtk_des_rrate(v,rate)}
+{end loop rate}
+
+{loop usr_var}
+  {vtk_part_usr_var(v,usr_var)}
+{end loop usr_var}
+
+{vtk_part_density(v)}
+{vtk_part_cohesion(v)}
+{vtk_part_rank(v)}
+{vtk_part_phase_id(v)}
+{vtk_part_id(v)}
+{vtk_part_residence_time(v)}
+
+## Reaction rates (particle/parcel data)
+{loop rate}
+  {vtk_part_rrate(v,rate)}
+{end loop rate}
+
+{frame(v)}
+
+{loop rate}
+  {vtk_rrate(v,rate)}
+  {vtk_rrate_label(v,rate)}
+  {*(v,rate)}
+{end loop rate}
+
+{end loop v}
+
+{vtk_part_x_s}
+
+
+{end if vtks}
+
+
+{if monitors}
+#_______________________________________________________________________
+# Monitors
+
+{loop monitor}
+# Monitor {m}{if region_name(m)}: {_} {end if}
+{monitor_name(m)}
+{monitor_type(m)}
+{monitor_dt(m)}
+
+{monitor_x_w(m)}
+{monitor_x_e(m)}
+{monitor_y_s(m)}
+{monitor_y_n(m)}
+{monitor_z_b(m)}
+{monitor_z_t(m)}
+
+## Fluid Phase {if phase_name(0)}: {_} {end if}
+{monitor_ep_g(m)}
+{monitor_ro_g(m)}
+{monitor_p_g(m)}
+{monitor_t_g(m)}
+{monitor_u_g(m)}
+{monitor_v_g(m)}
+{monitor_w_g(m)}
+
+{monitor_mw_mix_g(m)}
+
+{monitor_k_turb_g(m)}
+{monitor_e_turb_g(m)}
+
+{loop species(0)}
+  {if monitor_*(m,s)} {_} {if species_name(s)}!  {_}{end if}{end if}
+{end loop species}
+
+{loop scalar}
+  {monitor_scalar(m,scalar)}
+{end loop scalar}
+
+{loop rate}
+  {monitor_rrate(m,rate)}
+{end loop rate}
+
+{monitor_p_star(m)}
+{loop Phase}
+## Solid {P}{if phase_name(P)}: {_} {end if}
+{monitor_ep_s(m,p)}
+{monitor_ro_s(m,p)}
+{monitor_rop_s(m,p)}
+{monitor_p_s(m,p)}
+{monitor_u_s(m,p)}
+{monitor_v_s(m,p)}
+{monitor_w_s(m,p)}
+{monitor_t_s(m,p)}
+{monitor_theta_m(m,p)}
+
+{monitor_part_phase(m,p)}
+
+{loop Species(P)}
+  {if monitor_*(m, p, s)} {_} {if species_name(p, s)}!  {_}{end if}{end if}
+{end loop species}
+
+{end loop Phase}
+
+{monitor_radius(m)}
+{monitor_pmass(m)}
+{monitor_pvol(m)}
+{monitor_ro_p(m)}
+{monitor_vel_x(m)}
+{monitor_vel_y(m)}
+{monitor_vel_z(m)}
+
+{monitor_rot_x(m)}
+{monitor_rot_y(m)}
+{monitor_rot_z(m)}
+
+{monitor_t_p(m)}
+
+{loop Species(P)}
+  {if monitor_*(m, s)} {_} {if species_name(p, s)}!  {_}{end if}{end if}
+{end loop species}
+
+## Reaction rates (cell data)
+{loop rate}
+  {monitor_fluid_rrate(m,rate)}
+{end loop rate}
+
+## Reaction rates (particle/parcel data converted to cell data)
+{loop rate}
+  {monitor_des_rrate(m,rate)}
+{end loop rate}
+
+## Reaction rates (particle/parcel data)
+{loop rate}
+  {monitor_part_rrate(m,rate)}
+{end loop rate}
+
+{loop usr_var}
+  {monitor_des_usr_var(m,usr_var)}
+{end loop usr_var}
+
+{monitor_part_residence_time(m)}
+
+{monitor_*(m)}
+
+{end loop monitor}
+{end if monitors}
+
+
+{if category UDF}
+#_______________________________________________________________________
+# UDF control
+
+{call_usr}
+{loop equation}
+{call_usr_source(eq)}
+{end loop equation}
+{loop User-defined}
+  {c(User-defined)}
+  {c_name(User-defined)}
+{end loop User-defined}
+
+{usr_rog}
+{usr_cpg}
+{usr_kg}
+{usr_difg}
+{usr_mug}
+{des_usr_var_size}
+
+{loop Phase}
+{usr_ros(P)}
+{usr_cps(P)}
+{usr_ks(P)}
+{usr_difs(P)}
+{usr_mus(P)}
+
+{usr_gama(P)}
+{usr_fgs(P)}
+{usr_fss(P)}
+
+{end loop Phase}
+
+{loop Usr}
+{usr_dt(Usr)}
+{usr_x_w(Usr)}
+{usr_x_e(Usr)}
+{usr_y_s(Usr)}
+{usr_y_n(Usr)}
+{usr_z_b(Usr)}
+{usr_z_t(Usr)}
+
+{usr_i_w(Usr)}
+{usr_i_e(Usr)}
+{usr_j_s(Usr)}
+{usr_j_n(Usr)}
+{usr_k_b(Usr)}
+{usr_k_t(Usr)}
+
+{usr_type(Usr)}
+
+{usr_var(Usr)}
+{usr_format(Usr)}
+{usr_ext(Usr)}
+
+{end loop Usr}
+
+{end if}
+
+#_______________________________________________________________________
+# Parallelization
+
+{nodesi}
+{nodesj}
+{nodesk}
+
+{enable_dmp_log}
+{solver_statistics}
+
+{dbgprn_layout}
+{debug_resid}
+
+#_______________________________________________________________________
+# Batch
+
+{chk_batchq_end!}
+{batch_wallclock!}
+{term_buffer!}
+
+#_______________________________________________________________________
+# Dashboard
+
+{write_dashboard!}
+{f_dashboard}
+
+#_______________________________________________________________________
+# Unsupported keys
+
+{call_dqmom}
+{aggregation_eff}
+{breakage_eff}
+
+{if category unknown}
+#_______________________________________________________________________
+# Undocumented keys
+#
+  {_}    #!!!!
+{end if}
+
+{if *}
+#_______________________________________________________________________
+# Miscellaneous keys
+#
+  {_}
+{end if}
+#_______________________________________________________________________
+# End of keywords
+#

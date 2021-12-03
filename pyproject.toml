@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "mfix"
+version = "21.3.2"
+description = "MFiX computational fluid dynamics software"
+authors = ["Multiflow Science Group at NETL"]
+packages = [
+  {include="mfixgui"},
+]
+include = [
+  "CMakeLists.txt",
+  "model/**/*",
+  "queue_templates/**/*",
+  "tests/**/*",
+  "tutorials/**/*",
+  "legacy_tests/**/*",
+  "legacy_tutorials/**/*",
+  "post_mfix/*"
+]
+
+[tool.poetry.dependencies]
+Splipy = "^1"
+flask = "^1"
+gitpython = "^3"
+matplotlib = "^3"
+numpy = "1.19.3"
+packaging = "^20.9"
+psutil = "5.8.*"
+pyqt5 = "5.15.*"
+pyqtgraph = "^0.11"
+python = "^3.8"
+ffmpeg-python = "*"
+pyyaml = "^5"
+qtpy = "^1"
+requests = "^2"
+simplejson = "^3"
+vtk = ">= 8"
+
+[tool.poetry.dev-dependencies]
+Sphinx-Substitution-Extensions = "^2020"
+cmake = "^3"
+ninja = "^1.10"
+codespell = "^1"
+pylint = "2.10"
+pytest = "^6"
+sphinx-rtd-theme = "^0"
+
+[tool.poetry.scripts]
+build_mfixsolver = "mfixgui.build_mfixsolver:main"
+create_geometry = "mfixgui.vtk_widgets.geometry_engine:main"
+mfix = "mfixgui.gui:main"
+mfixversioninfo = "mfixgui.version_info:main"
+
+[tool.black]
+skip-string-normalization = true
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"

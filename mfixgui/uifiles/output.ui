@@ -1,0 +1,4634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>output</class>
+ <widget class="QWidget" name="output">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>482</width>
+    <height>674</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="top_tab_frame" native="true">
+     <property name="styleSheet">
+      <string notr="true">QPushButton:hover {
+    color:#64B5F6;;
+    background-color: transparent;
+}
+QPushButton:pressed {
+    color: #64B5F6;
+    background-color: transparent;
+}
+QPushButton:checked {
+    font: bold;
+    background-color: transparent;
+}
+</string>
+     </property>
+     <layout class="QGridLayout" name="gridlayout_tab_btns">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>5</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>5</number>
+      </property>
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushbutton_vtk">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>VTK</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QPushButton" name="pushbutton_residuals">
+        <property name="text">
+         <string>Residuals</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushbutton_basic">
+        <property name="text">
+         <string>Basic</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QPushButton" name="pushbutton_usr">
+        <property name="text">
+         <string>User</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QPushButton" name="pushbutton_log">
+        <property name="text">
+         <string>Log</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="pushbutton_spx">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>SPx</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="0">
+       <widget class="Line" name="line_output">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>3</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>3</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget{
+  background-color: #64B5F6;
+  border-color: #64B5F6;
+}</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QStackedWidget" name="stackedwidget_output">
+     <property name="font">
+      <font>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_basic">
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>5</number>
+       </property>
+       <property name="topMargin">
+        <number>5</number>
+       </property>
+       <property name="rightMargin">
+        <number>5</number>
+       </property>
+       <property name="bottomMargin">
+        <number>5</number>
+       </property>
+       <item row="4" column="0" colspan="3">
+        <widget class="QGroupBox" name="groupbox_write_part_out">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Save particle positions at end of run</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_26">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="CheckBox" name="checkbox_keyword_part_out_zero_vel">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Reset particle velocities to zero in particle_output.dat</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QGroupBox" name="groupbox_filter_particles">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="title">
+             <string>Filter saved particle data</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_30" columnstretch="0,0,0,0,0">
+             <property name="leftMargin">
+              <number>5</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>4</number>
+             </property>
+             <item row="5" column="2">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_density_min">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="4">
+              <widget class="QLabel" name="label_filter_u_units">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>m/s</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QComboBox" name="combobox_filter_v">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Include</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Exclude</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QComboBox" name="combobox_filter_w">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Include</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Exclude</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="label_filter_max">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Max</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QComboBox" name="combobox_filter_z">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Include</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Exclude</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="8" column="3">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_w_max">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0">
+              <widget class="QComboBox" name="combobox_filter_temp">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Include</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Exclude</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QLabel" name="label_filter_x_units">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>m</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QLabel" name="label_filter_temp">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Temperature</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="3">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_temp_max">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="2">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_v_min">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLabel" name="label_filter_y">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Y coordinate</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="2">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_diameter_min">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="3">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_z_max">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="2">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_temp_min">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="3">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_u_max">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QComboBox" name="combobox_filter_u">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Include</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Exclude</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="3">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_diameter_max">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="3">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_v_max">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="2">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_u_min">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QLabel" name="label_filter_v">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Y-axial velocity</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLabel" name="label_filter_min">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Min</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="4">
+              <widget class="QLabel" name="label_filter_w_units">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>m/s</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="2">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_w_min">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="4">
+              <widget class="QLabel" name="label_filter_y_units">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>m</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QComboBox" name="combobox_filter_y">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Include</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Exclude</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_z_min">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QLabel" name="label_filter_diameter">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Diameter</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="4">
+              <widget class="QLabel" name="label_filter_temp_units">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>K</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QComboBox" name="combobox_filter_x">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Include</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Exclude</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="5" column="4">
+              <widget class="QLabel" name="label_filter_density_units">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>kg/m³</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_y_min">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_y_max">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLabel" name="label_filter_density">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Density</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_x_min">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_filter_x">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>X coordinate</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="4">
+              <widget class="QLabel" name="label_filter_v_units">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>m/s</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="3">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_density_max">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="4">
+              <widget class="QLabel" name="label_filter_z_units">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>m</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="LineEdit" name="lineedit_keyword_part_out_x_max">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLabel" name="label_filter_z">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Z coordinate</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLabel" name="label_filter_u">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>X-axial velocity</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QComboBox" name="combobox_filter_diameter">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Include</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Exclude</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="4">
+              <widget class="QLabel" name="label_filter_diameter_units">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>m</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLabel" name="label_filter_w">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Z-axial velocity</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QComboBox" name="combobox_filter_density">
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Include</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Exclude</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="5" column="0">
+        <widget class="CheckBox" name="checkbox_spx">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>Write legacy S̲ingle P̲recision files (SPx)</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_res_dt_units">
+         <property name="text">
+          <string>s</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="3">
+        <widget class="QGroupBox" name="groupbox_write_vtk_files">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Write VTK output files (VTU/VTP)</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_vtu_dir">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>VTK directory</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="CheckBox" name="checkbox_keyword_time_dependent_filename">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Enable time-dependent VTK filename</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_vtu_dir">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="2">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_res_dt">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Restart/checkpoint write interval</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <layout class="QGridLayout" name="gridlayout_res_backup">
+         <item row="0" column="1">
+          <widget class="LineEdit" name="lineedit_keyword_res_backup_dt"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_res_backup_dt">
+           <property name="text">
+            <string>    Restart backup interval</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="LineEdit" name="lineedit_keyword_res_backups"/>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_res_backup_dt_units">
+           <property name="text">
+            <string>s</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_res_backups">
+           <property name="text">
+            <string>    Restart backup count</string>
+           </property>
+           <property name="margin">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="1">
+        <widget class="LineEdit" name="lineedit_keyword_res_dt"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_vtk">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QSplitter" name="splitter">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <widget class="QWidget" name="top_frame_vtk" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>100</height>
+           </size>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QWidget" name="frame_add_delete" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <item>
+                 <widget class="QToolButton" name="toolbutton_add">
+                  <property name="toolTip">
+                   <string>Define new VTK output region</string>
+                  </property>
+                  <property name="text">
+                   <string>Add</string>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="toolbutton_delete">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>Delete VTK output definition</string>
+                  </property>
+                  <property name="text">
+                   <string>Delete</string>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tablewidget_vtk_regions">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+             <attribute name="horizontalHeaderHighlightSections">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>Region</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Filename</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Output type</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>ID</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="bottom_frame_vtk" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_12">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="1" column="0">
+            <widget class="QStackedWidget" name="stackedwidget_cell_particle">
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="subpage_cell">
+              <layout class="QGridLayout" name="gridLayout_7">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item row="3" column="0">
+                <layout class="QHBoxLayout" name="bottom_hbox_layout">
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                 <item>
+                  <widget class="QWidget" name="bottom_tab_frame" native="true">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton:hover {color:#64B5F6; background-color: transparent;}
+QPushButton:pressed { color: #64B5F6; background-color: transparent; }
+QPushButton:checked { font: bold; background-color: transparent; }
+      </string>
+                   </property>
+                   <layout class="QGridLayout" name="bottom_tab_layout">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <item row="1" column="0">
+                     <widget class="Line" name="line_subtab">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>3</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>3</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QWidget{
+  background-color: #64B5F6;
+  border-color: #64B5F6;
+}</string>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QPushButton" name="pushbutton_fluid">
+                      <property name="font">
+                       <font>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>Fluid</string>
+                      </property>
+                      <property name="flat">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QPushButton" name="pushbutton_scalar">
+                      <property name="font">
+                       <font>
+                        <weight>50</weight>
+                        <bold>false</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>Scalar</string>
+                      </property>
+                      <property name="flat">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="2">
+                     <widget class="QPushButton" name="pushbutton_reactions">
+                      <property name="text">
+                       <string>Reactions</string>
+                      </property>
+                      <property name="flat">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="3">
+                     <widget class="QPushButton" name="pushbutton_other">
+                      <property name="font">
+                       <font>
+                        <weight>50</weight>
+                        <bold>false</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>Other</string>
+                      </property>
+                      <property name="flat">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item row="4" column="0">
+                <widget class="QScrollArea" name="scrollarea_cell">
+                 <property name="styleSheet">
+                  <string notr="true">QWidget#scrollarea_cell_contents{background-color:white}</string>
+                 </property>
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollarea_cell_contents">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>480</width>
+                    <height>357</height>
+                   </rect>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_11">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <item row="0" column="0">
+                    <widget class="QStackedWidget" name="stackedwidget_cell">
+                     <property name="font">
+                      <font>
+                       <weight>50</weight>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="currentIndex">
+                      <number>0</number>
+                     </property>
+                     <widget class="QWidget" name="subpage_cell_fluid">
+                      <layout class="QGridLayout" name="gridLayout_8">
+                       <property name="leftMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item row="0" column="0">
+                        <widget class="QGroupBox" name="groupbox_cell_fluid">
+                         <property name="font">
+                          <font>
+                           <weight>50</weight>
+                           <bold>false</bold>
+                          </font>
+                         </property>
+                         <property name="title">
+                          <string/>
+                         </property>
+                         <property name="flat">
+                          <bool>true</bool>
+                         </property>
+                         <property name="checkable">
+                          <bool>false</bool>
+                         </property>
+                         <layout class="QGridLayout" name="layout_cell_fluid">
+                          <property name="leftMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="horizontalSpacing">
+                           <number>0</number>
+                          </property>
+                          <property name="verticalSpacing">
+                           <number>2</number>
+                          </property>
+                          <item row="0" column="0" colspan="2">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_ep_g_args_VTK">
+                            <property name="text">
+                             <string>Volume fraction</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="0" colspan="2">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_p_g_args_VTK">
+                            <property name="text">
+                             <string>Pressure</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="0" colspan="2">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_vel_g_args_VTK">
+                            <property name="text">
+                             <string>Velocity vector</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="0" colspan="2">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_u_g_args_VTK">
+                            <property name="text">
+                             <string>Velocity x-component</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="4" column="0" colspan="2">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_v_g_args_VTK">
+                            <property name="text">
+                             <string>Velocity y-component</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="5" column="0" colspan="2">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_w_g_args_VTK">
+                            <property name="text">
+                             <string>Velocity z-component</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="6" column="0" colspan="2">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_t_g_args_VTK">
+                            <property name="text">
+                             <string>Temperature</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="7" column="0" colspan="2">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_mw_mix_g_args_VTK">
+                            <property name="text">
+                             <string>Mixture molecular weight</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="8" column="0" colspan="2">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_k_turb_g_args_VTK">
+                            <property name="text">
+                             <string>Turbulent kinetic energy</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="9" column="0" colspan="2">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_e_turb_g_args_VTK">
+                            <property name="text">
+                             <string>Turbulent dissipation</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <spacer name="verticalSpacer_5">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="subpage_cell_dummy_solids_L">
+                      <layout class="QGridLayout" name="gridLayout_15">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_dummy_solids_L">
+                         <property name="styleSheet">
+                          <string notr="true">background-color:white</string>
+                         </property>
+                         <property name="text">
+                          <string>LEFT</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="subpage_cell_solids">
+                      <layout class="QGridLayout" name="gridLayout_17">
+                       <property name="leftMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item row="0" column="0">
+                        <widget class="QGroupBox" name="groupbox_cell_solids">
+                         <property name="title">
+                          <string/>
+                         </property>
+                         <property name="flat">
+                          <bool>true</bool>
+                         </property>
+                         <layout class="QGridLayout" name="gridLayout_6">
+                          <property name="leftMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="horizontalSpacing">
+                           <number>0</number>
+                          </property>
+                          <property name="verticalSpacing">
+                           <number>2</number>
+                          </property>
+                          <item row="3" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_v_s_args_VTK_P">
+                            <property name="text">
+                             <string>Velocity y-component</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="8" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_t_s_args_VTK_P">
+                            <property name="text">
+                             <string>Temperature</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="9" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_theta_m_args_VTK_P">
+                            <property name="text">
+                             <string>Granular temperature</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_u_s_args_VTK_P">
+                            <property name="text">
+                             <string>Velocity x-component</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_vel_s_args_VTK_P">
+                            <property name="text">
+                             <string>Velocity vector</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="4" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_w_s_args_VTK_P">
+                            <property name="text">
+                             <string>Velocity z-component</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="7" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_rop_s_args_VTK_P">
+                            <property name="text">
+                             <string>Bulk density</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_p_s_args_VTK_P">
+                            <property name="text">
+                             <string>Solids pressure</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="6" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_ro_s_args_VTK_P">
+                            <property name="text">
+                             <string>Material density</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="5" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_ep_s_args_VTK_P">
+                            <property name="text">
+                             <string>Volume fraction</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <spacer name="verticalSpacer_6">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="subpage_dummy_solids_R">
+                      <layout class="QGridLayout" name="gridLayout_16">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_dummy_solids_R">
+                         <property name="text">
+                          <string>RIGHT</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                         </property>
+                         <property name="margin">
+                          <number>0</number>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="subpage_scalar">
+                      <layout class="QGridLayout" name="gridLayout_20">
+                       <property name="leftMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item row="1" column="1">
+                        <spacer name="verticalSpacer_7">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item row="0" column="0" colspan="2">
+                        <widget class="QGroupBox" name="groupbox_cell_scalar">
+                         <property name="title">
+                          <string/>
+                         </property>
+                         <property name="flat">
+                          <bool>true</bool>
+                         </property>
+                         <layout class="QGridLayout" name="gridLayout_22">
+                          <property name="leftMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="horizontalSpacing">
+                           <number>0</number>
+                          </property>
+                          <property name="verticalSpacing">
+                           <number>2</number>
+                          </property>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="subpage_cell_reactions">
+                      <layout class="QGridLayout" name="gridLayout_27">
+                       <property name="leftMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item row="0" column="0" colspan="2">
+                        <widget class="QGroupBox" name="groupbox_cell_reactions">
+                         <property name="title">
+                          <string/>
+                         </property>
+                         <property name="flat">
+                          <bool>true</bool>
+                         </property>
+                         <layout class="QGridLayout" name="gridLayout_23">
+                          <property name="leftMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="horizontalSpacing">
+                           <number>0</number>
+                          </property>
+                          <property name="verticalSpacing">
+                           <number>2</number>
+                          </property>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item row="2" column="1">
+                        <spacer name="verticalSpacer_8">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item row="1" column="0" colspan="2">
+                        <widget class="QGroupBox" name="groupbox_cell_reactions_deprecated">
+                         <property name="title">
+                          <string>Legacy VTK_RRATE (deprecated)</string>
+                         </property>
+                         <property name="flat">
+                          <bool>true</bool>
+                         </property>
+                         <layout class="QGridLayout" name="gridLayout_31">
+                          <property name="leftMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="horizontalSpacing">
+                           <number>5</number>
+                          </property>
+                          <property name="verticalSpacing">
+                           <number>2</number>
+                          </property>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="subpage_cell_other">
+                      <layout class="QGridLayout" name="gridLayout_17">
+                       <property name="leftMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item row="0" column="0">
+                        <widget class="QGroupBox" name="groupbox_cell_other">
+                         <property name="title">
+                          <string/>
+                         </property>
+                         <property name="flat">
+                          <bool>true</bool>
+                         </property>
+                         <layout class="QGridLayout" name="gridLayout_21">
+                          <property name="leftMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="horizontalSpacing">
+                           <number>0</number>
+                          </property>
+                          <property name="verticalSpacing">
+                           <number>2</number>
+                          </property>
+                          <item row="4" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_dwall_args_VTK">
+                            <property name="text">
+                             <string>Wall distance</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_partition_args_VTK">
+                            <property name="text">
+                             <string>Partition</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="5" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_ijk_args_VTK">
+                            <property name="text">
+                             <string>Cell index</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_vorticity_args_VTK">
+                            <property name="font">
+                             <font>
+                              <weight>50</weight>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Vorticity</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_bc_id_args_VTK">
+                            <property name="text">
+                             <string>Boundary condition ID</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="0">
+                           <widget class="CheckBox" name="checkbox_keyword_vtk_p_star_args_VTK">
+                            <property name="font">
+                             <font>
+                              <weight>50</weight>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Solids pressure (all phases)</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <spacer name="verticalSpacer_9">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>1</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_select_cell_data">
+                   <property name="font">
+                    <font>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Select cell data to write</string>
+                   </property>
+                   <property name="margin">
+                    <number>1</number>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="subpage_particle">
+              <layout class="QGridLayout" name="gridLayout_9">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item row="0" column="0">
+                <widget class="QScrollArea" name="scrollarea_particle">
+                 <property name="styleSheet">
+                  <string notr="true">QWidget#scrollarea_particle_contents{background-color:white}</string>
+                 </property>
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollarea_particle_contents">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>466</width>
+                    <height>441</height>
+                   </rect>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_13" columnstretch="0,1">
+                   <property name="leftMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_vtk_select_mode">
+                     <property name="font">
+                      <font>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Selection mode</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="ComboBox" name="combobox_vtk_select_mode">
+                     <item>
+                      <property name="text">
+                       <string>Particle center inside region</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Entire particle inside region</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Particle intersects region</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item row="1" column="0" colspan="2">
+                    <widget class="QGroupBox" name="groupbox_particle_data">
+                     <property name="font">
+                      <font>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="title">
+                      <string>Select particle data to write</string>
+                     </property>
+                     <property name="flat">
+                      <bool>true</bool>
+                     </property>
+                     <layout class="QGridLayout" name="gridLayout_10" columnstretch="0">
+                      <property name="leftMargin">
+                       <number>5</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>5</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="horizontalSpacing">
+                       <number>0</number>
+                      </property>
+                      <property name="verticalSpacing">
+                       <number>2</number>
+                      </property>
+                      <item row="9" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_physical_diameter_args_VTK">
+                        <property name="text">
+                         <string>Physical (real) particle diameter</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="13" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_phase_id_args_VTK">
+                        <property name="font">
+                         <font>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Phase ID</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_temp_args_VTK">
+                        <property name="font">
+                         <font>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Temperature</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_density_args_VTK">
+                        <property name="font">
+                         <font>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Density</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_angular_vel_args_VTK">
+                        <property name="font">
+                         <font>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Rotational velocity</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_cohesion_args_VTK">
+                        <property name="font">
+                         <font>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Cohesive force</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_orientation_args_VTK">
+                        <property name="font">
+                         <font>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Orientation</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="12" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_id_args_VTK">
+                        <property name="font">
+                         <font>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Global ID</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_vel_args_VTK">
+                        <property name="font">
+                         <font>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Translational velocity</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_diameter_args_VTK">
+                        <property name="font">
+                         <font>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Diameter</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="8" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_cgp_stat_wt_args_VTK">
+                        <property name="text">
+                         <string>Coarse-grained statistical weight</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="11" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_rank_args_VTK">
+                        <property name="font">
+                         <font>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>MPI rank</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="7" column="0">
+                       <widget class="CheckBox" name="checkbox_keyword_vtk_part_residence_time_args_VTK">
+                        <property name="text">
+                         <string>Residence time</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item row="3" column="0">
+                    <spacer name="spacer_particle_data">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="2" column="0" colspan="2">
+                    <widget class="QGroupBox" name="groupbox_select_particle_data">
+                     <property name="font">
+                      <font>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="title">
+                      <string>Filter particle data by phase</string>
+                     </property>
+                     <property name="flat">
+                      <bool>true</bool>
+                     </property>
+                     <layout class="QGridLayout" name="gridLayout_18">
+                      <property name="leftMargin">
+                       <number>5</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>5</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="horizontalSpacing">
+                       <number>0</number>
+                      </property>
+                      <property name="verticalSpacing">
+                       <number>2</number>
+                      </property>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="subpage_force_chain">
+              <layout class="QGridLayout" name="gridLayout_32">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="subpage_geometry">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_24">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item row="1" column="0">
+                <spacer name="spacer_geometry_data">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="0" column="0">
+                <widget class="QGroupBox" name="groupbox_geometry_data">
+                 <property name="title">
+                  <string>Select geometry data to write</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_25">
+                  <property name="leftMargin">
+                   <number>5</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>5</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="horizontalSpacing">
+                   <number>0</number>
+                  </property>
+                  <property name="verticalSpacing">
+                   <number>2</number>
+                  </property>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QWidget" name="cell_common" native="true">
+             <layout class="QGridLayout" name="gridlayout_cell_common">
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>5</number>
+              </property>
+              <property name="bottomMargin">
+               <number>5</number>
+              </property>
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <item row="6" column="0" colspan="4">
+               <widget class="CheckBox" name="checkbox_keyword_vtk_cutcell_only_args_VTK">
+                <property name="text">
+                 <string>Only save data in cut cells</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_vtk_filebase">
+                <property name="text">
+                 <string>Filename base</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" colspan="3">
+               <widget class="LineEdit" name="lineedit_keyword_vtk_filebase_args_VTK"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_vtk_dt">
+                <property name="text">
+                 <string>Write interval</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="LineEdit" name="lineedit_keyword_vtk_dt_args_VTK"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_vtk_nxs">
+                <property name="text">
+                 <string>Number of x-axis slices</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_vtk_nys">
+                <property name="text">
+                 <string>Number of y-axis slices</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_vtk_nzs">
+                <property name="text">
+                 <string>Number of z-axis slices</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1" colspan="3">
+               <widget class="LineEdit" name="lineedit_keyword_vtk_nxs_args_VTK"/>
+              </item>
+              <item row="3" column="1" colspan="3">
+               <widget class="LineEdit" name="lineedit_keyword_vtk_nys_args_VTK"/>
+              </item>
+              <item row="4" column="1" colspan="3">
+               <widget class="LineEdit" name="lineedit_keyword_vtk_nzs_args_VTK"/>
+              </item>
+              <item row="1" column="2" colspan="2">
+               <widget class="QLabel" name="label_vtk_dt_units">
+                <property name="text">
+                 <string>s</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_vtk_slice_tol">
+                <property name="text">
+                 <string>Slice tolerance</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1" colspan="3">
+               <widget class="LineEdit" name="lineedit_keyword_vtk_slice_tol_args_VTK"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_spx">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <property name="leftMargin">
+        <number>5</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>5</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0" colspan="2">
+        <widget class="QGroupBox" name="groupbox_spx">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Write intervals</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <item row="8" column="2">
+           <widget class="QLabel" name="label_spx_dt_units_args_9">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_spx_dt_args_6">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_spx_dt_args_7">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Mass fractions</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_spx_dt_args_10">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Reaction rates</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_spx_dt_args_10">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="2">
+           <widget class="QLabel" name="label_spx_dt_units_args_10">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="label_spx_dt_args_11">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Turbulence quantities</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="2">
+           <widget class="QLabel" name="label_spx_dt_units_args_11">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_spx_dt_args_8">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Granular temperature</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_spx_dt_args_8">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="2">
+           <widget class="QLabel" name="label_spx_dt_units_args_8">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_spx_dt_args_9">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>User defined scalars</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_spx_dt_args_2">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="label_spx_dt_units_args_2">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_spx_dt_args_3">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Fluid velocity</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_spx_dt_args_1">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Fluid volume fraction</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_spx_dt_args_1">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_spx_dt_args_7">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QLabel" name="label_spx_dt_units_args_6">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_spx_dt_args_9">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="2">
+           <widget class="QLabel" name="label_spx_dt_units_args_7">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLabel" name="label_spx_dt_units_args_5">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_spx_dt_args_6">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Temperature</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_spx_dt_args_3">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="label_spx_dt_units_args_3">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_spx_dt_args_4">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Solids velocity</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_spx_dt_args_4">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QLabel" name="label_spx_dt_units_args_4">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_spx_dt_args_5">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_spx_dt_args_5">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Solids bulk density</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_spx_dt_args_11">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_spx_dt_units_args_1">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_spx_dt_args_2">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Fluid and solids pressure</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QGroupBox" name="groupbox_print_des_data">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Write ASCII particle data</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>6</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_des_output_type">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Particle data format</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="ComboBox" name="combobox_des_output_type">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <item>
+             <property name="text">
+              <string>ParaView - VTK/.vtp</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tecplot - .dat</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="LineEdit" name="lineedit_keyword_vtp_dir">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" rowspan="2">
+           <widget class="QLabel" name="label_vtp_dir">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>VTP directory</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_residuals">
+      <layout class="QGridLayout" name="gridLayout_28">
+       <property name="leftMargin">
+        <number>5</number>
+       </property>
+       <property name="topMargin">
+        <number>5</number>
+       </property>
+       <property name="rightMargin">
+        <number>5</number>
+       </property>
+       <property name="bottomMargin">
+        <number>5</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="CheckBox" name="checkbox_keyword_full_log">
+         <property name="text">
+          <string>Display residuals</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="CheckBox" name="checkbox_keyword_group_resid">
+         <property name="text">
+          <string>Group residuals</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QGroupBox" name="groupbox_residuals">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Residuals</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_19">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="ComboBox" name="combobox_resid_string_1">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="ComboBox" name="combobox_resid_string_7">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="ComboBox" name="combobox_resid_string_2">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="ComboBox" name="combobox_resid_string_8">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="ComboBox" name="combobox_resid_string_5">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="ComboBox" name="combobox_resid_string_4">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="ComboBox" name="combobox_resid_string_6">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="ComboBox" name="combobox_resid_string_3">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupbox_save_residuals">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Save residuals</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Filename</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="LineEdit" name="lineedit_residuals_filename">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_15">
+            <item>
+             <widget class="QRadioButton" name="radiobutton_residuals_overwrite">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Overwrite</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radiobutton_residuals_append">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Append</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radiobutton_residuals_increment">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Increment</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_7">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <spacer name="verticalSpacer_12">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_log">
+      <layout class="QGridLayout" name="gridLayout_14" columnstretch="0,0,0">
+       <property name="leftMargin">
+        <number>5</number>
+       </property>
+       <property name="topMargin">
+        <number>5</number>
+       </property>
+       <property name="rightMargin">
+        <number>5</number>
+       </property>
+       <property name="bottomMargin">
+        <number>5</number>
+       </property>
+       <item row="5" column="0" colspan="2">
+        <widget class="CheckBox" name="checkbox_keyword_report_solid_inventory">
+         <property name="text">
+          <string>Report solid inventory</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="LineEdit" name="lineedit_keyword_out_dt"/>
+       </item>
+       <item row="13" column="0" colspan="3">
+        <widget class="QGroupBox" name="groupbox_save_nit">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Save NIT</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Filename</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="LineEdit" name="lineedit_nit_filename">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <item>
+             <widget class="QRadioButton" name="radiobutton_nit_overwrite">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Overwrite</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radiobutton_nit_append">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Append</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radiobutton_nit_increment">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Increment</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="3">
+        <widget class="CheckBox" name="checkbox_keyword_report_neg_density">
+         <property name="text">
+          <string>Report negative density</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0" rowspan="2" colspan="3">
+        <widget class="QGroupBox" name="groupbox_save_solid_inventory">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Save solid inventory</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Filename</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="LineEdit" name="lineedit_solid_inventory_filename">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QRadioButton" name="radiobutton_solid_inventory_overwrite">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Overwrite</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radiobutton_solid_inventory_append">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Append</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radiobutton_solid_inventory_increment">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Increment</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="11" column="0" colspan="3">
+        <widget class="QGroupBox" name="groupbox_save_solver_output">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Save solver output</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Filename</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="LineEdit" name="lineedit_solver_output_filename">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QRadioButton" name="radiobutton_solver_output_overwrite">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Overwrite</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radiobutton_solver_output_append">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Append</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radiobutton_solver_output_increment">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Increment</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_nlog">
+         <property name="text">
+          <string>Number of time steps for .LOG file update</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="2">
+        <widget class="LineEdit" name="lineedit_keyword_nlog"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_out_dt">
+         <property name="text">
+          <string>Interval for .OUT file update</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="3">
+        <widget class="CheckBox" name="checkbox_keyword_write_dashboard">
+         <property name="text">
+          <string>Write DASHBOARD.TXT</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="3">
+        <widget class="CheckBox" name="checkbox_keyword_enable_dmp_log">
+         <property name="text">
+          <string>Distributed logging</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="label_out_dt_units">
+         <property name="text">
+          <string>s</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0" colspan="3">
+        <widget class="QGroupBox" name="groupbox_save_dt">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Save DT</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <widget class="QLabel" name="label_dt_filename">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Filename</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="LineEdit" name="lineedit_dt_filename">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_13">
+            <item>
+             <widget class="QRadioButton" name="radiobutton_dt_overwrite">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Overwrite</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radiobutton_dt_append">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Append</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radiobutton_dt_increment">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Increment</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="14" column="0">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="8" column="0">
+        <widget class="CheckBox" name="checkbox_keyword_breakdown_solid_inventory_by_phase">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Break down solid inventory by phase</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="3">
+        <widget class="QWidget" name="widget_solid_inventory_frequency" native="true">
+         <layout class="QHBoxLayout" name="layout_solid_inventory_frequency">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_report_solid_inventory_dt">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Solid inventory frequency</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="LineEdit" name="lineedit_keyword_report_solid_inventory_dt">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_report_solid_inventory_dt_units">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_usr">
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QSplitter" name="splitter_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <widget class="QWidget" name="top_frame_usr" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>100</height>
+           </size>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_10">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_9" stretch="0,0">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QWidget" name="widget_3" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_16">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QToolButton" name="toolbutton_usr_add">
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add a new user-defined output&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="text">
+                   <string>Add</string>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="toolbutton_usr_delete">
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete user-defined output&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="text">
+                   <string>Delete</string>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="toolbutton_usr_up">
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Move selected row up&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="text">
+                   <string>Up</string>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="toolbutton_usr_down">
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Move selected row down&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="text">
+                   <string>Down</string>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_8">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>345</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="tablewidget_usr_regions">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>100</height>
+                </size>
+               </property>
+               <property name="selectionMode">
+                <enum>QAbstractItemView::SingleSelection</enum>
+               </property>
+               <property name="selectionBehavior">
+                <enum>QAbstractItemView::SelectRows</enum>
+               </property>
+               <attribute name="horizontalHeaderHighlightSections">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="verticalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
+               <column>
+                <property name="text">
+                 <string>Region</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Write interval</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>ID</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="bottom_frame_usr" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_29">
+           <property name="leftMargin">
+            <number>5</number>
+           </property>
+           <property name="topMargin">
+            <number>5</number>
+           </property>
+           <property name="rightMargin">
+            <number>5</number>
+           </property>
+           <property name="bottomMargin">
+            <number>5</number>
+           </property>
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_usr_dt">
+             <property name="text">
+              <string>Write interval</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="LineEdit" name="lineedit_keyword_usr_dt_args_USR"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_usr_var">
+             <property name="text">
+              <string>Variable</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_usr_format">
+             <property name="text">
+              <string>Format</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_usr_ext">
+             <property name="text">
+              <string>Extension</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_usr_type">
+             <property name="text">
+              <string>Type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_usr_region">
+             <property name="text">
+              <string>Region</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="label_usr_dt_units">
+             <property name="text">
+              <string>s</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="ComboBox" name="combobox_usr_region"/>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="LineEdit" name="lineedit_keyword_usr_var_args_USR"/>
+           </item>
+           <item row="3" column="1" colspan="2">
+            <widget class="LineEdit" name="lineedit_keyword_usr_format_args_USR"/>
+           </item>
+           <item row="4" column="1" colspan="2">
+            <widget class="LineEdit" name="lineedit_keyword_usr_ext_args_USR"/>
+           </item>
+           <item row="5" column="1" colspan="2">
+            <widget class="LineEdit" name="lineedit_keyword_usr_type_args_USR"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_11">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>999999999</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CheckBox</class>
+   <extends>QCheckBox</extends>
+   <header>mfixgui.widgets.base</header>
+  </customwidget>
+  <customwidget>
+   <class>LineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>mfixgui.widgets.base</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>mfixgui.widgets.base</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>pushbutton_basic</tabstop>
+  <tabstop>pushbutton_vtk</tabstop>
+  <tabstop>pushbutton_spx</tabstop>
+  <tabstop>pushbutton_residuals</tabstop>
+  <tabstop>pushbutton_log</tabstop>
+  <tabstop>pushbutton_usr</tabstop>
+  <tabstop>lineedit_keyword_res_dt</tabstop>
+  <tabstop>lineedit_keyword_res_backup_dt</tabstop>
+  <tabstop>lineedit_keyword_res_backups</tabstop>
+  <tabstop>groupbox_write_vtk_files</tabstop>
+  <tabstop>checkbox_keyword_time_dependent_filename</tabstop>
+  <tabstop>lineedit_keyword_vtu_dir</tabstop>
+  <tabstop>groupbox_write_part_out</tabstop>
+  <tabstop>checkbox_keyword_part_out_zero_vel</tabstop>
+  <tabstop>groupbox_filter_particles</tabstop>
+  <tabstop>combobox_filter_x</tabstop>
+  <tabstop>lineedit_keyword_part_out_x_min</tabstop>
+  <tabstop>lineedit_keyword_part_out_x_max</tabstop>
+  <tabstop>combobox_filter_y</tabstop>
+  <tabstop>lineedit_keyword_part_out_y_min</tabstop>
+  <tabstop>lineedit_keyword_part_out_y_max</tabstop>
+  <tabstop>combobox_filter_z</tabstop>
+  <tabstop>lineedit_keyword_part_out_z_min</tabstop>
+  <tabstop>lineedit_keyword_part_out_z_max</tabstop>
+  <tabstop>combobox_filter_diameter</tabstop>
+  <tabstop>lineedit_keyword_part_out_diameter_min</tabstop>
+  <tabstop>lineedit_keyword_part_out_diameter_max</tabstop>
+  <tabstop>combobox_filter_density</tabstop>
+  <tabstop>lineedit_keyword_part_out_density_min</tabstop>
+  <tabstop>lineedit_keyword_part_out_density_max</tabstop>
+  <tabstop>combobox_filter_u</tabstop>
+  <tabstop>lineedit_keyword_part_out_u_min</tabstop>
+  <tabstop>lineedit_keyword_part_out_u_max</tabstop>
+  <tabstop>combobox_filter_v</tabstop>
+  <tabstop>lineedit_keyword_part_out_v_min</tabstop>
+  <tabstop>lineedit_keyword_part_out_v_max</tabstop>
+  <tabstop>combobox_filter_w</tabstop>
+  <tabstop>lineedit_keyword_part_out_w_min</tabstop>
+  <tabstop>lineedit_keyword_part_out_w_max</tabstop>
+  <tabstop>combobox_filter_temp</tabstop>
+  <tabstop>lineedit_keyword_part_out_temp_min</tabstop>
+  <tabstop>lineedit_keyword_part_out_temp_max</tabstop>
+  <tabstop>checkbox_spx</tabstop>
+  <tabstop>toolbutton_add</tabstop>
+  <tabstop>toolbutton_delete</tabstop>
+  <tabstop>tablewidget_vtk_regions</tabstop>
+  <tabstop>lineedit_keyword_vtk_filebase_args_VTK</tabstop>
+  <tabstop>lineedit_keyword_vtk_dt_args_VTK</tabstop>
+  <tabstop>lineedit_keyword_vtk_nxs_args_VTK</tabstop>
+  <tabstop>lineedit_keyword_vtk_nys_args_VTK</tabstop>
+  <tabstop>lineedit_keyword_vtk_nzs_args_VTK</tabstop>
+  <tabstop>lineedit_keyword_vtk_slice_tol_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_cutcell_only_args_VTK</tabstop>
+  <tabstop>pushbutton_fluid</tabstop>
+  <tabstop>pushbutton_scalar</tabstop>
+  <tabstop>pushbutton_reactions</tabstop>
+  <tabstop>pushbutton_other</tabstop>
+  <tabstop>scrollarea_cell</tabstop>
+  <tabstop>checkbox_keyword_vtk_ep_g_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_p_g_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_vel_g_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_u_g_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_v_g_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_w_g_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_t_g_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_mw_mix_g_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_k_turb_g_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_e_turb_g_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_p_s_args_VTK_P</tabstop>
+  <tabstop>checkbox_keyword_vtk_vel_s_args_VTK_P</tabstop>
+  <tabstop>checkbox_keyword_vtk_u_s_args_VTK_P</tabstop>
+  <tabstop>checkbox_keyword_vtk_v_s_args_VTK_P</tabstop>
+  <tabstop>checkbox_keyword_vtk_w_s_args_VTK_P</tabstop>
+  <tabstop>checkbox_keyword_vtk_ep_s_args_VTK_P</tabstop>
+  <tabstop>checkbox_keyword_vtk_ro_s_args_VTK_P</tabstop>
+  <tabstop>checkbox_keyword_vtk_rop_s_args_VTK_P</tabstop>
+  <tabstop>checkbox_keyword_vtk_t_s_args_VTK_P</tabstop>
+  <tabstop>checkbox_keyword_vtk_theta_m_args_VTK_P</tabstop>
+  <tabstop>checkbox_keyword_vtk_p_star_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_vorticity_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_partition_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_bc_id_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_dwall_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_ijk_args_VTK</tabstop>
+  <tabstop>scrollarea_particle</tabstop>
+  <tabstop>combobox_vtk_select_mode</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_diameter_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_vel_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_angular_vel_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_orientation_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_temp_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_density_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_cohesion_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_residence_time_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_cgp_stat_wt_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_physical_diameter_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_rank_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_id_args_VTK</tabstop>
+  <tabstop>checkbox_keyword_vtk_part_phase_id_args_VTK</tabstop>
+  <tabstop>lineedit_keyword_spx_dt_args_1</tabstop>
+  <tabstop>lineedit_keyword_spx_dt_args_2</tabstop>
+  <tabstop>lineedit_keyword_spx_dt_args_3</tabstop>
+  <tabstop>lineedit_keyword_spx_dt_args_4</tabstop>
+  <tabstop>lineedit_keyword_spx_dt_args_5</tabstop>
+  <tabstop>lineedit_keyword_spx_dt_args_6</tabstop>
+  <tabstop>lineedit_keyword_spx_dt_args_9</tabstop>
+  <tabstop>lineedit_keyword_spx_dt_args_8</tabstop>
+  <tabstop>lineedit_keyword_spx_dt_args_7</tabstop>
+  <tabstop>lineedit_keyword_spx_dt_args_10</tabstop>
+  <tabstop>lineedit_keyword_spx_dt_args_11</tabstop>
+  <tabstop>groupbox_print_des_data</tabstop>
+  <tabstop>combobox_des_output_type</tabstop>
+  <tabstop>lineedit_keyword_vtp_dir</tabstop>
+  <tabstop>checkbox_keyword_full_log</tabstop>
+  <tabstop>checkbox_keyword_group_resid</tabstop>
+  <tabstop>combobox_resid_string_1</tabstop>
+  <tabstop>combobox_resid_string_2</tabstop>
+  <tabstop>combobox_resid_string_3</tabstop>
+  <tabstop>combobox_resid_string_4</tabstop>
+  <tabstop>combobox_resid_string_5</tabstop>
+  <tabstop>combobox_resid_string_6</tabstop>
+  <tabstop>combobox_resid_string_7</tabstop>
+  <tabstop>combobox_resid_string_8</tabstop>
+  <tabstop>groupbox_save_residuals</tabstop>
+  <tabstop>lineedit_residuals_filename</tabstop>
+  <tabstop>radiobutton_residuals_overwrite</tabstop>
+  <tabstop>radiobutton_residuals_append</tabstop>
+  <tabstop>radiobutton_residuals_increment</tabstop>
+  <tabstop>checkbox_keyword_enable_dmp_log</tabstop>
+  <tabstop>lineedit_keyword_nlog</tabstop>
+  <tabstop>lineedit_keyword_out_dt</tabstop>
+  <tabstop>checkbox_keyword_write_dashboard</tabstop>
+  <tabstop>checkbox_keyword_report_neg_density</tabstop>
+  <tabstop>checkbox_keyword_report_solid_inventory</tabstop>
+  <tabstop>lineedit_keyword_report_solid_inventory_dt</tabstop>
+  <tabstop>checkbox_keyword_breakdown_solid_inventory_by_phase</tabstop>
+  <tabstop>groupbox_save_solid_inventory</tabstop>
+  <tabstop>lineedit_solid_inventory_filename</tabstop>
+  <tabstop>radiobutton_solid_inventory_overwrite</tabstop>
+  <tabstop>radiobutton_solid_inventory_append</tabstop>
+  <tabstop>radiobutton_solid_inventory_increment</tabstop>
+  <tabstop>groupbox_save_solver_output</tabstop>
+  <tabstop>lineedit_solver_output_filename</tabstop>
+  <tabstop>radiobutton_solver_output_overwrite</tabstop>
+  <tabstop>radiobutton_solver_output_append</tabstop>
+  <tabstop>radiobutton_solver_output_increment</tabstop>
+  <tabstop>groupbox_save_dt</tabstop>
+  <tabstop>lineedit_dt_filename</tabstop>
+  <tabstop>radiobutton_dt_overwrite</tabstop>
+  <tabstop>radiobutton_dt_append</tabstop>
+  <tabstop>radiobutton_dt_increment</tabstop>
+  <tabstop>groupbox_save_nit</tabstop>
+  <tabstop>lineedit_nit_filename</tabstop>
+  <tabstop>radiobutton_nit_overwrite</tabstop>
+  <tabstop>radiobutton_nit_append</tabstop>
+  <tabstop>radiobutton_nit_increment</tabstop>
+  <tabstop>toolbutton_usr_add</tabstop>
+  <tabstop>toolbutton_usr_delete</tabstop>
+  <tabstop>toolbutton_usr_up</tabstop>
+  <tabstop>toolbutton_usr_down</tabstop>
+  <tabstop>tablewidget_usr_regions</tabstop>
+  <tabstop>combobox_usr_region</tabstop>
+  <tabstop>lineedit_keyword_usr_dt_args_USR</tabstop>
+  <tabstop>lineedit_keyword_usr_var_args_USR</tabstop>
+  <tabstop>lineedit_keyword_usr_format_args_USR</tabstop>
+  <tabstop>lineedit_keyword_usr_ext_args_USR</tabstop>
+  <tabstop>lineedit_keyword_usr_type_args_USR</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

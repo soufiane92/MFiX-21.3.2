@@ -1,0 +1,10 @@
+set(TEST_PATH tests/fluid)
+
+add_mfix_test(${TEST_PATH}/FLD01 "TESTS" 1)
+add_mfix_test(${TEST_PATH}/FLD02 "TESTS" 1)
+add_mfix_test(${TEST_PATH}/FLD03 "TESTS" 4)
+add_mfix_test(${TEST_PATH}/FLD04 "TESTS" 1)
+add_mfix_test(${TEST_PATH}/FLD05 "TESTS" 1)
+add_mfix_test(${TEST_PATH}/FLD06 "TESTS" 1)
+add_mfix_test(${TEST_PATH}/FLD07 "TESTS" 1)
+add_mfix_test(${TEST_PATH}/FLD08 "TESTS" 1)

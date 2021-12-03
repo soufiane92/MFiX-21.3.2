@@ -1,0 +1,374 @@
+#! MFiX Tutorial
+#! File written Fri Feb 15 2019
+#! MFiX version 19.1
+
+### Run Controls
+  description     = '3D TFM square fluid bed'
+  run_name        = 'fluid_bed_tfm_3d'
+  units           = 'SI'
+  run_type        = 'new'
+  tstop           = 1.0
+  dt              = 1.0000e-03
+  dt_max          = 1.0000e-02
+  dt_min          = 1.0000e-06
+  res_dt          = 0.1
+  drag_c1         = 0.8
+  drag_d1         = 2.65
+  energy_eq       = .False.
+  write_dashboard = .True.
+  full_log        = .True.
+
+### Physical parameters
+  gravity_x = 0.0
+  gravity_y = -9.81
+  gravity_z = 0.0
+
+### Cartesian grid
+  cartesian_grid = .False.
+  f_dashboard    = 1
+  use_stl        = .False.
+
+### Numeric
+  max_inlet_vel_fac = 1000.0
+  norm_g            = 0.0
+  ### Discretization
+  discretize(1) = 0 leq_pc(1) = 'NONE'
+  discretize(2) = 0 leq_pc(2) = 'NONE'
+  discretize(3) = 0 leq_pc(3) = 'NONE'
+  discretize(4) = 0 leq_pc(4) = 'NONE'
+  discretize(5) = 0 leq_pc(5) = 'NONE'
+  discretize(6) = 0 leq_pc(6) = 'NONE'
+  discretize(7) = 0 leq_pc(7) = 'NONE'
+  discretize(8) = 0 leq_pc(8) = 'NONE'
+  discretize(9) = 0 leq_pc(9) = 'NONE'
+  norm_s        = 0.0
+
+### Geometry
+  coordinates = 'CARTESIAN'
+  imax        = 20
+  jmax        = 100
+  kmax        = 20
+  x_max       = 0.2
+  x_min       = 0
+  y_max       = 1.0
+  y_min       = 0
+  z_max       = 0.2
+  z_min       = 0
+
+#### Fluid
+  mw_avg        = 29.0
+  species_eq(0) = .False.
+
+#### Solids
+  mmax = 1
+  rdf_type = 'CARNAHAN_STARLING'
+  # Solid 1
+    solids_model(1) = 'TFM'
+    d_p0(1)         = 2.5000e-04
+    ro_s0(1)        = 2000.0
+    species_eq(1)   = .False.
+    nmax_s(1)       = 0
+
+
+### Initial conditions
+  # Initial condition 1: Entire domain
+    ic_x_e(1)               = 0.2
+    ic_x_w(1)               = 0
+    ic_y_s(1)               = 0
+    ic_y_n(1)               = 1.0
+    ic_z_b(1)               = 0
+    ic_z_t(1)               = 0.2
+    ic_des_fit_to_region(1) = .False.
+    ic_ep_g(1)              = 1.0
+    ic_t_g(1)               = 298.15
+    ic_u_g(1)               = 0.0
+    ic_v_g(1)               = 0.0
+    ic_w_g(1)               = 0.0
+    ic_p_g(1)               = 1.0132e+05
+    ic_ep_s(1,1)            = 0.0
+    ic_t_s(1,1)             = 298.15
+    ic_u_s(1,1)             = 0.0
+    ic_v_s(1,1)             = 0.0
+    ic_w_s(1,1)             = 0.0
+
+  # Initial condition 2: Bed
+    ic_x_e(2)               = 0.2
+    ic_x_w(2)               = 0
+    ic_y_s(2)               = 0
+    ic_y_n(2)               = 0.5
+    ic_z_b(2)               = 0
+    ic_z_t(2)               = 0.2
+    ic_des_fit_to_region(2) = .False.
+    ic_ep_g(2)              = 0.45
+    ic_t_g(2)               = 298.15
+    ic_u_g(2)               = 0.0
+    ic_v_g(2)               = 0.2
+    ic_w_g(2)               = 0.0
+    ic_p_g(2)               = 1.0132e+05
+    ic_ep_s(2,1)            = 0.55
+    ic_t_s(2,1)             = 298.15
+    ic_u_s(2,1)             = 0.0
+    ic_v_s(2,1)             = 0.2
+    ic_w_s(2,1)             = 0.0
+
+
+# Boundary conditions
+  # Boundary condition 1: Bottom Inlet
+    bc_type(1) = 'MI'
+    bc_x_e(1)  = 0.2
+    bc_x_w(1)  = 0
+    bc_y_s(1)  = 0
+    bc_y_n(1)  = 0.0
+    bc_z_b(1)  = 0
+    bc_z_t(1)  = 0.2
+    bc_ep_g(1) = 1.0
+    bc_p_g(1)  = 1.0132e+05
+    bc_t_g(1)  = 298.15
+    bc_u_g(1)  = 0.0
+    bc_v_g(1)  = 0.25
+    bc_w_g(1)  = 0.0
+    # Solid 1
+      bc_ep_s(1,1) = 0.0
+      bc_t_s(1,1)  = 293.15
+      bc_u_s(1,1)  = 0.0
+      bc_v_s(1,1)  = 0.0
+      bc_w_s(1,1)  = 0.0
+
+  # Boundary condition 2: Top outlet
+    bc_type(2) = 'PO'
+    bc_x_e(2)  = 0.2
+    bc_x_w(2)  = 0.0
+    bc_y_s(2)  = 1.0
+    bc_y_n(2)  = 1.0
+    bc_z_b(2)  = 0.0
+    bc_z_t(2)  = 0.2
+    bc_p_g(2)  = 1.0132e+05
+    bc_t_g(2)  = 298.15
+
+  # Boundary condition 3: Left wall
+    bc_type(3)  = 'NSW'
+    bc_x_e(3)   = 0.0
+    bc_x_w(3)   = 0
+    bc_y_s(3)   = 0
+    bc_y_n(3)   = 1.0
+    bc_z_b(3)   = 0
+    bc_z_t(3)   = 0.2
+    bc_jj_ps(3) = 0
+
+  # Boundary condition 4: Right wall
+    bc_type(4)  = 'NSW'
+    bc_x_e(4)   = 0.2
+    bc_x_w(4)   = 0.2
+    bc_y_s(4)   = 0.0
+    bc_y_n(4)   = 1.0
+    bc_z_b(4)   = 0.0
+    bc_z_t(4)   = 0.2
+    bc_jj_ps(4) = 0
+
+  # Boundary condition 5: Front wall
+    bc_type(5)  = 'NSW'
+    bc_x_e(5)   = 0.2
+    bc_x_w(5)   = 0
+    bc_y_s(5)   = 0
+    bc_y_n(5)   = 1.0
+    bc_z_b(5)   = 0
+    bc_z_t(5)   = 0.0
+    bc_jj_ps(5) = 0
+
+  # Boundary condition 6: Back wall
+    bc_type(6)  = 'NSW'
+    bc_x_e(6)   = 0.2
+    bc_x_w(6)   = 0.0
+    bc_y_s(6)   = 0.0
+    bc_y_n(6)   = 1.0
+    bc_z_b(6)   = 0.2
+    bc_z_t(6)   = 0.2
+    bc_jj_ps(6) = 0
+
+  # Boundary condition 7: Internal obstacle
+    bc_type(7)  = 'NSW'
+    bc_x_e(7)   = 0.15
+    bc_x_w(7)   = 0.05
+    bc_y_s(7)   = 0.15
+    bc_y_n(7)   = 0.25
+    bc_z_b(7)   = 0.05
+    bc_z_t(7)   = 0.15
+    bc_jj_ps(7) = 0
+
+
+# VTK outputs
+  write_vtk_files = .True.
+  vtu_dir         = 'VTU'
+  # VTK output 1: Entire domain
+    vtk_filebase(1) = 'BUB3D'
+    vtk_x_e(1)      = 0.2
+    vtk_x_w(1)      = 0
+    vtk_y_s(1)      = 0
+    vtk_y_n(1)      = 1.0
+    vtk_z_b(1)      = 0
+    vtk_z_t(1)      = 0.2
+    vtk_data(1)     = 'C'
+    vtk_dt(1)       = 0.25
+    vtk_ep_g(1)     = .True.
+    vtk_p_g(1)      = .True.
+    vtk_p_star(1)   = .True.
+    vtk_u_g(1)      = .True.
+    vtk_v_g(1)      = .True.
+    vtk_w_g(1)      = .True.
+    vtk_u_s(1,1)    = .True.
+    vtk_v_s(1,1)    = .True.
+    vtk_w_s(1,1)    = .True.
+
+  # VTK output 2: Center plane
+    vtk_filebase(2) = 'VSLICE'
+    vtk_x_e(2)      = 0.2
+    vtk_x_w(2)      = 0.0
+    vtk_y_s(2)      = 0.0
+    vtk_y_n(2)      = 1.0
+    vtk_z_b(2)      = 0.1
+    vtk_z_t(2)      = 0.1
+    vtk_data(2)     = 'C'
+    vtk_dt(2)       = 0.1
+    vtk_ep_g(2)     = .True.
+    vtk_p_g(2)      = .True.
+    vtk_p_star(2)   = .True.
+    vtk_u_g(2)      = .True.
+    vtk_v_g(2)      = .True.
+    vtk_w_g(2)      = .True.
+    vtk_u_s(2,1)    = .True.
+    vtk_v_s(2,1)    = .True.
+    vtk_w_s(2,1)    = .True.
+
+  # VTK output 3: Entire domain
+    vtk_filebase(3) = 'HSLICES'
+    vtk_x_e(3)      = 0.2
+    vtk_x_w(3)      = 0
+    vtk_y_s(3)      = 0
+    vtk_y_n(3)      = 1.0
+    vtk_z_b(3)      = 0
+    vtk_z_t(3)      = 0.2
+    vtk_data(3)     = 'C'
+    vtk_dt(3)       = 0.1
+    vtk_nys(3)      = 11
+    vtk_ep_g(3)     = .True.
+    vtk_p_g(3)      = .True.
+    vtk_p_star(3)   = .True.
+    vtk_u_g(3)      = .True.
+    vtk_v_g(3)      = .True.
+    vtk_w_g(3)      = .True.
+    vtk_u_s(3,1)    = .True.
+    vtk_v_s(3,1)    = .True.
+    vtk_w_s(3,1)    = .True.
+
+  # VTK output 4: Probe 1
+    vtk_filebase(4) = 'PROBE1'
+    vtk_x_e(4)      = 0.05
+    vtk_x_w(4)      = 0.05
+    vtk_y_s(4)      = 0.3
+    vtk_y_n(4)      = 0.3
+    vtk_z_b(4)      = 0.1
+    vtk_z_t(4)      = 0.1
+    vtk_data(4)     = 'C'
+    vtk_dt(4)       = 0.01
+    vtk_ep_g(4)     = .True.
+    vtk_p_g(4)      = .True.
+    vtk_vel_g(4)    = .True.
+    vtk_vel_s(4,1)  = .True.
+
+  # VTK output 5: Probe 2
+    vtk_filebase(5) = 'PROBE2'
+    vtk_x_e(5)      = 0.185
+    vtk_x_w(5)      = 0.175
+    vtk_y_s(5)      = 0.195
+    vtk_y_n(5)      = 0.205
+    vtk_z_b(5)      = 0.095
+    vtk_z_t(5)      = 0.105
+    vtk_data(5)     = 'C'
+    vtk_dt(5)       = 0.01
+    vtk_ep_g(5)     = .True.
+    vtk_p_g(5)      = .True.
+
+
+# SPx outputs
+  spx_dt(1)  = 100.0
+  spx_dt(2)  = 100.0
+  spx_dt(3)  = 100.0
+  spx_dt(4)  = 100.0
+  spx_dt(5)  = 100.0
+  spx_dt(6)  = 100.0
+  spx_dt(7)  = 100.0
+  spx_dt(8)  = 100.0
+  spx_dt(9)  = 100.0
+  spx_dt(10) = 100.0
+
+  group_resid = .True.
+### Residuals
+  resid_string(1) = 'P0'
+  resid_string(2) = 'U0'
+  resid_string(3) = 'V0'
+  resid_string(4) = 'W0'
+  resid_string(5) = 'U1'
+  resid_string(6) = 'V1'
+  resid_string(7) = 'W1'
+
+### Two-fluid model
+  c_e     = 0.9
+  e_w     = 0.9
+  ep_star = 0.42
+  phi     = 30.0
+  phi_w   = 11.31
+
+#*****************************************************
+# Miscellaneous keys                                 *
+#*****************************************************
+  enable_dmp_log = .False.
+  nlog           = 50
+
+# MFIX-GUI section
+#!MFIX-GUI parameters = {"order": ["min", "max", "xmin", "xmax", "ymin", "ymax",
+#!MFIX-GUI   "zmin", "zmax", "km", "m", "cm", "mm", "mile", "yard", "ft",
+#!MFIX-GUI   "ins"], "parameters": {"min": 0.0, "max": 0.0, "xmin": 0, "xmax":
+#!MFIX-GUI   0.2, "ymin": 0, "ymax": 1.0, "zmin": 0, "zmax": 0.2, "km": 1000.0,
+#!MFIX-GUI   "m": 1.0, "cm": 0.01, "mm": 0.001, "mile": 1609.34, "yard": 0.9144,
+#!MFIX-GUI   "ft": 0.3048, "ins": 0.0254}}
+#!MFIX-GUI gui_version = 18.1.0
+#!MFIX-GUI project_notes = ""
+#!MFIX-GUI author = tutorial
+#!MFIX-GUI geometry = {"geometry_dict": {}, "tree": {}}
+#!MFIX-GUI visual_props = {"mesh": {"color": "#f44328", "visible": true, "rep":
+#!MFIX-GUI   "wire", "edge": "#7a2114", "opacity": 1}, "background_mesh":
+#!MFIX-GUI   {"color": "#64b6f7", "visible": true, "rep": "wire", "edge":
+#!MFIX-GUI   "#325b7b", "opacity": 1.0}, "geometry": {"color": "#e0e0e0",
+#!MFIX-GUI   "visible": true, "rep": "wire", "edge": "#707070", "opacity": 1.0},
+#!MFIX-GUI   "regions": {"color": "#e0e0e0", "visible": true, "rep": "solid",
+#!MFIX-GUI   "edge": "#707070", "opacity": 0.5}}
+#!MFIX-GUI regions_dict = {"order": ["Entire domain", "Bed", "Bottom Inlet",
+#!MFIX-GUI   "Top outlet", "Left wall", "Right wall", "Front wall", "Back wall",
+#!MFIX-GUI   "Internal obstacle", "Center plane", "Probe 1", "Probe 2"],
+#!MFIX-GUI   "regions": {"Entire domain": {"to": [0.2, 1.0, 0.2], "color":
+#!MFIX-GUI   "#8f73ca"}, "Bed": {"to": [0.2, 0.5, 0.2], "color": "#7486c2"},
+#!MFIX-GUI   "Bottom Inlet": {"to": [0.2, 0.0, 0.2], "color": "#6bcf67", "type":
+#!MFIX-GUI   "XZ-plane"}, "Top outlet": {"to": [0.2, 1.0, 0.2], "from": [0.0,
+#!MFIX-GUI   1.0, 0.0], "color": "#c7cb66", "type": "XZ-plane"}, "Left wall":
+#!MFIX-GUI   {"to": [0.0, 1.0, 0.2], "color": "#7991dc", "type": "YZ-plane"},
+#!MFIX-GUI   "Right wall": {"to": [0.2, 1.0, 0.2], "from": [0.2, 0.0, 0.0],
+#!MFIX-GUI   "color": "#b8ba8e", "type": "YZ-plane"}, "Front wall": {"to": [0.2,
+#!MFIX-GUI   1.0, 0.0], "color": "#966691", "type": "XY-plane"}, "Back wall":
+#!MFIX-GUI   {"to": [0.2, 1.0, 0.2], "from": [0.0, 0.0, 0.2], "color":
+#!MFIX-GUI   "#cd917e", "type": "XY-plane"}, "Internal obstacle": {"to": [0.15,
+#!MFIX-GUI   0.25, 0.15], "from": [0.05, 0.15, 0.05], "color": "#dd92d8"},
+#!MFIX-GUI   "Center plane": {"to": [0.2, 1.0, 0.1], "from": [0.0, 0.0, 0.1],
+#!MFIX-GUI   "color": "#6a67a9", "type": "XY-plane"}, "Probe 1": {"to": [0.05,
+#!MFIX-GUI   0.3, 0.1], "from": [0.05, 0.3, 0.1], "color": "#6cbb71", "type":
+#!MFIX-GUI   "point"}, "Probe 2": {"to": [0.185, 0.205, 0.105], "from": [0.175,
+#!MFIX-GUI   0.195, 0.095], "color": "#ba9fa6"}}}
+#!MFIX-GUI bc_regions = [[[1], ["Bottom Inlet"]], [[2], ["Top outlet"]], [[3],
+#!MFIX-GUI   ["Left wall"]], [[4], ["Right wall"]], [[5], ["Front wall"]], [[6],
+#!MFIX-GUI   ["Back wall"]], [[7], ["Internal obstacle"]]]
+#!MFIX-GUI ic_regions = [[[1], ["Entire domain"]], [[2], ["Bed"]]]
+#!MFIX-GUI is_regions = []
+#!MFIX-GUI ps_regions = []
+#!MFIX-GUI vtk_regions = [[[1], ["Entire domain"]], [[2], ["Center plane"]],
+#!MFIX-GUI   [[3], ["Entire domain"]], [[4], ["Probe 1"]], [[5], ["Probe 2"]]]
+#!MFIX-GUI OMP_NUM_THREADS = 1
+#!MFIX-GUI submit_to_queue = 0

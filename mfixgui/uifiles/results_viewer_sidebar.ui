@@ -1,0 +1,1702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>results_viewer_sidebar</class>
+ <widget class="QWidget" name="results_viewer_sidebar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>261</width>
+    <height>912</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>5</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="1" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-289</y>
+        <width>234</width>
+        <height>1182</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="accessibleName">
+       <string>scrollAreaWidgetContents</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>5</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>5</number>
+       </property>
+       <item row="6" column="0">
+        <widget class="QToolButton" name="toolButton_geometry">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Geometry</string>
+         </property>
+         <property name="text">
+          <string>G</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0">
+        <widget class="QToolButton" name="toolButton_axes_vis">
+         <property name="toolTip">
+          <string>Axes</string>
+         </property>
+         <property name="text">
+          <string>A</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QToolButton" name="toolButton_color_bar">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Color bar</string>
+         </property>
+         <property name="text">
+          <string>B</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QToolButton" name="toolButton_points">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Points</string>
+         </property>
+         <property name="text">
+          <string>P</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QToolButton" name="toolButton_cells_nodes">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Cells/Nodes</string>
+         </property>
+         <property name="text">
+          <string>C</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1" rowspan="2">
+        <widget class="QWidget" name="widget_time_label" native="true">
+         <layout class="QGridLayout" name="gridLayout_6">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_22">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Time label</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QToolButton" name="toolButton_time_label_toggle">
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="autoRaise">
+             <bool>true</bool>
+            </property>
+            <property name="arrowType">
+             <enum>Qt::UpArrow</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QWidget" name="widget_time_label_opts" native="true">
+            <layout class="QGridLayout" name="gridLayout_12">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <item row="4" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_time_label_opacity">
+               <property name="maximum">
+                <double>1.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.100000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_23">
+               <property name="text">
+                <string>Opacity</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QToolButton" name="toolButton_time_label_color">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="autoRaise">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_25">
+               <property name="text">
+                <string>Position</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="lineEdit_time_label_format">
+               <property name="text">
+                <string>{:.2f} s</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_21">
+               <property name="text">
+                <string>Format</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="ComboBox" name="comboBox_time_label_loc">
+               <property name="currentIndex">
+                <number>1</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>top left</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>top right</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>top center</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>bottom left</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>bottom right</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>bottom center</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_24">
+               <property name="text">
+                <string>Text Color</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_31">
+               <property name="text">
+                <string>Text Size</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QSpinBox" name="spinBox_time_label_size">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="value">
+                <number>24</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="8" column="1" rowspan="2">
+        <widget class="QWidget" name="widget_color_bar" native="true">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="toolButton_color_bar_toggle">
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="autoRaise">
+             <bool>true</bool>
+            </property>
+            <property name="arrowType">
+             <enum>Qt::UpArrow</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="label_18">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Color bar</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <widget class="QWidget" name="widget_color_bar_opts" native="true">
+            <layout class="QGridLayout" name="gridLayout_11">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <item row="5" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_color_bar_opacity">
+               <property name="maximum">
+                <double>1.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.100000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_32">
+               <property name="text">
+                <string># Labels</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="ComboBox" name="comboBox_color_bar_position">
+               <property name="currentIndex">
+                <number>1</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>left</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>right</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>top</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>bottom</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="ComboBox" name="comboBox_color_bar_field">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <item>
+                <property name="text">
+                 <string>cells/nodes</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>points</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_14">
+               <property name="text">
+                <string>Text Color</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="spinBox_color_bar_n_labels">
+               <property name="value">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_16">
+               <property name="text">
+                <string>Opacity</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QToolButton" name="toolButton_color_bar_color">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="autoRaise">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_20">
+               <property name="text">
+                <string>Position</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_19">
+               <property name="text">
+                <string>Field</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_33">
+               <property name="text">
+                <string>Format</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="lineEdit_color_bar_format">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;printf style format string such as %.2f, %.3g, or %.1e&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>%.2f</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="12" column="1">
+        <widget class="QLabel" name="label_axes">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Axes</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" rowspan="2">
+        <widget class="QWidget" name="widget_cells_nodes" native="true">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="toolButton_cells_nodes_toggle">
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="autoRaise">
+             <bool>true</bool>
+            </property>
+            <property name="arrowType">
+             <enum>Qt::UpArrow</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <widget class="QWidget" name="widget_cells_nodes_opts" native="true">
+            <layout class="QGridLayout" name="gridLayout_8">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_30">
+               <property name="text">
+                <string>Style</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>Color scale</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>Opacity</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>Component</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Variable</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>File pattern</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="ComboBox" name="comboBox_cells_file_pattern">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="ComboBox" name="comboBox_cells_style">
+               <item>
+                <property name="text">
+                 <string>cells</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>nodes</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="ComboBox" name="comboBox_cells_variable"/>
+             </item>
+             <item row="3" column="1">
+              <widget class="ComboBox" name="comboBox_cells_component">
+               <item>
+                <property name="text">
+                 <string>mag</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>x</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>y</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>z</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QToolButton" name="toolButton_cells_color">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="autoRaise">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_cells_opacity">
+               <property name="maximum">
+                <double>1.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.100000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Cells/Nodes</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Preferred</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="6" column="1" rowspan="2">
+        <widget class="QWidget" name="widget_geometry" native="true">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_17">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Geometry</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QToolButton" name="toolButton_geometry_toggle">
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="autoRaise">
+             <bool>true</bool>
+            </property>
+            <property name="arrowType">
+             <enum>Qt::UpArrow</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QWidget" name="widget_geometry_opts" native="true">
+            <layout class="QGridLayout" name="gridLayout_10">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_29">
+               <property name="text">
+                <string>Style</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_13">
+               <property name="text">
+                <string>Color</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_15">
+               <property name="text">
+                <string>Opacity</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QToolButton" name="toolButton_geometry_color">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="autoRaise">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="ComboBox" name="comboBox_regions_style">
+               <property name="currentIndex">
+                <number>1</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>wire</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>solid</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>edges</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>points</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_geometry_opacity">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximum">
+                <double>1.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.100000000000000</double>
+               </property>
+               <property name="value">
+                <double>0.400000000000000</double>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="17" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>22</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="7" column="0">
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Preferred</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="4" column="1" rowspan="2">
+        <widget class="QWidget" name="widget_points" native="true">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <item row="0" column="3">
+           <widget class="QToolButton" name="toolButton_points_toggle">
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="autoRaise">
+             <bool>true</bool>
+            </property>
+            <property name="arrowType">
+             <enum>Qt::UpArrow</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="4">
+           <widget class="QWidget" name="widget_points_opts" native="true">
+            <layout class="QGridLayout" name="gridLayout_9">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <item row="1" column="1">
+              <widget class="ComboBox" name="comboBox_points_variable"/>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_26">
+               <property name="text">
+                <string>Mapper</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="ComboBox" name="comboBox_particle_shader"/>
+             </item>
+             <item row="8" column="1">
+              <widget class="LineEdit" name="lineEdit_maximum_glyph_points">
+               <property name="text">
+                <string>10000</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_10">
+               <property name="text">
+                <string>Variable</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_12">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>File pattern</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="label_max_points">
+               <property name="text">
+                <string>Max points</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>Component</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_points_opacity">
+               <property name="maximum">
+                <double>1.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.100000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="ComboBox" name="comboBox_partilce_mapper">
+               <item>
+                <property name="text">
+                 <string>point gaussian</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>glyphs</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="ComboBox" name="comboBox_points_component">
+               <item>
+                <property name="text">
+                 <string>mag</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>x</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>y</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>z</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="ComboBox" name="comboBox_points_file_pattern">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>Opacity</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_shader">
+               <property name="text">
+                <string>Shader</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QToolButton" name="toolButton_points_color">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="autoRaise">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_7">
+               <property name="text">
+                <string>Color scale</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="label_glyph">
+               <property name="text">
+                <string>Glyph</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="ComboBox" name="comboBox_glyph"/>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_40">
+               <property name="text">
+                <string>Point count</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QLineEdit" name="lineEdit_point_count">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="label_11">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Points</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Preferred</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="10" column="0">
+        <widget class="QToolButton" name="toolButton_time_label">
+         <property name="toolTip">
+          <string>Time label</string>
+         </property>
+         <property name="text">
+          <string>T</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <spacer name="verticalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Preferred</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="5" column="0">
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Preferred</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="15" column="1" rowspan="2">
+        <widget class="QWidget" name="widget_image_stack" native="true">
+         <layout class="QGridLayout" name="gridLayout_13">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Image stack</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QToolButton" name="toolButton_image_stack_toggle">
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="autoRaise">
+             <bool>true</bool>
+            </property>
+            <property name="arrowType">
+             <enum>Qt::UpArrow</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QWidget" name="widget_image_stack_opts" native="true">
+            <layout class="QGridLayout" name="gridLayout_14">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <item row="2" column="1" colspan="2">
+              <widget class="LineEdit" name="lineEdit_image_stack_width">
+               <property name="text">
+                <string>1920</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_28">
+               <property name="text">
+                <string>Format</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1" colspan="2">
+              <widget class="ComboBox" name="comboBox_image_stack_type">
+               <item>
+                <property name="text">
+                 <string>png</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>jpg</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>ps</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="1" colspan="2">
+              <widget class="LineEdit" name="lineEdit_image_stack_prefix">
+               <property name="text">
+                <string>frame_</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1" colspan="2">
+              <widget class="LineEdit" name="lineEdit_image_stack_height">
+               <property name="text">
+                <string>1080</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_image_stack_height">
+               <property name="text">
+                <string>Height</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_35">
+               <property name="text">
+                <string>Dir</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_34">
+               <property name="text">
+                <string>Prefix</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QToolButton" name="toolButton_image_stack_browse">
+               <property name="text">
+                <string>B</string>
+               </property>
+               <property name="autoRaise">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_image_stack_width">
+               <property name="text">
+                <string>Width</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="LineEdit" name="lineEdit_image_stack_dir">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QCheckBox" name="checkBox_trans_back">
+               <property name="text">
+                <string>Transparent background</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="14" column="0">
+        <spacer name="verticalSpacer_8">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Preferred</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="13" column="0">
+        <widget class="QToolButton" name="toolButton_playback">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="toolTip">
+          <string>Playback</string>
+         </property>
+         <property name="text">
+          <string>p</string>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="0">
+        <spacer name="verticalSpacer_7">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Preferred</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="15" column="0">
+        <widget class="QToolButton" name="toolButton_camera">
+         <property name="toolTip">
+          <string>Image stack</string>
+         </property>
+         <property name="text">
+          <string>C</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="1" rowspan="2">
+        <widget class="QWidget" name="widget_playback" native="true">
+         <layout class="QGridLayout" name="gridLayout_15">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_38">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Playback</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QToolButton" name="toolButton_playback_toggle">
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="autoRaise">
+             <bool>true</bool>
+            </property>
+            <property name="arrowType">
+             <enum>Qt::UpArrow</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QWidget" name="widget_playback_opts" native="true">
+            <layout class="QGridLayout" name="gridLayout_16">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_39">
+               <property name="text">
+                <string>Speed</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSlider" name="horizontalSlider_playback_speed">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QToolButton" name="toolButton_hide_show">
+     <property name="text">
+      <string>c</string>
+     </property>
+     <property name="autoRaise">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>mfixgui.widgets.base</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>mfixgui.widgets.base</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>toolButton_geometry</tabstop>
+  <tabstop>toolButton_axes_vis</tabstop>
+  <tabstop>toolButton_hide_show</tabstop>
+  <tabstop>toolButton_color_bar</tabstop>
+  <tabstop>toolButton_points</tabstop>
+  <tabstop>toolButton_time_label_toggle</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>toolButton_cells_nodes</tabstop>
+  <tabstop>toolButton_image_stack_browse</tabstop>
+  <tabstop>toolButton_color_bar_toggle</tabstop>
+  <tabstop>lineEdit_time_label_format</tabstop>
+  <tabstop>comboBox_time_label_loc</tabstop>
+  <tabstop>toolButton_time_label_color</tabstop>
+  <tabstop>spinBox_time_label_size</tabstop>
+  <tabstop>doubleSpinBox_time_label_opacity</tabstop>
+  <tabstop>horizontalSlider_playback_speed</tabstop>
+  <tabstop>lineEdit_image_stack_dir</tabstop>
+  <tabstop>lineEdit_image_stack_prefix</tabstop>
+  <tabstop>lineEdit_image_stack_width</tabstop>
+  <tabstop>lineEdit_image_stack_height</tabstop>
+  <tabstop>comboBox_image_stack_type</tabstop>
+  <tabstop>comboBox_cells_file_pattern</tabstop>
+  <tabstop>comboBox_cells_style</tabstop>
+  <tabstop>comboBox_cells_variable</tabstop>
+  <tabstop>comboBox_cells_component</tabstop>
+  <tabstop>toolButton_cells_color</tabstop>
+  <tabstop>doubleSpinBox_cells_opacity</tabstop>
+  <tabstop>comboBox_points_file_pattern</tabstop>
+  <tabstop>comboBox_points_variable</tabstop>
+  <tabstop>comboBox_points_component</tabstop>
+  <tabstop>toolButton_points_color</tabstop>
+  <tabstop>doubleSpinBox_points_opacity</tabstop>
+  <tabstop>comboBox_partilce_mapper</tabstop>
+  <tabstop>comboBox_particle_shader</tabstop>
+  <tabstop>comboBox_glyph</tabstop>
+  <tabstop>lineEdit_maximum_glyph_points</tabstop>
+  <tabstop>toolButton_geometry_color</tabstop>
+  <tabstop>comboBox_regions_style</tabstop>
+  <tabstop>doubleSpinBox_geometry_opacity</tabstop>
+  <tabstop>comboBox_color_bar_field</tabstop>
+  <tabstop>spinBox_color_bar_n_labels</tabstop>
+  <tabstop>lineEdit_color_bar_format</tabstop>
+  <tabstop>comboBox_color_bar_position</tabstop>
+  <tabstop>toolButton_color_bar_color</tabstop>
+  <tabstop>doubleSpinBox_color_bar_opacity</tabstop>
+  <tabstop>toolButton_points_toggle</tabstop>
+  <tabstop>toolButton_geometry_toggle</tabstop>
+  <tabstop>toolButton_time_label</tabstop>
+  <tabstop>toolButton_cells_nodes_toggle</tabstop>
+  <tabstop>toolButton_playback</tabstop>
+  <tabstop>toolButton_camera</tabstop>
+  <tabstop>toolButton_playback_toggle</tabstop>
+  <tabstop>toolButton_image_stack_toggle</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
